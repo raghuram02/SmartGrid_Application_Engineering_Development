@@ -6,6 +6,7 @@
 package UI;
 
 import Business.Person;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -116,18 +117,64 @@ private Person person;
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCreatePersonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreatePersonActionPerformed
+    
+        if (txtFirst.getText().equals("")) {
+    JOptionPane.showMessageDialog(null, "Enter the first name");
+    return;
+                }
+    else if (txtLast.getText().equals("")) {
+    JOptionPane.showMessageDialog(null, "Enter the Last name");
+    return;
+                }
+    else if (txtMiddle.getText().equals("")) {
+    JOptionPane.showMessageDialog(null, "Enter the middle name");
+    return;
+                }
+    else if (txtDOB.getText().equals("")) {
+    JOptionPane.showMessageDialog(null, "Enter the date of birth");
+    return;
+    }
+    if (txtAddress.getText().equals("")) {
+    JOptionPane.showMessageDialog(null, "Enter the atreet address");
+    return;
+                }
+    else if (txtTown.getText().equals("")) {
+    JOptionPane.showMessageDialog(null, "Enter the town");
+    return;
+                }
+    else if (txtZip.getText().equals("")) {
+    JOptionPane.showMessageDialog(null, "Enter the zip code");
+    return;
+                }
+    else if (txtOccupation.getText().equals("")) {
+    JOptionPane.showMessageDialog(null, "Enter the occupation");
+    return;
+    }
+        else if (txtEmail.getText().equals("")) {
+    JOptionPane.showMessageDialog(null, "Enter the email address");
+    return;
+                }
+    else if (txtArea.getText().equals("")) {
+    JOptionPane.showMessageDialog(null, "Enter the area code");
+    return;
+                }
+    else if (txtPhone.getText().equals("")) {
+    JOptionPane.showMessageDialog(null, "Enter the phone number");
+    return;
+                }
+        
         person.setFirstName(txtFirst.getText());
         person.setLastName(txtLast.getText());
         person.setMiddleName(txtMiddle.getText());
-        person.setDateOfBirth(Integer.parseInt(txtDOB.getText()));
+        person.setDateOfBirth(txtDOB.getText());
         person.setStreetAddress(txtAddress.getText());
         person.setTown(txtTown.getText());
         person.setZipCode(Integer.parseInt(txtZip.getText()));
         person.setOccupation(txtOccupation.getText());
         person.setEmailAddress(txtEmail.getText());
         person.setAreaCode(Integer.parseInt(txtArea.getText()));
-        person.setPhoneNumber(Integer.parseInt(txtPhone.getText()));
-       
+        person.setPhoneNumber(Long.parseLong(txtPhone.getText()));
+    
         
 // TODO add your handling code here:
     }//GEN-LAST:event_btnCreatePersonActionPerformed

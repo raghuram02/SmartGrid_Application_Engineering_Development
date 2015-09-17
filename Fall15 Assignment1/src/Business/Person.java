@@ -13,14 +13,14 @@ public class Person {
     private String firstName;
     private String lastName;
     private String middleName;
-    private int dateOfBirth;
+    private String dateOfBirth;
     private String streetAddress;
     private String town;
     private int zipCode;
     private String occupation;
     private String emailAddress;
     private int areaCode;
-    private int phoneNumber;
+    private long phoneNumber;
 
     /**
      * @return the firstName
@@ -67,14 +67,14 @@ public class Person {
     /**
      * @return the dateOfBirth
      */
-    public int getDateOfBirth() {
+    public String getDateOfBirth() {
         return dateOfBirth;
     }
 
     /**
      * @param dateOfBirth the dateOfBirth to set
      */
-    public void setDateOfBirth(int dateOfBirth) {
+    public void setDateOfBirth(String dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
     }
 
@@ -165,14 +165,14 @@ public class Person {
     /**
      * @return the phoneNumber
      */
-    public int getPhoneNumber() {
+    public long getPhoneNumber() {
         return phoneNumber;
     }
 
     /**
      * @param phoneNumber the phoneNumber to set
      */
-    public void setPhoneNumber(int phoneNumber) {
+    public void setPhoneNumber(Long phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
     

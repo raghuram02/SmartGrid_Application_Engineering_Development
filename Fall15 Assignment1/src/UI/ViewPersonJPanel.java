@@ -22,7 +22,7 @@ private Person person;
         txtFirst.setText(person.getFirstName());
         txtLast.setText(person.getLastName());
         txtMiddle.setText(person.getMiddleName());
-        txtDOB.setText(String.valueOf(person.getDateOfBirth()));
+        txtDOB.setText(person.getDateOfBirth());
         txtAddress.setText(person.getStreetAddress());
         txtTown.setText(person.getTown());
         txtZip.setText(String.valueOf(person.getZipCode()));

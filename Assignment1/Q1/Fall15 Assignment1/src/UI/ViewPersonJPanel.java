@@ -12,13 +12,13 @@ import Business.Person;
  * @author Raghuram
  */
 public class ViewPersonJPanel extends javax.swing.JPanel {
-private Person person;
+//private Person person;
     /**
      * Creates new form ViewPersonJPanel
      */
     public ViewPersonJPanel(Person person) {
         initComponents();
-        this.person=person;
+        //this.person=person;
         txtFirst.setText(person.getFirstName());
         txtLast.setText(person.getLastName());
         txtMiddle.setText(person.getMiddleName());

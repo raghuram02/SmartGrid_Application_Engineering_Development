@@ -13,16 +13,16 @@ import javax.swing.JOptionPane;
  * @author Raghuram
  */
 public class CreatePersonJPanel extends javax.swing.JPanel {
-private Person person;
+
+    private Person person;
+
     /**
      * Creates new form CreatePersonJPanel
      */
     public CreatePersonJPanel(Person person) {
         initComponents();
-        this.person=person;
+        this.person = person;
     }
-
-   
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -118,53 +118,44 @@ private Person person;
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCreatePersonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreatePersonActionPerformed
-    
+
         if (txtFirst.getText().equals("")) {
-    JOptionPane.showMessageDialog(null, "Enter the first name");
-    return;
-                }
-    else if (txtLast.getText().equals("")) {
-    JOptionPane.showMessageDialog(null, "Enter the Last name");
-    return;
-                }
-    else if (txtMiddle.getText().equals("")) {
-    JOptionPane.showMessageDialog(null, "Enter the middle name");
-    return;
-                }
-    else if (txtDOB.getText().equals("")) {
-    JOptionPane.showMessageDialog(null, "Enter the date of birth");
-    return;
-    }
-    if (txtAddress.getText().equals("")) {
-    JOptionPane.showMessageDialog(null, "Enter the atreet address");
-    return;
-                }
-    else if (txtTown.getText().equals("")) {
-    JOptionPane.showMessageDialog(null, "Enter the town");
-    return;
-                }
-    else if (txtZip.getText().equals("")) {
-    JOptionPane.showMessageDialog(null, "Enter the zip code");
-    return;
-                }
-    else if (txtOccupation.getText().equals("")) {
-    JOptionPane.showMessageDialog(null, "Enter the occupation");
-    return;
-    }
-        else if (txtEmail.getText().equals("")) {
-    JOptionPane.showMessageDialog(null, "Enter the email address");
-    return;
-                }
-    else if (txtArea.getText().equals("")) {
-    JOptionPane.showMessageDialog(null, "Enter the area code");
-    return;
-                }
-    else if (txtPhone.getText().equals("")) {
-    JOptionPane.showMessageDialog(null, "Enter the phone number");
-    return;
-                }
-    JOptionPane.showMessageDialog(null, "Details entered successfully");
-        
+            JOptionPane.showMessageDialog(null, "Enter the first name");
+            return;
+        } else if (txtLast.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Enter the Last name");
+            return;
+        } else if (txtMiddle.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Enter the middle name");
+            return;
+        } else if (txtDOB.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Enter the date of birth");
+            return;
+        }
+        if (txtAddress.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Enter the atreet address");
+            return;
+        } else if (txtTown.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Enter the town");
+            return;
+        } else if (txtZip.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Enter the zip code");
+            return;
+        } else if (txtOccupation.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Enter the occupation");
+            return;
+        } else if (txtEmail.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Enter the email address");
+            return;
+        } else if (txtArea.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Enter the area code");
+            return;
+        } else if (txtPhone.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Enter the phone number");
+            return;
+        }
+        JOptionPane.showMessageDialog(null, "Details entered successfully");
+
         person.setFirstName(txtFirst.getText());
         person.setLastName(txtLast.getText());
         person.setMiddleName(txtMiddle.getText());
@@ -176,8 +167,7 @@ private Person person;
         person.setEmailAddress(txtEmail.getText());
         person.setAreaCode(txtArea.getText());
         person.setPhoneNumber(txtPhone.getText());
-    
-        
+
 // TODO add your handling code here:
     }//GEN-LAST:event_btnCreatePersonActionPerformed
 

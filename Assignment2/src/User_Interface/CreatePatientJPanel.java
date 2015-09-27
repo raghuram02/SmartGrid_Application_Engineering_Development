@@ -121,7 +121,7 @@ private Patient patient;
         } else if (txtPatientID.getText().isEmpty()) {
             JOptionPane.showMessageDialog(null, "Enter the Patient ID");
             return;
-        } else if (txtAge.getText().equals("")) {
+        } else if (!txtAge.getText().matches("\\d+")) {
             JOptionPane.showMessageDialog(null, "Enter the Age");
             return;
         } else if (txtDoctor.getText().isEmpty()) {

@@ -8,7 +8,6 @@ package User_Interface;
 import Business.Patient;
 import Business.VitalSign;
 import Business.VitalSignHistory;
-import java.sql.Timestamp;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -47,7 +46,7 @@ public class ViewVitalSignJPanel extends javax.swing.JPanel {
         }
        
          for(VitalSign vs: vitalSignHistory.getVitalSignList()){
-             if((patient.getAge()>=1&& patient.getAge()<=3)&&(vs.getRespiratoryRate()>20&& vs.getRespiratoryRate()<30)
+             if((patient.getAge()>=1&& patient.getAge()<=3)&&(vs.getRespiratoryRate()>=20&& vs.getRespiratoryRate()<=30)
                      &&(vs.getHeartRate()>=80&& vs.getHeartRate()<=130)
                      &&(vs.getBloodPressure()>=80&& vs.getBloodPressure()<=110)
                      &&(vs.getWeight()>=22&& vs.getWeight()<=31))
@@ -61,7 +60,7 @@ public class ViewVitalSignJPanel extends javax.swing.JPanel {
              {
                  result = "normal";
              }
-             else if((patient.getAge()>=6&& patient.getAge()<12)&&(vs.getRespiratoryRate()>20&& vs.getRespiratoryRate()<30)
+             else if((patient.getAge()>=6&& patient.getAge()<=12)&&(vs.getRespiratoryRate()>20&& vs.getRespiratoryRate()<30)
                      &&(vs.getHeartRate()>=70&& vs.getHeartRate()<110)
                      &&(vs.getBloodPressure()>=80&& vs.getBloodPressure()<=120)
                      &&(vs.getWeight()>=41&& vs.getWeight()<=92))

@@ -106,17 +106,18 @@ protected static String Timestamp1;
     }//GEN-LAST:event_txtRespiratoryRateActionPerformed
 
     private void btnCreateVitalSignActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateVitalSignActionPerformed
-      if (txtRespiratoryRate.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Enter Respiratory Rate");
+      
+        if (!txtRespiratoryRate.getText().matches("\\d+")) {
+            JOptionPane.showMessageDialog(null, "Enter a valid Respiratory Rate");
             return;
-        } else if (txtHeartRate.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Enter Heart Rate");
+        } else if (!txtHeartRate.getText().matches("\\d+")) {
+            JOptionPane.showMessageDialog(null, "Enter a valid Heart Rate");
             return;
-        } else if (txtBP.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Enter Blood Pressure");
+        } else if (!txtBP.getText().matches("\\d+")) {
+            JOptionPane.showMessageDialog(null, "Enter a valid Blood Pressure");
             return;
-        } else if (txtWeight.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Enter the Weight");
+        } else if (!txtWeight.getText().matches("\\d+")) {
+            JOptionPane.showMessageDialog(null, "Enter a valid the Weight");
             return;
             } 
         float respiratoryRate = Float.parseFloat(txtRespiratoryRate.getText().trim());

@@ -8,20 +8,22 @@ package User_Interface;
 import Business.VitalSign;
 import Business.VitalSignHistory;
 import javax.swing.JOptionPane;
+import java.util.Date;
+import java.sql.Timestamp;
 
 /**
  *
  * @author Raghuram
  */
 public class CreateVitalSignJPanel extends javax.swing.JPanel {
-
+protected static String Timestamp1;
     private VitalSignHistory vitalSignHistory;
     /**
      * Creates new form CreateVitalSignJPanel
      */
     public CreateVitalSignJPanel(VitalSignHistory vitalSignHistory) {
         initComponents();
-        this.vitalSignHistory = new VitalSignHistory();
+        this.vitalSignHistory = vitalSignHistory;
     }
 
     /**
@@ -47,7 +49,7 @@ public class CreateVitalSignJPanel extends javax.swing.JPanel {
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         lblRespiiratoryRate.setText("Respiratory Rate");
-        add(lblRespiiratoryRate, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 50, -1, -1));
+        add(lblRespiiratoryRate, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 50, -1, 20));
 
         txtRespiratoryRate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -71,7 +73,7 @@ public class CreateVitalSignJPanel extends javax.swing.JPanel {
                 btnCreateVitalSignActionPerformed(evt);
             }
         });
-        add(btnCreateVitalSign, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 190, -1, -1));
+        add(btnCreateVitalSign, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 220, -1, -1));
 
         txtHeartRate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -104,16 +106,16 @@ public class CreateVitalSignJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_txtRespiratoryRateActionPerformed
 
     private void btnCreateVitalSignActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateVitalSignActionPerformed
-        if (txtRespiratoryRate.getText().equals("")) {
+      if (txtRespiratoryRate.getText().isEmpty()) {
             JOptionPane.showMessageDialog(null, "Enter Respiratory Rate");
             return;
-        } else if (txtHeartRate.getText().equals("")) {
+        } else if (txtHeartRate.getText().isEmpty()) {
             JOptionPane.showMessageDialog(null, "Enter Heart Rate");
             return;
-        } else if (txtBP.getText().equals("")) {
+        } else if (txtBP.getText().isEmpty()) {
             JOptionPane.showMessageDialog(null, "Enter Blood Pressure");
             return;
-        } else if (txtWeight.getText().equals("")) {
+        } else if (txtWeight.getText().isEmpty()) {
             JOptionPane.showMessageDialog(null, "Enter the Weight");
             return;
             } 
@@ -121,17 +123,22 @@ public class CreateVitalSignJPanel extends javax.swing.JPanel {
         float heartRate = Float.parseFloat(txtHeartRate.getText().trim());
         float bloodPressure = Float.parseFloat(txtBP.getText().trim());
         float weight = Float.parseFloat(txtWeight.getText().trim());
+       
         VitalSign vs = vitalSignHistory.addVitalSign();
         vs.setRespiratoryRate(respiratoryRate);
         vs.setHeartRate(heartRate);
         vs.setBloodPressure(bloodPressure);
         vs.setWeight(weight);
+//        java.util.Date date= new java.util.Date();
+//        Timestamp1 = String.valueOf(new Timestamp(date.getTime()));
+        
         JOptionPane.showMessageDialog(null,"Vital Sign has been saved successfully!!!", "Information", JOptionPane.INFORMATION_MESSAGE);
         resetFields();
         
         // TODO add your handling code here:
     }//GEN-LAST:event_btnCreateVitalSignActionPerformed
-public void resetFields(){
+
+    public void resetFields(){
     txtRespiratoryRate.setText("");
     txtHeartRate.setText("");
     txtBP.setText("");

@@ -21,11 +21,11 @@ public class VitalSignHistory {
         return vitalSignList;
     }
 
-    public void setVitalSignList(ArrayList<VitalSign> vitalSignList) {
+    /*public void setVitalSignList(ArrayList<VitalSign> vitalSignList) {
         this.vitalSignList = vitalSignList;
-    }
+    }*/
         public VitalSign addVitalSign(){
-        VitalSign vitalSign = new VitalSign();
-        vitalSignList.add(vitalSign);
-        return vitalSign;
+        VitalSign vs = new VitalSign();
+        vitalSignList.add(vs);
+        return vs;
     }}

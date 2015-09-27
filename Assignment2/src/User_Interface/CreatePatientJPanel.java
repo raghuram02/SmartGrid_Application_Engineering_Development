@@ -20,7 +20,7 @@ private Patient patient;
      */
     public CreatePatientJPanel(Patient patient) {
         initComponents();
-        this.patient = new Patient();
+        this.patient =  patient;
     }
 
     /**
@@ -40,10 +40,10 @@ private Patient patient;
         btnCreatePatient = new javax.swing.JButton();
         txtPatientID = new javax.swing.JTextField();
         txtAge = new javax.swing.JTextField();
-        txtPharmacy = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         lblPharmacy = new javax.swing.JLabel();
         txtDoctor = new javax.swing.JTextField();
+        txtPharmacy = new javax.swing.JTextField();
 
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -72,7 +72,7 @@ private Patient patient;
                 btnCreatePatientActionPerformed(evt);
             }
         });
-        add(btnCreatePatient, new org.netbeans.lib.awtextra.AbsoluteConstraints(263, 210, -1, -1));
+        add(btnCreatePatient, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 240, -1, -1));
 
         txtPatientID.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -88,16 +88,9 @@ private Patient patient;
         });
         add(txtAge, new org.netbeans.lib.awtextra.AbsoluteConstraints(398, 122, 110, -1));
 
-        txtPharmacy.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtPharmacyActionPerformed(evt);
-            }
-        });
-        add(txtPharmacy, new org.netbeans.lib.awtextra.AbsoluteConstraints(398, 179, 110, -1));
-
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel2.setText("CREATE PATIENT");
-        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 11, -1, -1));
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 30, -1, -1));
 
         lblPharmacy.setText("Preferred Pharmacy");
         add(lblPharmacy, new org.netbeans.lib.awtextra.AbsoluteConstraints(119, 180, -1, -1));
@@ -108,6 +101,13 @@ private Patient patient;
             }
         });
         add(txtDoctor, new org.netbeans.lib.awtextra.AbsoluteConstraints(398, 153, 110, -1));
+
+        txtPharmacy.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtPharmacyActionPerformed(evt);
+            }
+        });
+        add(txtPharmacy, new org.netbeans.lib.awtextra.AbsoluteConstraints(398, 179, 110, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtPatientNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPatientNameActionPerformed
@@ -115,28 +115,30 @@ private Patient patient;
     }//GEN-LAST:event_txtPatientNameActionPerformed
 
     private void btnCreatePatientActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreatePatientActionPerformed
-         if (txtPatientName.getText().equals("")) {
+         if (txtPatientName.getText().isEmpty()) {
             JOptionPane.showMessageDialog(null, "Enter the Patient name");
             return;
-        } else if (txtPatientID.getText().equals("")) {
+        } else if (txtPatientID.getText().isEmpty()) {
             JOptionPane.showMessageDialog(null, "Enter the Patient ID");
             return;
         } else if (txtAge.getText().equals("")) {
             JOptionPane.showMessageDialog(null, "Enter the Age");
             return;
-        } else if (txtDoctor.getText().equals("")) {
+        } else if (txtDoctor.getText().isEmpty()) {
             JOptionPane.showMessageDialog(null, "Enter the Doctor's name");
             return;
-            } else if (txtPharmacy.getText().equals("")) {
+            } else if (txtPharmacy.getText().isEmpty()) {
             JOptionPane.showMessageDialog(null, "Enter the Preferred pharmacy");
             return;
         } 
-          String name= txtPatientName.getText();
-          String id= txtPatientID.getText();
-          double age = Double.parseDouble(txtAge.getText());
-          String doctorName= txtDoctor.getText();
-          String pharmacy = txtPharmacy.getText();
-          JOptionPane.showMessageDialog(null,"Vital Sign has been saved successfully!!!", "Information", JOptionPane.INFORMATION_MESSAGE);
+         
+          patient.setName(txtPatientName.getText());
+          patient.setId(txtPatientID.getText());
+          patient.setAge(Double.parseDouble(txtAge.getText()));
+          patient.setDoctorName(txtDoctor.getText());
+          patient.setPharmacy(txtPharmacy.getText());
+                   
+          JOptionPane.showMessageDialog(null,"Patient Details has been saved successfully!!!", "Information", JOptionPane.INFORMATION_MESSAGE);
        
     }//GEN-LAST:event_btnCreatePatientActionPerformed
 
@@ -148,13 +150,13 @@ private Patient patient;
         // TODO add your handling code here:
     }//GEN-LAST:event_txtAgeActionPerformed
 
-    private void txtPharmacyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPharmacyActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtPharmacyActionPerformed
-
     private void txtDoctorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDoctorActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtDoctorActionPerformed
+
+    private void txtPharmacyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPharmacyActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtPharmacyActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

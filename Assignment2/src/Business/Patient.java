@@ -15,7 +15,7 @@ public class Patient {
     private double age;
     private String doctorName;
     private String pharmacy;
-
+    
     public String getName() {
         return name;
     }
@@ -55,5 +55,6 @@ public class Patient {
     public void setPharmacy(String pharmacy) {
         this.pharmacy = pharmacy;
     }
-        
+
+    
 }

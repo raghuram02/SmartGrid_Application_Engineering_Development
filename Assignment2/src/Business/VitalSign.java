@@ -5,6 +5,9 @@
  */
 package Business;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 /**
  *
  * @author Raghuram
@@ -14,6 +17,12 @@ public class VitalSign {
  private float heartRate;
  private float bloodPressure;
  private float weight;
+ private String timeStamp;
+
+    public String getTimeStamp() {
+        timeStamp = new SimpleDateFormat("dd/MM/yyyy HH:mm").format(new Date());
+        return timeStamp;
+    }
 
     public float getRespiratoryRate() {
         return respiratoryRate;
@@ -46,6 +55,11 @@ public class VitalSign {
     public void setWeight(float weight) {
         this.weight = weight;
     }
+@Override
+public String toString()
+{
+    return getTimeStamp();
+}
 }
  
     

@@ -8,6 +8,8 @@ package User_Interface;
 import Business.Patient;
 import Business.VitalSign;
 import Business.VitalSignHistory;
+import java.sql.Timestamp;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -15,8 +17,9 @@ import javax.swing.table.DefaultTableModel;
  * @author Raghuram
  */
 public class ViewVitalSignJPanel extends javax.swing.JPanel {
-private Patient patient;
+    private Patient patient;
     private VitalSignHistory vitalSignHistory;
+    private String result;
     /**
      * Creates new form ViewVitalSignJPanel
      */
@@ -24,14 +27,65 @@ private Patient patient;
         initComponents();
         this.patient = patient;
         this.vitalSignHistory = vitalSignHistory;
+        displayPatient(patient);
         populateTable();
     }
+    private void displayPatient(Patient patient){
+        txtPatientName.setText(patient.getName());
+        txtPatientID.setText(patient.getId());
+        txtAge.setText(String.valueOf(patient.getAge()));
+        txtDoctor.setText(patient.getDoctorName());
+        txtPharmacy.setText(patient.getPharmacy());
+        
+    }
+        
      private void populateTable(){
         DefaultTableModel dtm = (DefaultTableModel)tblVitalSign.getModel();
-        for(int i=dtm.getRowCount() -1;i>=0;i--){
+        int rowCount = tblVitalSign.getRowCount();
+        for(int i= rowCount-1;i>=0;i--){
             dtm.removeRow(i);
         }
-          
+       
+         for(VitalSign vs: vitalSignHistory.getVitalSignList()){
+             if((patient.getAge()>=1&& patient.getAge()<=3)&&(vs.getRespiratoryRate()>20&& vs.getRespiratoryRate()<30)
+                     &&(vs.getHeartRate()>=80&& vs.getHeartRate()<=130)
+                     &&(vs.getBloodPressure()>=80&& vs.getBloodPressure()<=110)
+                     &&(vs.getWeight()>=22&& vs.getWeight()<=31))
+                 {
+                 result = "normal";
+             }
+             else if((patient.getAge()>=4&& patient.getAge()<=5)&&(vs.getRespiratoryRate()>=20&& vs.getRespiratoryRate()<=30)
+                     &&(vs.getHeartRate()>=80&& vs.getHeartRate()<=120)
+                     &&(vs.getBloodPressure()>=80&& vs.getBloodPressure()<=110)
+                     &&(vs.getWeight()>=31&& vs.getWeight()<=40))
+             {
+                 result = "normal";
+             }
+             else if((patient.getAge()>=6&& patient.getAge()<12)&&(vs.getRespiratoryRate()>20&& vs.getRespiratoryRate()<30)
+                     &&(vs.getHeartRate()>=70&& vs.getHeartRate()<110)
+                     &&(vs.getBloodPressure()>=80&& vs.getBloodPressure()<=120)
+                     &&(vs.getWeight()>=41&& vs.getWeight()<=92))
+             {
+                 result = "normal";
+             }
+             else if((patient.getAge()>=13)&&(vs.getRespiratoryRate()>=12&& vs.getRespiratoryRate()<=20)
+                     &&(vs.getHeartRate()>=55&& vs.getHeartRate()<=105)
+                     &&(vs.getBloodPressure()>=110&& vs.getBloodPressure()<=120)
+                     &&(vs.getWeight()>=110))
+             {
+                 result = "normal";
+             }
+             else
+             {
+             result = "abnormal";    
+             }
+           
+            Object row[] = new Object[2];
+            row[0]=vs;
+            row[1] = result;
+           
+            dtm.addRow(row);
+        }  
     }
 
     /**
@@ -57,7 +111,7 @@ private Patient patient;
         lblWeight = new javax.swing.JLabel();
         txtHeartRate = new javax.swing.JTextField();
         txtBP = new javax.swing.JTextField();
-        txtDate = new javax.swing.JTextField();
+        txtWeight = new javax.swing.JTextField();
         txtPatientName = new javax.swing.JTextField();
         txtPatientID = new javax.swing.JTextField();
         txtAge = new javax.swing.JTextField();
@@ -72,7 +126,7 @@ private Patient patient;
 
             },
             new String [] {
-                "Time Stamp", "Vital Sign"
+                "Time Stamp", "Result"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -138,13 +192,13 @@ private Patient patient;
         });
         add(txtBP, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 320, 110, -1));
 
-        txtDate.setEditable(false);
-        txtDate.addActionListener(new java.awt.event.ActionListener() {
+        txtWeight.setEditable(false);
+        txtWeight.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtDateActionPerformed(evt);
+                txtWeightActionPerformed(evt);
             }
         });
-        add(txtDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 340, 110, -1));
+        add(txtWeight, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 340, 110, -1));
 
         txtPatientName.setEditable(false);
         add(txtPatientName, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 280, 100, -1));
@@ -197,9 +251,9 @@ private Patient patient;
         // TODO add your handling code here:
     }//GEN-LAST:event_txtBPActionPerformed
 
-    private void txtDateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDateActionPerformed
+    private void txtWeightActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtWeightActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtDateActionPerformed
+    }//GEN-LAST:event_txtWeightActionPerformed
 
     private void txtPatientIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPatientIDActionPerformed
         // TODO add your handling code here:
@@ -214,7 +268,22 @@ private Patient patient;
     }//GEN-LAST:event_txtPharmacyActionPerformed
 
     private void btnViewDetailsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewDetailsActionPerformed
-        // TODO add your handling code here:
+
+        
+int selectedRow = tblVitalSign.getSelectedRow();
+        if(selectedRow >=0){
+            VitalSign vs =(VitalSign)tblVitalSign.getValueAt(selectedRow,0);
+            txtRespiratoryRate.setText(String.valueOf(vs.getRespiratoryRate()));
+            txtHeartRate.setText(String.valueOf(vs.getHeartRate()));
+            txtBP.setText(String.valueOf(vs.getBloodPressure()));
+            txtWeight.setText(String.valueOf(vs.getWeight()));
+           
+            
+        }
+        else{
+           JOptionPane.showMessageDialog(null,"Please select an entry from the table", "Warning", JOptionPane.INFORMATION_MESSAGE);
+        }
+         // TODO add your handling code here:
     }//GEN-LAST:event_btnViewDetailsActionPerformed
 
 
@@ -233,12 +302,12 @@ private Patient patient;
     private javax.swing.JTable tblVitalSign;
     private javax.swing.JTextField txtAge;
     private javax.swing.JTextField txtBP;
-    private javax.swing.JTextField txtDate;
     private javax.swing.JTextField txtDoctor;
     private javax.swing.JTextField txtHeartRate;
     private javax.swing.JTextField txtPatientID;
     private javax.swing.JTextField txtPatientName;
     private javax.swing.JTextField txtPharmacy;
     private javax.swing.JTextField txtRespiratoryRate;
+    private javax.swing.JTextField txtWeight;
     // End of variables declaration//GEN-END:variables
 }

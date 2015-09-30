@@ -15,6 +15,12 @@ public class Patient {
     private double age;
     private String doctorName;
     private String pharmacy;
+    private VitalSignHistory vitalSignHistory;
+    
+    public Patient()
+    {
+        vitalSignHistory= new VitalSignHistory();
+    }
     
     public String getName() {
         return name;

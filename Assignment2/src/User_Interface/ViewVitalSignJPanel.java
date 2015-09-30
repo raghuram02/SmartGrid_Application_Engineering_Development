@@ -40,12 +40,23 @@ public class ViewVitalSignJPanel extends javax.swing.JPanel {
         
      private void populateTable(){
         DefaultTableModel dtm = (DefaultTableModel)tblVitalSign.getModel();
-        int rowCount = tblVitalSign.getRowCount();
-        for(int i= rowCount-1;i>=0;i--){
+        //int rowCount = tblVitalSign.getRowCount();
+        /*for(int i= rowCount-1;i>=0;i--){
             dtm.removeRow(i);
-        }
+        }*/
+        dtm.setRowCount(0);
        
          for(VitalSign vs: vitalSignHistory.getVitalSignList()){
+             /*if((patient.getAge()>=1&& patient.getAge()<=3)){
+                 if((vs.getRespiratoryRate()>=20&& vs.getRespiratoryRate()<=30)
+                     &&(vs.getHeartRate()>=80&& vs.getHeartRate()<=130)
+                     &&(vs.getBloodPressure()>=80&& vs.getBloodPressure()<=110)
+                     &&(vs.getWeight()>=22&& vs.getWeight()<=31))
+                 {
+                 result = "normal";
+                 }
+             }*/
+             
              if((patient.getAge()>=1&& patient.getAge()<=3)&&(vs.getRespiratoryRate()>=20&& vs.getRespiratoryRate()<=30)
                      &&(vs.getHeartRate()>=80&& vs.getHeartRate()<=130)
                      &&(vs.getBloodPressure()>=80&& vs.getBloodPressure()<=110)

@@ -12,7 +12,7 @@ package Business;
 public class Product {
     private String productName;
     private float price;
-    private String avalilability;
+    private String availability;
 
     /**
      * @return the productName
@@ -43,16 +43,16 @@ public class Product {
     }
 
     /**
-     * @return the avalilability
+     * @return the availability
      */
-    public String getAvalilability() {
-        return avalilability;
+    public String getAvailability() {
+        return availability;
     }
 
     /**
-     * @param avalilability the avalilability to set
+     * @param availability the availability to set
      */
-    public void setAvalilability(String avalilability) {
-        this.avalilability = avalilability;
+    public void setAvailability(String availability) {
+        this.availability = availability;
     }
 }

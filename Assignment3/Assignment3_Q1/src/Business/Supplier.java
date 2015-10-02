@@ -13,6 +13,19 @@ public class Supplier {
 
     private String supplierName;
     private String supplierID;
+    private ProductCatalog productCatalog;
+    public Supplier()
+    {
+        productCatalog= new ProductCatalog();
+    }
+
+    public ProductCatalog getProductCatalog() {
+        return productCatalog;
+    }
+
+    public void setProductCatalog(ProductCatalog productCatalog) {
+        this.productCatalog = productCatalog;
+    }
 
     public String getSupplierName() {
         return supplierName;

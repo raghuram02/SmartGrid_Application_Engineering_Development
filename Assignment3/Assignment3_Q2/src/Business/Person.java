@@ -75,12 +75,9 @@ public class Person {
         this.patient = patient;
     }
     
-public Person() {
+    public Person() {
         patient = new Patient();
     }
-
-    
-    
 
     @Override
     public String toString() {

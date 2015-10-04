@@ -149,7 +149,7 @@ public class ViewVitalSignJPanel extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(tblVitalSign);
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(25, 30, 550, 179));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, 550, 179));
 
         lblDoctor.setText("Primary Doctor Name");
         add(lblDoctor, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 340, -1, -1));

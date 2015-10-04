@@ -10,6 +10,10 @@ package Business;
  * @author Raghuram
  */
 public class Patient {
+    
+    public Patient(){
+        vitalSignHistory = new VitalSignHistory();
+    }
 
     public String getPatientId() {
         return patientId;
@@ -38,5 +42,13 @@ public class Patient {
     public String patientId;
     private String doctorName;
     private String pharmacy;
+    private VitalSignHistory vitalSignHistory;
 
+    public VitalSignHistory getVitalSignHistory() {
+        return vitalSignHistory;
+    }
+
+    public void setVitalSignHistory(VitalSignHistory vitalSignHistory) {
+        this.vitalSignHistory = vitalSignHistory;
+    }
 }

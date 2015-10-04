@@ -20,8 +20,11 @@ public class VitalSign {
     private float weight;
     private String timeStamp;
 
+    public void setTimeStamp(String timeStamp) {
+        this.timeStamp = timeStamp;
+    }
+
     public String getTimeStamp() {
-        timeStamp = new SimpleDateFormat("dd/MM/yyyy HH:mm").format(new Date());
         return timeStamp;
     }
 

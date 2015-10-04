@@ -6,6 +6,7 @@
 package UserInterface;
 
 import Business.Person;
+import java.awt.CardLayout;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
@@ -21,6 +22,9 @@ private JPanel userProcessContainer;
      */
     public CreatePatientJPanel(Person person,JPanel userProcessContainer) {
         initComponents();
+        this.person = person;
+        this.userProcessContainer = userProcessContainer;
+        txtName.setText(person.getName());
     }
 
     /**
@@ -33,28 +37,24 @@ private JPanel userProcessContainer;
     private void initComponents() {
 
         lblPatientID = new javax.swing.JLabel();
-        lblAge = new javax.swing.JLabel();
         lblDoctor = new javax.swing.JLabel();
         btnCreatePatient = new javax.swing.JButton();
-        txtPatientID = new javax.swing.JTextField();
-        txtAge = new javax.swing.JTextField();
+        txtPatientId = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         lblPharmacy = new javax.swing.JLabel();
         txtDoctor = new javax.swing.JTextField();
         txtPharmacy = new javax.swing.JTextField();
         lblPatientID1 = new javax.swing.JLabel();
-        txtPatientID1 = new javax.swing.JTextField();
+        txtName = new javax.swing.JTextField();
+        btnBack = new javax.swing.JButton();
 
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         lblPatientID.setText("Patient ID");
         add(lblPatientID, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 120, -1, -1));
 
-        lblAge.setText("Age");
-        add(lblAge, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 140, -1, -1));
-
         lblDoctor.setText("Primary Doctor Name");
-        add(lblDoctor, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 160, -1, -1));
+        add(lblDoctor, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 140, -1, -1));
 
         btnCreatePatient.setText("Create ");
         btnCreatePatient.addActionListener(new java.awt.event.ActionListener() {
@@ -62,65 +62,67 @@ private JPanel userProcessContainer;
                 btnCreatePatientActionPerformed(evt);
             }
         });
-        add(btnCreatePatient, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 210, -1, -1));
+        add(btnCreatePatient, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 210, -1, -1));
 
-        txtPatientID.addActionListener(new java.awt.event.ActionListener() {
+        txtPatientId.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtPatientIDActionPerformed(evt);
+                txtPatientIdActionPerformed(evt);
             }
         });
-        add(txtPatientID, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 120, 110, -1));
-
-        txtAge.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtAgeActionPerformed(evt);
-            }
-        });
-        add(txtAge, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 140, 110, -1));
+        add(txtPatientId, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 120, 110, -1));
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel2.setText("CREATE PATIENT");
         add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 30, -1, -1));
 
         lblPharmacy.setText("Preferred Pharmacy");
-        add(lblPharmacy, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 180, -1, -1));
+        add(lblPharmacy, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 160, -1, -1));
 
         txtDoctor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtDoctorActionPerformed(evt);
             }
         });
-        add(txtDoctor, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 160, 110, -1));
+        add(txtDoctor, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 140, 110, -1));
 
         txtPharmacy.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtPharmacyActionPerformed(evt);
             }
         });
-        add(txtPharmacy, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 180, 110, -1));
+        add(txtPharmacy, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 160, 110, -1));
 
         lblPatientID1.setText("Patient Name");
         add(lblPatientID1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, -1, -1));
 
-        txtPatientID1.addActionListener(new java.awt.event.ActionListener() {
+        txtName.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtPatientID1ActionPerformed(evt);
+                txtNameActionPerformed(evt);
             }
         });
-        add(txtPatientID1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, 110, -1));
+        add(txtName, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, 110, -1));
+
+        btnBack.setText("<< Back");
+        btnBack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBackActionPerformed(evt);
+            }
+        });
+        add(btnBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 210, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCreatePatientActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreatePatientActionPerformed
-       
+
+        person.getPatient().setPatientId(txtPatientId.getText());
+        person.getPatient().setDoctorName(txtDoctor.getText());
+        person.getPatient().setPharmacy(txtPharmacy.getText());
+        JOptionPane.showMessageDialog(null, "Patient details for " +person.getName()+" has been created", "Information", JOptionPane.INFORMATION_MESSAGE);
+        
     }//GEN-LAST:event_btnCreatePatientActionPerformed
 
-    private void txtPatientIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPatientIDActionPerformed
+    private void txtPatientIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPatientIdActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtPatientIDActionPerformed
-
-    private void txtAgeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtAgeActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtAgeActionPerformed
+    }//GEN-LAST:event_txtPatientIdActionPerformed
 
     private void txtDoctorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDoctorActionPerformed
         // TODO add your handling code here:
@@ -130,23 +132,29 @@ private JPanel userProcessContainer;
         // TODO add your handling code here:
     }//GEN-LAST:event_txtPharmacyActionPerformed
 
-    private void txtPatientID1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPatientID1ActionPerformed
+    private void txtNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNameActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtPatientID1ActionPerformed
+    }//GEN-LAST:event_txtNameActionPerformed
+
+    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
+        // TODO add your handling code here:
+        userProcessContainer.remove(this);
+        CardLayout Layout = (CardLayout) userProcessContainer.getLayout();
+        Layout.previous(userProcessContainer);
+    }//GEN-LAST:event_btnBackActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnBack;
     private javax.swing.JButton btnCreatePatient;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel lblAge;
     private javax.swing.JLabel lblDoctor;
     private javax.swing.JLabel lblPatientID;
     private javax.swing.JLabel lblPatientID1;
     private javax.swing.JLabel lblPharmacy;
-    private javax.swing.JTextField txtAge;
     private javax.swing.JTextField txtDoctor;
-    private javax.swing.JTextField txtPatientID;
-    private javax.swing.JTextField txtPatientID1;
+    private javax.swing.JTextField txtName;
+    private javax.swing.JTextField txtPatientId;
     private javax.swing.JTextField txtPharmacy;
     // End of variables declaration//GEN-END:variables
 }

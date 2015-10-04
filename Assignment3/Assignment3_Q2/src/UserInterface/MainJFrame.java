@@ -48,6 +48,11 @@ private PersonDirectory personDirectory;
         });
 
         btnPatient.setText("Manage Patient");
+        btnPatient.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPatientActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -88,6 +93,13 @@ private PersonDirectory personDirectory;
         cardLayout.next(userProcessContainer);
         // TODO add your handling code here:
     }//GEN-LAST:event_btnPersonActionPerformed
+
+    private void btnPatientActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPatientActionPerformed
+       ManagePatientJPanel workArea = new ManagePatientJPanel(personDirectory, userProcessContainer);
+        userProcessContainer.add("workArea", workArea);
+        CardLayout cardLayout = (CardLayout) userProcessContainer.getLayout();
+        cardLayout.next(userProcessContainer);
+    }//GEN-LAST:event_btnPatientActionPerformed
 
     /**
      * @param args the command line arguments

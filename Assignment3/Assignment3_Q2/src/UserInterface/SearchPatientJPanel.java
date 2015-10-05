@@ -126,10 +126,10 @@ public class SearchPatientJPanel extends javax.swing.JPanel {
             for (VitalSign vs : patient.getVitalSignHistory().getVitalSignList()) {
                 DefaultCategoryDataset dataset = new DefaultCategoryDataset();
                 JPanel chartJPanel = new JPanel();
-                dataset.setValue(vs.getRespiratoryRate(), "Value", "Respiratory Rate");
-                dataset.setValue(vs.getHeartRate(), "Value", "Heart Rate");
-                dataset.setValue(vs.getBloodPressure(), "Value", "BP");
-                dataset.setValue(vs.getWeight(), "Value", "Weight");
+                dataset.setValue(vs.getRespiratoryRate(), "RR", "Respiratory Rate");
+                dataset.setValue(vs.getHeartRate(), "HR", "Heart Rate");
+                dataset.setValue(vs.getBloodPressure(), "BP", "BP");
+                dataset.setValue(vs.getWeight(), "WT", "Weight");
                 JFreeChart chart = ChartFactory.createBarChart("Vital Sign", "Vital Sign", "Values", dataset);
                 ChartFrame frame = new ChartFrame("Bar chart for Vital Sign", chart);
                 ChartPanel chartPanel = new ChartPanel(chart);

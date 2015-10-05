@@ -147,17 +147,17 @@ public class CreatePersonJPanel extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, "Enter the Age");
             return;
         } else if (txtEmail.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Enter the Patient ID");
+            JOptionPane.showMessageDialog(null, "Enter the email");
             return;
 
         } else if (txtAddress.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Enter the Doctor's name");
+            JOptionPane.showMessageDialog(null, "Enter the address");
             return;
         } else if (txtZip.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Enter the Preferred pharmacy");
+            JOptionPane.showMessageDialog(null, "Enter the zip");
             return;
         } else if (!txtPhone.getText().matches("\\d+")) {
-            JOptionPane.showMessageDialog(null, "Enter the Age");
+            JOptionPane.showMessageDialog(null, "Enter the phone");
             return;
         }
         try {

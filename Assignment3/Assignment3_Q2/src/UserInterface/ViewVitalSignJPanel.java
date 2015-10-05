@@ -45,16 +45,7 @@ public class ViewVitalSignJPanel extends javax.swing.JPanel {
         dtm.setRowCount(0);
         VitalSignHistory vitalSignHistory = person.getPatient().getVitalSignHistory();
         for (VitalSign vs : vitalSignHistory.getVitalSignList()) {
-            /*if((patient.getAge()>=1&& patient.getAge()<=3)){
-             if((vs.getRespiratoryRate()>=20&& vs.getRespiratoryRate()<=30)
-             &&(vs.getHeartRate()>=80&& vs.getHeartRate()<=130)
-             &&(vs.getBloodPressure()>=80&& vs.getBloodPressure()<=110)
-             &&(vs.getWeight()>=22&& vs.getWeight()<=31))
-             {
-             result = "normal";
-             }
-             }*/
-
+           
             if ((person.getAge() >= 1 && person.getAge() <= 3) && (vs.getRespiratoryRate() >= 20 && vs.getRespiratoryRate() <= 30)
                     && (vs.getHeartRate() >= 80 && vs.getHeartRate() <= 130)
                     && (vs.getBloodPressure() >= 80 && vs.getBloodPressure() <= 110)
@@ -134,7 +125,7 @@ public class ViewVitalSignJPanel extends javax.swing.JPanel {
         add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, 550, 179));
 
         lblRespiiratoryRate.setText("Respiratory Rate");
-        add(lblRespiiratoryRate, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 270, -1, -1));
+        add(lblRespiiratoryRate, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 210, -1, -1));
 
         txtRespiratoryRate.setEnabled(false);
         txtRespiratoryRate.addActionListener(new java.awt.event.ActionListener() {
@@ -142,16 +133,16 @@ public class ViewVitalSignJPanel extends javax.swing.JPanel {
                 txtRespiratoryRateActionPerformed(evt);
             }
         });
-        add(txtRespiratoryRate, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 270, 110, -1));
+        add(txtRespiratoryRate, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 210, 110, -1));
 
         lblHeartRate.setText("Heart Rate");
-        add(lblHeartRate, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 290, -1, -1));
+        add(lblHeartRate, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 230, -1, -1));
 
         lblBP.setText("Systolic Blood Pressure");
-        add(lblBP, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 310, -1, -1));
+        add(lblBP, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 250, -1, -1));
 
         lblWeight.setText("Weight in pounds");
-        add(lblWeight, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 330, -1, -1));
+        add(lblWeight, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 270, -1, -1));
 
         txtHeartRate.setEnabled(false);
         txtHeartRate.addActionListener(new java.awt.event.ActionListener() {
@@ -159,7 +150,7 @@ public class ViewVitalSignJPanel extends javax.swing.JPanel {
                 txtHeartRateActionPerformed(evt);
             }
         });
-        add(txtHeartRate, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 290, 110, -1));
+        add(txtHeartRate, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 230, 110, -1));
 
         txtBP.setEnabled(false);
         txtBP.addActionListener(new java.awt.event.ActionListener() {
@@ -167,7 +158,7 @@ public class ViewVitalSignJPanel extends javax.swing.JPanel {
                 txtBPActionPerformed(evt);
             }
         });
-        add(txtBP, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 310, 110, -1));
+        add(txtBP, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 250, 110, -1));
 
         txtWeight.setEnabled(false);
         txtWeight.addActionListener(new java.awt.event.ActionListener() {
@@ -175,7 +166,7 @@ public class ViewVitalSignJPanel extends javax.swing.JPanel {
                 txtWeightActionPerformed(evt);
             }
         });
-        add(txtWeight, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 330, 110, -1));
+        add(txtWeight, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 270, 110, -1));
 
         btnViewDetails.setText("View Details");
         btnViewDetails.addActionListener(new java.awt.event.ActionListener() {
@@ -183,7 +174,7 @@ public class ViewVitalSignJPanel extends javax.swing.JPanel {
                 btnViewDetailsActionPerformed(evt);
             }
         });
-        add(btnViewDetails, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 210, -1, -1));
+        add(btnViewDetails, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 210, -1, -1));
 
         btnBack.setText("Back");
         btnBack.addActionListener(new java.awt.event.ActionListener() {
@@ -200,7 +191,7 @@ public class ViewVitalSignJPanel extends javax.swing.JPanel {
                 btnSaveActionPerformed(evt);
             }
         });
-        add(btnSave, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 210, -1, -1));
+        add(btnSave, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 310, -1, -1));
 
         btnUpdatePerson.setText("Update Vital Sign");
         btnUpdatePerson.addActionListener(new java.awt.event.ActionListener() {
@@ -208,7 +199,7 @@ public class ViewVitalSignJPanel extends javax.swing.JPanel {
                 btnUpdatePersonActionPerformed(evt);
             }
         });
-        add(btnUpdatePerson, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 210, -1, -1));
+        add(btnUpdatePerson, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 310, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtRespiratoryRateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtRespiratoryRateActionPerformed
@@ -250,7 +241,8 @@ public class ViewVitalSignJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_btnBackActionPerformed
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
-         if (!txtRespiratoryRate.getText().matches("\\d+")) {
+        try{
+        if (!txtRespiratoryRate.getText().matches("\\d+")) {
             JOptionPane.showMessageDialog(null, "Enter a valid Respiratory Rate");
             return;
         } else if (!txtHeartRate.getText().matches("\\d+")) {
@@ -263,20 +255,19 @@ public class ViewVitalSignJPanel extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, "Enter a valid the Weight");
             return;
         }
-        try {
-            VitalSignHistory vitalSignHistory  =person.getPatient().getVitalSignHistory();
-            VitalSign vs = vitalSignHistory.addVitalSign();
-            vs.setRespiratoryRate(Float.parseFloat(txtRespiratoryRate.getText()));
-            vs.setHeartRate(Float.parseFloat(txtHeartRate.getText()));
-            vs.setBloodPressure(Float.parseFloat(txtBP.getText()));
-            vs.setWeight(Float.parseFloat(txtWeight.getText()));
-             txtRespiratoryRate.setEditable(false);
-            txtHeartRate.setEditable(false);
-            txtBP.setEditable(false);
-            txtWeight.setEditable(false);
-            btnSave.setEnabled(false);
-            btnUpdatePerson.setEnabled(true);
-            
+        
+                int selectedRow = tblVitalSign.getSelectedRow();
+                if (selectedRow >= 0) {
+                    VitalSign vs = (VitalSign) tblVitalSign.getValueAt(selectedRow, 0);
+                    vs.setBloodPressure(Float.parseFloat(txtRespiratoryRate.getText()));
+                    vs.setBloodPressure(Float.parseFloat(txtHeartRate.getText()));
+                    vs.setBloodPressure(Float.parseFloat(txtBP.getText()));
+                    vs.setBloodPressure(Float.parseFloat(txtWeight.getText()));
+                
+            } else {
+                JOptionPane.showMessageDialog(null, "Please select an entry from the table", "Warning", JOptionPane.INFORMATION_MESSAGE);
+            }
+                       
 
             JOptionPane.showMessageDialog(null, "Vital Sign saved successfully",
                 "Information", JOptionPane.INFORMATION_MESSAGE);
@@ -284,7 +275,14 @@ public class ViewVitalSignJPanel extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, "Unable to save the Vital Sign",
                 "Warning", JOptionPane.WARNING_MESSAGE);
         } finally {
-           
+             txtRespiratoryRate.setEditable(false);
+            txtHeartRate.setEditable(false);
+            txtBP.setEditable(false);
+            txtWeight.setEditable(false);
+            btnSave.setEnabled(false);
+            btnUpdatePerson.setEnabled(true);
+
+           populateTable();
 
         }
     }//GEN-LAST:event_btnSaveActionPerformed

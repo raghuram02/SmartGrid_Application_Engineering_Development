@@ -199,23 +199,23 @@ public class ViewPersonJPanel extends javax.swing.JPanel {
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
         if (txtName.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Enter the Patient name");
+            JOptionPane.showMessageDialog(null, "Enter the  name");
             return;
         } else if (!txtAge.getText().matches("\\d+")) {
             JOptionPane.showMessageDialog(null, "Enter the Age");
             return;
         } else if (txtEmail.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Enter the Patient ID");
+            JOptionPane.showMessageDialog(null, "Enter the email ID");
             return;
 
         } else if (txtAddress.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Enter the Doctor's name");
+            JOptionPane.showMessageDialog(null, "Enter the address");
             return;
         } else if (txtZip.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Enter the Preferred pharmacy");
+            JOptionPane.showMessageDialog(null, "Enter the zipcode ");
             return;
         } else if (!txtPhone.getText().matches("\\d+")) {
-            JOptionPane.showMessageDialog(null, "Enter the Age");
+            JOptionPane.showMessageDialog(null, "Enter the phone number");
             return;
         }
         try {

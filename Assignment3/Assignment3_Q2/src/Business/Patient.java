@@ -51,4 +51,10 @@ public class Patient {
     public void setVitalSignHistory(VitalSignHistory vitalSignHistory) {
         this.vitalSignHistory = vitalSignHistory;
     }
+    
+    @Override
+    public String toString()
+    {
+        return this.getPatientId();
+    }
 }

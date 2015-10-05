@@ -138,8 +138,28 @@ public class CreatePersonJPanel extends javax.swing.JPanel {
         add(btnBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 200, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
-   
+
     private void btnCreatePersonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreatePersonActionPerformed
+        if (txtName.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Enter the Patient name");
+            return;
+        } else if (!txtAge.getText().matches("\\d+")) {
+            JOptionPane.showMessageDialog(null, "Enter the Age");
+            return;
+        } else if (txtEmail.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Enter the Patient ID");
+            return;
+
+        } else if (txtAddress.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Enter the Doctor's name");
+            return;
+        } else if (txtZip.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Enter the Preferred pharmacy");
+            return;
+        } else if (!txtPhone.getText().matches("\\d+")) {
+            JOptionPane.showMessageDialog(null, "Enter the Age");
+            return;
+        }
         try {
             String name = txtName.getText();
             int age = Integer.parseInt(txtAge.getText());
@@ -188,18 +208,18 @@ public class CreatePersonJPanel extends javax.swing.JPanel {
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
         // TODO add your handling code here:
-      back();
+        back();
 
-    }                                       
+    }
 
-private void back(){
-    userProcessContainer.remove(this);
-    Component[] componentArray = userProcessContainer.getComponents();
-    Component managePersonJPanel  = componentArray[componentArray.length-1];
-    ManagePersonJPanel manage = (ManagePersonJPanel) managePersonJPanel;
-    manage.populateTable();
-    CardLayout Layout = (CardLayout) userProcessContainer.getLayout();
-   Layout.previous(userProcessContainer); 
+    private void back() {
+        userProcessContainer.remove(this);
+        Component[] componentArray = userProcessContainer.getComponents();
+        Component managePersonJPanel = componentArray[componentArray.length - 1];
+        ManagePersonJPanel manage = (ManagePersonJPanel) managePersonJPanel;
+        manage.populateTable();
+        CardLayout Layout = (CardLayout) userProcessContainer.getLayout();
+        Layout.previous(userProcessContainer);
     }//GEN-LAST:event_btnBackActionPerformed
 
 

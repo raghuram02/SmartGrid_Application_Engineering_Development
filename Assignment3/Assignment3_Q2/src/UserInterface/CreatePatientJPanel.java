@@ -15,12 +15,14 @@ import javax.swing.JPanel;
  * @author Raghuram
  */
 public class CreatePatientJPanel extends javax.swing.JPanel {
-private Person person;
-private JPanel userProcessContainer;
+
+    private Person person;
+    private JPanel userProcessContainer;
+
     /**
      * Creates new form CreatePatientJpanel
      */
-    public CreatePatientJPanel(Person person,JPanel userProcessContainer) {
+    public CreatePatientJPanel(Person person, JPanel userProcessContainer) {
         initComponents();
         this.person = person;
         this.userProcessContainer = userProcessContainer;
@@ -112,12 +114,22 @@ private JPanel userProcessContainer;
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCreatePatientActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreatePatientActionPerformed
+        if (txtPatientId.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Enter the Patient ID");
+            return;
 
+        } else if (txtDoctor.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Enter the Doctor's name");
+            return;
+        } else if (txtPharmacy.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Enter the Preferred pharmacy");
+            return;
+        }
         person.getPatient().setPatientId(txtPatientId.getText());
         person.getPatient().setDoctorName(txtDoctor.getText());
         person.getPatient().setPharmacy(txtPharmacy.getText());
-        JOptionPane.showMessageDialog(null, "Patient details for " +person.getName()+" has been created", "Information", JOptionPane.INFORMATION_MESSAGE);
-        
+        JOptionPane.showMessageDialog(null, "Patient details for " + person.getName() + " has been created", "Information", JOptionPane.INFORMATION_MESSAGE);
+
     }//GEN-LAST:event_btnCreatePatientActionPerformed
 
     private void txtPatientIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPatientIdActionPerformed

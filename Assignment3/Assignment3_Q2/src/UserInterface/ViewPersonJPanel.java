@@ -66,7 +66,7 @@ public class ViewPersonJPanel extends javax.swing.JPanel {
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         lblPatientName.setText("Person Name");
-        add(lblPatientName, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 60, -1, -1));
+        add(lblPatientName, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 50, -1, -1));
 
         txtName.setEnabled(false);
         txtName.addActionListener(new java.awt.event.ActionListener() {
@@ -74,13 +74,13 @@ public class ViewPersonJPanel extends javax.swing.JPanel {
                 txtNameActionPerformed(evt);
             }
         });
-        add(txtName, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 60, 110, -1));
+        add(txtName, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 50, 110, -1));
 
         lblPatientID.setText("Contact Number");
-        add(lblPatientID, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 80, -1, -1));
+        add(lblPatientID, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 70, -1, -1));
 
         lblAge.setText("Age");
-        add(lblAge, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 60, -1, -1));
+        add(lblAge, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 90, -1, -1));
 
         txtPhone.setEnabled(false);
         txtPhone.addActionListener(new java.awt.event.ActionListener() {
@@ -88,7 +88,7 @@ public class ViewPersonJPanel extends javax.swing.JPanel {
                 txtPhoneActionPerformed(evt);
             }
         });
-        add(txtPhone, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 80, 110, -1));
+        add(txtPhone, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 70, 110, -1));
 
         txtAge.setEnabled(false);
         txtAge.addActionListener(new java.awt.event.ActionListener() {
@@ -96,10 +96,10 @@ public class ViewPersonJPanel extends javax.swing.JPanel {
                 txtAgeActionPerformed(evt);
             }
         });
-        add(txtAge, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 60, 110, -1));
+        add(txtAge, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 90, 110, -1));
 
         jLabel1.setText("View Person");
-        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 10, -1, -1));
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 10, -1, -1));
 
         btnUpdatePerson.setText("Update Person");
         btnUpdatePerson.addActionListener(new java.awt.event.ActionListener() {
@@ -107,7 +107,7 @@ public class ViewPersonJPanel extends javax.swing.JPanel {
                 btnUpdatePersonActionPerformed(evt);
             }
         });
-        add(btnUpdatePerson, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 130, -1, -1));
+        add(btnUpdatePerson, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 200, -1, -1));
 
         btnBack.setText("<< Back");
         btnBack.addActionListener(new java.awt.event.ActionListener() {
@@ -115,13 +115,13 @@ public class ViewPersonJPanel extends javax.swing.JPanel {
                 btnBackActionPerformed(evt);
             }
         });
-        add(btnBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 130, -1, -1));
+        add(btnBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 200, -1, -1));
 
         lblDoctor.setText("Email ID");
-        add(lblDoctor, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 80, -1, -1));
+        add(lblDoctor, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 110, -1, -1));
 
         lblPharmacy.setText("Address");
-        add(lblPharmacy, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 60, -1, -1));
+        add(lblPharmacy, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 130, -1, -1));
 
         txtEmail.setEnabled(false);
         txtEmail.addActionListener(new java.awt.event.ActionListener() {
@@ -129,7 +129,7 @@ public class ViewPersonJPanel extends javax.swing.JPanel {
                 txtEmailActionPerformed(evt);
             }
         });
-        add(txtEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 80, 110, -1));
+        add(txtEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 110, 110, -1));
 
         txtAddress.setEnabled(false);
         txtAddress.addActionListener(new java.awt.event.ActionListener() {
@@ -137,7 +137,7 @@ public class ViewPersonJPanel extends javax.swing.JPanel {
                 txtAddressActionPerformed(evt);
             }
         });
-        add(txtAddress, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 60, 110, -1));
+        add(txtAddress, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 130, 110, -1));
 
         txtZip.setEnabled(false);
         txtZip.addActionListener(new java.awt.event.ActionListener() {
@@ -145,10 +145,10 @@ public class ViewPersonJPanel extends javax.swing.JPanel {
                 txtZipActionPerformed(evt);
             }
         });
-        add(txtZip, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 80, 110, -1));
+        add(txtZip, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 150, 110, -1));
 
         jLabel3.setText("Zip Code");
-        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 80, -1, -1));
+        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 150, -1, -1));
 
         btnSave.setText("Save");
         btnSave.setEnabled(false);
@@ -157,7 +157,7 @@ public class ViewPersonJPanel extends javax.swing.JPanel {
                 btnSaveActionPerformed(evt);
             }
         });
-        add(btnSave, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 130, -1, -1));
+        add(btnSave, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 200, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNameActionPerformed
@@ -198,6 +198,26 @@ public class ViewPersonJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_txtZipActionPerformed
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
+        if (txtName.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Enter the Patient name");
+            return;
+        } else if (!txtAge.getText().matches("\\d+")) {
+            JOptionPane.showMessageDialog(null, "Enter the Age");
+            return;
+        } else if (txtEmail.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Enter the Patient ID");
+            return;
+
+        } else if (txtAddress.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Enter the Doctor's name");
+            return;
+        } else if (txtZip.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Enter the Preferred pharmacy");
+            return;
+        } else if (!txtPhone.getText().matches("\\d+")) {
+            JOptionPane.showMessageDialog(null, "Enter the Age");
+            return;
+        }
         try {
             person.setName(txtName.getText());
             person.setAge(Integer.parseInt(txtAge.getText()));

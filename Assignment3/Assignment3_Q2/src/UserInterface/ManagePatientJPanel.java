@@ -58,6 +58,7 @@ public class ManagePatientJPanel extends javax.swing.JPanel {
         btnPatient = new javax.swing.JButton();
         btnVitalSign = new javax.swing.JButton();
         btnViewVitalSign = new javax.swing.JButton();
+        btnViewPatientDetails = new javax.swing.JButton();
 
         personTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -98,6 +99,13 @@ public class ManagePatientJPanel extends javax.swing.JPanel {
             }
         });
 
+        btnViewPatientDetails.setText("View Patient Details");
+        btnViewPatientDetails.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnViewPatientDetailsActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -113,8 +121,10 @@ public class ManagePatientJPanel extends javax.swing.JPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnVitalSign, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
-                .addComponent(btnViewVitalSign, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(150, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(btnViewPatientDetails, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnViewVitalSign, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(143, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -125,7 +135,9 @@ public class ManagePatientJPanel extends javax.swing.JPanel {
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(36, 36, 36)
-                        .addComponent(btnViewVitalSign)))
+                        .addComponent(btnViewVitalSign)
+                        .addGap(53, 53, 53)
+                        .addComponent(btnViewPatientDetails)))
                 .addGap(26, 26, 26)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnPatient)
@@ -137,10 +149,12 @@ public class ManagePatientJPanel extends javax.swing.JPanel {
     private void btnPatientActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPatientActionPerformed
 
         int row = personTable.getSelectedRow();
-        if (row < 0) {
-            JOptionPane.showMessageDialog(null, "Please select a person from the table",
-                    "Warning", JOptionPane.WARNING_MESSAGE);
-        } else {
+        if(row<0)
+        {
+            JOptionPane.showMessageDialog(null, "Please select person",
+                        "Warning", JOptionPane.WARNING_MESSAGE);
+        }
+        else{
             Person person = (Person) personTable.getValueAt(row, 0);
 
             if (person.getPatient().getPatientId() == null) {
@@ -152,8 +166,8 @@ public class ManagePatientJPanel extends javax.swing.JPanel {
                 JOptionPane.showMessageDialog(null, "patient already exist",
                         "Warning", JOptionPane.WARNING_MESSAGE);
             }
+        
         }
-
     }//GEN-LAST:event_btnPatientActionPerformed
 
     private void btnVitalSignActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVitalSignActionPerformed
@@ -197,13 +211,23 @@ public class ManagePatientJPanel extends javax.swing.JPanel {
                 CardLayout Layout = (CardLayout) userProcessContainer.getLayout();
                 Layout.next(userProcessContainer);
             
-        
+            }}
         // TODO add your handling code here:
     }//GEN-LAST:event_btnViewVitalSignActionPerformed
 
-        }}
+    private void btnViewPatientDetailsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewPatientDetailsActionPerformed
+        // TODO add your handling code here:
+         
+                SearchPatientJPanel SPJ = new SearchPatientJPanel(personDirectory, userProcessContainer);
+                userProcessContainer.add("SPJ", SPJ);
+                CardLayout Layout = (CardLayout) userProcessContainer.getLayout();
+                Layout.next(userProcessContainer);
+    }//GEN-LAST:event_btnViewPatientDetailsActionPerformed
+
+        
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnPatient;
+    private javax.swing.JButton btnViewPatientDetails;
     private javax.swing.JButton btnViewVitalSign;
     private javax.swing.JButton btnVitalSign;
     private javax.swing.JScrollPane jScrollPane1;

@@ -108,6 +108,8 @@ public class ViewVitalSignJPanel extends javax.swing.JPanel {
         txtWeight = new javax.swing.JTextField();
         btnViewDetails = new javax.swing.JButton();
         btnBack = new javax.swing.JButton();
+        btnSave = new javax.swing.JButton();
+        btnUpdatePerson = new javax.swing.JButton();
 
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -132,48 +134,48 @@ public class ViewVitalSignJPanel extends javax.swing.JPanel {
         add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, 550, 179));
 
         lblRespiiratoryRate.setText("Respiratory Rate");
-        add(lblRespiiratoryRate, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 280, -1, -1));
+        add(lblRespiiratoryRate, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 270, -1, -1));
 
-        txtRespiratoryRate.setEditable(false);
+        txtRespiratoryRate.setEnabled(false);
         txtRespiratoryRate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtRespiratoryRateActionPerformed(evt);
             }
         });
-        add(txtRespiratoryRate, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 280, 110, -1));
+        add(txtRespiratoryRate, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 270, 110, -1));
 
         lblHeartRate.setText("Heart Rate");
-        add(lblHeartRate, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 300, -1, -1));
+        add(lblHeartRate, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 290, -1, -1));
 
         lblBP.setText("Systolic Blood Pressure");
-        add(lblBP, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 320, -1, -1));
+        add(lblBP, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 310, -1, -1));
 
         lblWeight.setText("Weight in pounds");
-        add(lblWeight, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 340, -1, -1));
+        add(lblWeight, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 330, -1, -1));
 
-        txtHeartRate.setEditable(false);
+        txtHeartRate.setEnabled(false);
         txtHeartRate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtHeartRateActionPerformed(evt);
             }
         });
-        add(txtHeartRate, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 300, 110, -1));
+        add(txtHeartRate, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 290, 110, -1));
 
-        txtBP.setEditable(false);
+        txtBP.setEnabled(false);
         txtBP.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtBPActionPerformed(evt);
             }
         });
-        add(txtBP, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 320, 110, -1));
+        add(txtBP, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 310, 110, -1));
 
-        txtWeight.setEditable(false);
+        txtWeight.setEnabled(false);
         txtWeight.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtWeightActionPerformed(evt);
             }
         });
-        add(txtWeight, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 340, 110, -1));
+        add(txtWeight, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 330, 110, -1));
 
         btnViewDetails.setText("View Details");
         btnViewDetails.addActionListener(new java.awt.event.ActionListener() {
@@ -181,7 +183,7 @@ public class ViewVitalSignJPanel extends javax.swing.JPanel {
                 btnViewDetailsActionPerformed(evt);
             }
         });
-        add(btnViewDetails, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 210, -1, -1));
+        add(btnViewDetails, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 210, -1, -1));
 
         btnBack.setText("Back");
         btnBack.addActionListener(new java.awt.event.ActionListener() {
@@ -189,7 +191,24 @@ public class ViewVitalSignJPanel extends javax.swing.JPanel {
                 btnBackActionPerformed(evt);
             }
         });
-        add(btnBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 210, -1, -1));
+        add(btnBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 210, -1, -1));
+
+        btnSave.setText("Save");
+        btnSave.setEnabled(false);
+        btnSave.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSaveActionPerformed(evt);
+            }
+        });
+        add(btnSave, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 210, -1, -1));
+
+        btnUpdatePerson.setText("Update Vital Sign");
+        btnUpdatePerson.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUpdatePersonActionPerformed(evt);
+            }
+        });
+        add(btnUpdatePerson, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 210, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtRespiratoryRateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtRespiratoryRateActionPerformed
@@ -230,9 +249,61 @@ public class ViewVitalSignJPanel extends javax.swing.JPanel {
         Layout.previous(userProcessContainer);        // TODO add your handling code here:
     }//GEN-LAST:event_btnBackActionPerformed
 
+    private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
+         if (!txtRespiratoryRate.getText().matches("\\d+")) {
+            JOptionPane.showMessageDialog(null, "Enter a valid Respiratory Rate");
+            return;
+        } else if (!txtHeartRate.getText().matches("\\d+")) {
+            JOptionPane.showMessageDialog(null, "Enter a valid Heart Rate");
+            return;
+        } else if (!txtBP.getText().matches("\\d+")) {
+            JOptionPane.showMessageDialog(null, "Enter a valid Blood Pressure");
+            return;
+        } else if (!txtWeight.getText().matches("\\d+")) {
+            JOptionPane.showMessageDialog(null, "Enter a valid the Weight");
+            return;
+        }
+        try {
+            VitalSignHistory vitalSignHistory  =person.getPatient().getVitalSignHistory();
+            VitalSign vs = vitalSignHistory.addVitalSign();
+            vs.setRespiratoryRate(Float.parseFloat(txtRespiratoryRate.getText()));
+            vs.setHeartRate(Float.parseFloat(txtHeartRate.getText()));
+            vs.setBloodPressure(Float.parseFloat(txtBP.getText()));
+            vs.setWeight(Float.parseFloat(txtWeight.getText()));
+             txtRespiratoryRate.setEditable(false);
+            txtHeartRate.setEditable(false);
+            txtBP.setEditable(false);
+            txtWeight.setEditable(false);
+            btnSave.setEnabled(false);
+            btnUpdatePerson.setEnabled(true);
+            
+
+            JOptionPane.showMessageDialog(null, "Vital Sign saved successfully",
+                "Information", JOptionPane.INFORMATION_MESSAGE);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Unable to save the Vital Sign",
+                "Warning", JOptionPane.WARNING_MESSAGE);
+        } finally {
+           
+
+        }
+    }//GEN-LAST:event_btnSaveActionPerformed
+
+    private void btnUpdatePersonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdatePersonActionPerformed
+
+        txtRespiratoryRate.setEnabled(true);
+        txtHeartRate.setEnabled(true);
+        txtBP.setEnabled(true);
+        txtWeight.setEnabled(true);
+        btnSave.setEnabled(true);
+        btnUpdatePerson.setEnabled(false);
+    }//GEN-LAST:event_btnUpdatePersonActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBack;
+    private javax.swing.JButton btnSave;
+    private javax.swing.JButton btnUpdatePerson;
     private javax.swing.JButton btnViewDetails;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblBP;

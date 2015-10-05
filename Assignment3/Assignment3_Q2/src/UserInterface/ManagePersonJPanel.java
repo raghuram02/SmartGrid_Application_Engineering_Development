@@ -17,19 +17,20 @@ import javax.swing.table.DefaultTableModel;
  * @author Raghuram
  */
 public class ManagePersonJPanel extends javax.swing.JPanel {
-private JPanel userProcessContainer;
-private PersonDirectory personDirectory;
+
+    private JPanel userProcessContainer;
+    private PersonDirectory personDirectory;
 
     /**
      * Creates new form ManagePerson
      */
     public ManagePersonJPanel(PersonDirectory personDirectory, JPanel userProcessContainer) {
         initComponents();
-        this.personDirectory =  personDirectory;
-        this.userProcessContainer =  userProcessContainer;
+        this.personDirectory = personDirectory;
+        this.userProcessContainer = userProcessContainer;
         populateTable();
     }
-   
+
     public void populateTable() {
         DefaultTableModel dtm = (DefaultTableModel) personTable.getModel();
         dtm.setRowCount(0);
@@ -39,7 +40,8 @@ private PersonDirectory personDirectory;
             row[1] = P.getAge();
             row[2] = P.getPhoneNumber();
             dtm.addRow(row);
-        }}
+        }
+    }
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
@@ -50,6 +52,9 @@ private PersonDirectory personDirectory;
         personTable = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         BtnDeletePerson = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        txtSearch = new javax.swing.JTextField();
+        btnSearch = new javax.swing.JButton();
 
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -62,7 +67,7 @@ private PersonDirectory personDirectory;
                 CreatePersonJPanelActionPerformed(evt);
             }
         });
-        add(CreatePersonJPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 220, -1, -1));
+        add(CreatePersonJPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 70, -1, -1));
 
         btnViewPerson.setText("View Details");
         btnViewPerson.addActionListener(new java.awt.event.ActionListener() {
@@ -70,7 +75,7 @@ private PersonDirectory personDirectory;
                 btnViewPersonActionPerformed(evt);
             }
         });
-        add(btnViewPerson, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 100, 120, -1));
+        add(btnViewPerson, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 110, 100, -1));
 
         personTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -101,11 +106,29 @@ private PersonDirectory personDirectory;
                 BtnDeletePersonActionPerformed(evt);
             }
         });
-        add(BtnDeletePerson, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 220, -1, -1));
+        add(BtnDeletePerson, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 150, -1, -1));
+
+        jLabel2.setText("Search by person name");
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 220, -1, 20));
+
+        txtSearch.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtSearchActionPerformed(evt);
+            }
+        });
+        add(txtSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 220, 100, -1));
+
+        btnSearch.setText("Search");
+        btnSearch.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSearchActionPerformed(evt);
+            }
+        });
+        add(btnSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 220, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void CreatePersonJPanelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CreatePersonJPanelActionPerformed
-        
+
         CreatePersonJPanel CP = new CreatePersonJPanel(personDirectory, userProcessContainer);
         userProcessContainer.add("workArea", CP);
         CardLayout cardLayout = (CardLayout) userProcessContainer.getLayout();
@@ -118,62 +141,85 @@ private PersonDirectory personDirectory;
             JOptionPane.showMessageDialog(null, "Please select a person from the table",
                     "Warning", JOptionPane.WARNING_MESSAGE);
             return;
-    } 
-      Person person = (Person) personTable.getValueAt(row, 0);
+        }
+        Person person = (Person) personTable.getValueAt(row, 0);
         ViewPersonJPanel VPD = new ViewPersonJPanel(person, userProcessContainer);
         userProcessContainer.add("VPD", VPD);
         CardLayout Layout = (CardLayout) userProcessContainer.getLayout();
         Layout.next(userProcessContainer);
-                                        
+
         // TODO add your handling code here:
     }//GEN-LAST:event_btnViewPersonActionPerformed
 
     private void BtnDeletePersonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnDeletePersonActionPerformed
         // TODO add your handling code here:
         int selectedRow = personTable.getSelectedRow();
-        Person person  =(Person) personTable.getValueAt(selectedRow,0);
-        if(selectedRow <0){
-            JOptionPane.showMessageDialog(null,"Please select person from the table!!!", "Information", JOptionPane.INFORMATION_MESSAGE);
-        }
-        else
-        {
-            if(person.getPatient().getPatientId() !=null){
-                int flag = JOptionPane.YES_NO_OPTION;
-                int dialogResult = JOptionPane.showConfirmDialog(null,"Do you want to delete the patient associated with the person", "Warning", flag);
-                if (dialogResult == JOptionPane.YES_OPTION){
+        if (selectedRow < 0) {
+            JOptionPane.showMessageDialog(null, "Please select person from the table!!!", "Information", JOptionPane.INFORMATION_MESSAGE);
+        } else {
+            
+
+                int dialogResult = JOptionPane.showConfirmDialog(null, "Do you want to delete the person associated with the patient", "Warning", JOptionPane.YES_NO_OPTION);
+                if (dialogResult == JOptionPane.YES_OPTION) {
+                    Person person = (Person) personTable.getValueAt(selectedRow, 0);
                     personDirectory.deletePerson(person);
                     populateTable();
-                    JOptionPane.showConfirmDialog(null,"Person deleted!!!", "Information", JOptionPane.INFORMATION_MESSAGE);
-                }
-                else
-                {
-                    JOptionPane.showConfirmDialog(null,"Person not deleted!!!", "Warning", JOptionPane.WARNING_MESSAGE);
-                }
+//                JOptionPane.showConfirmDialog(null,"Person deleted!!!", "Information", JOptionPane.INFORMATION_MESSAGE);
+//                }
+//                else
+//                {
+//                    JOptionPane.showConfirmDialog(null,"Person not deleted!!!", "Warning", JOptionPane.WARNING_MESSAGE);
+//                }
+//            }
+//            else 
+//            {
+//                int dialogResult = JOptionPane.showConfirmDialog(null,"Do you want to delete the person??", "Warning", JOptionPane.YES_NO_OPTION);
+//                if (dialogResult == JOptionPane.YES_OPTION)
+//                {        
+//                    personDirectory.deletePerson(person);
+//                    populateTable();
+//                    JOptionPane.showConfirmDialog(null,"Person deleted!!!", "Information", JOptionPane.INFORMATION_MESSAGE);
+//                }
+                
             }
-            else 
-            {
-                int dialogResult = JOptionPane.showConfirmDialog(null,"Do you want to delete the person??", "Warning", JOptionPane.YES_NO_OPTION);
-                if (dialogResult == JOptionPane.YES_OPTION)
-                {        
-                    personDirectory.deletePerson(person);
-                    populateTable();
-                    JOptionPane.showConfirmDialog(null,"Person deleted!!!", "Information", JOptionPane.INFORMATION_MESSAGE);
-                }
-            }               
 
         }
     }//GEN-LAST:event_BtnDeletePersonActionPerformed
-     
-    
-    
+
+    private void txtSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSearchActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtSearchActionPerformed
+
+    private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
+        // TODO add your handling code here:
+        String key = txtSearch.getText().trim();
+        if (key == null || key.length() == 0) {
+            JOptionPane.showMessageDialog(null, "Please specify aname to search!!!", "Warning", JOptionPane.WARNING_MESSAGE);
+        } else {
+
+            Person person = personDirectory.searchPerson(key);
+            if (person != null) {
+                ViewPersonJPanel searchResult = new ViewPersonJPanel(person, userProcessContainer);
+                userProcessContainer.add("searchResult", searchResult);
+                CardLayout cardLayout = (CardLayout) userProcessContainer.getLayout();
+                cardLayout.next(userProcessContainer);
+            } else {
+                JOptionPane.showMessageDialog(null, "No matching names", "Information", JOptionPane.INFORMATION_MESSAGE);
+            }
+        }
+    }//GEN-LAST:event_btnSearchActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BtnDeletePerson;
     private javax.swing.JButton CreatePersonJPanel;
+    private javax.swing.JButton btnSearch;
     private javax.swing.JButton btnViewPerson;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable personTable;
+    private javax.swing.JTextField txtSearch;
     // End of variables declaration//GEN-END:variables
 }

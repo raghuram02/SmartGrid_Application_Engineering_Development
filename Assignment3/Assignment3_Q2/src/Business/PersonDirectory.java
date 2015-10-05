@@ -36,5 +36,15 @@ public class PersonDirectory {
 {
 personDirectory.remove(person);  
 }
+     public Person searchPerson(String name){
+        for(Person a : personDirectory)
+        {
+            if(a.getName().equalsIgnoreCase(name)){
+                return a;
+            
+        }
+    }
+    return null;
+    }
 
 }

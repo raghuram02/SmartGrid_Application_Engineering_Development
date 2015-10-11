@@ -2,18 +2,6 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group>
-            <file>file:/C:/Users/Raghuram/Documents/NetBeansProjects/Assignment3_Q2/src/UserInterface/CreatePatientJPanel.java</file>
-            <file>file:/C:/Users/Raghuram/Documents/NetBeansProjects/Assignment3_Q2/src/UserInterface/ViewVitalSignJPanel.java</file>
-            <file>file:/C:/Users/Raghuram/Documents/NetBeansProjects/Assignment3_Q2/src/UserInterface/SearchResultJPanel.java</file>
-            <file>file:/C:/Users/Raghuram/Documents/NetBeansProjects/Assignment3_Q2/src/UserInterface/CreatePersonJPanel.java</file>
-            <file>file:/C:/Users/Raghuram/Documents/NetBeansProjects/Assignment3_Q2/src/Business/Patient.java</file>
-            <file>file:/C:/Users/Raghuram/Documents/NetBeansProjects/Assignment3_Q2/src/UserInterface/SearchPatientJPanel.java</file>
-            <file>file:/C:/Users/Raghuram/Documents/NetBeansProjects/Assignment3_Q2/src/UserInterface/ViewPersonJPanel.java</file>
-            <file>file:/C:/Users/Raghuram/Documents/NetBeansProjects/Assignment3_Q2/src/UserInterface/ManagePatientJPanel.java</file>
-            <file>file:/C:/Users/Raghuram/Documents/NetBeansProjects/Assignment3_Q2/src/UserInterface/CreateVitalSignJPanel.java</file>
-            <file>file:/C:/Users/Raghuram/Documents/NetBeansProjects/Assignment3_Q2/src/UserInterface/ManagePersonJPanel.java</file>
-            <file>file:/C:/Users/Raghuram/Documents/NetBeansProjects/Assignment3_Q2/src/Business/Person.java</file>
-        </group>
+        <group/>
     </open-files>
 </project-private>

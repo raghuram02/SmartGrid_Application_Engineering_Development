@@ -5,7 +5,11 @@
  */
 package UserInterface_MainJFrame;
 
+import Business.StoreDirectory;
+import Business.SupplierDirectory;
 import UserInterface_CVSAdminRole.CVSAdminWorkAreaJPanel;
+import UserInterface_StoreAdminRole.LoginStore;
+import UserInterface_Supplier.LoginSupplier;
 import java.awt.CardLayout;
 
 /**
@@ -14,11 +18,16 @@ import java.awt.CardLayout;
  */
 public class MainJFrame extends javax.swing.JFrame {
 
+    private StoreDirectory storeDirectory;
+    private SupplierDirectory supplierDirectory;
+
     /**
      * Creates new form MainJFrame
      */
     public MainJFrame() {
         initComponents();
+        storeDirectory = new StoreDirectory();
+        supplierDirectory = new SupplierDirectory();
     }
 
     /**
@@ -34,6 +43,7 @@ public class MainJFrame extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         btnCVSAdmin = new javax.swing.JButton();
         btnStoreAdmin = new javax.swing.JButton();
+        btnSupplier = new javax.swing.JButton();
         userProcessContainer = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -48,6 +58,18 @@ public class MainJFrame extends javax.swing.JFrame {
         });
 
         btnStoreAdmin.setText("Store Admin");
+        btnStoreAdmin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnStoreAdminActionPerformed(evt);
+            }
+        });
+
+        btnSupplier.setText("Supplier");
+        btnSupplier.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSupplierActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -57,17 +79,20 @@ public class MainJFrame extends javax.swing.JFrame {
                 .addGap(25, 25, 25)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(btnStoreAdmin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnCVSAdmin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(btnCVSAdmin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnSupplier, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(33, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(92, 92, 92)
+                .addGap(31, 31, 31)
                 .addComponent(btnCVSAdmin)
-                .addGap(59, 59, 59)
+                .addGap(45, 45, 45)
                 .addComponent(btnStoreAdmin)
-                .addContainerGap(125, Short.MAX_VALUE))
+                .addGap(46, 46, 46)
+                .addComponent(btnSupplier)
+                .addContainerGap(131, Short.MAX_VALUE))
         );
 
         JPanel.setLeftComponent(jPanel1);
@@ -81,7 +106,7 @@ public class MainJFrame extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(JPanel)
+                .addComponent(JPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 442, Short.MAX_VALUE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -97,12 +122,30 @@ public class MainJFrame extends javax.swing.JFrame {
 
     private void btnCVSAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCVSAdminActionPerformed
 
-        CVSAdminWorkAreaJPanel workArea = new CVSAdminWorkAreaJPanel(userProcessContainer);
+        CVSAdminWorkAreaJPanel workArea = new CVSAdminWorkAreaJPanel(storeDirectory, userProcessContainer, supplierDirectory);
         userProcessContainer.add("workArea", workArea);
         CardLayout cardLayout = (CardLayout) userProcessContainer.getLayout();
         cardLayout.next(userProcessContainer);
 // TODO add your handling code here:
     }//GEN-LAST:event_btnCVSAdminActionPerformed
+
+    private void btnSupplierActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSupplierActionPerformed
+        LoginSupplier workArea = new LoginSupplier( userProcessContainer, supplierDirectory);
+        userProcessContainer.add("workArea", workArea);
+        CardLayout cardLayout = (CardLayout) userProcessContainer.getLayout();
+        cardLayout.next(userProcessContainer);
+
+// TODO add your handling code here:
+    }//GEN-LAST:event_btnSupplierActionPerformed
+
+    private void btnStoreAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnStoreAdminActionPerformed
+        // TODO add your handling code here:
+        
+        LoginStore workArea = new LoginStore( userProcessContainer, storeDirectory);
+        userProcessContainer.add("workArea", workArea);
+        CardLayout cardLayout = (CardLayout) userProcessContainer.getLayout();
+        cardLayout.next(userProcessContainer);
+    }//GEN-LAST:event_btnStoreAdminActionPerformed
 
     /**
      * @param args the command line arguments
@@ -144,6 +187,7 @@ public class MainJFrame extends javax.swing.JFrame {
     private javax.swing.JSplitPane JPanel;
     private javax.swing.JButton btnCVSAdmin;
     private javax.swing.JButton btnStoreAdmin;
+    private javax.swing.JButton btnSupplier;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel userProcessContainer;
     // End of variables declaration//GEN-END:variables

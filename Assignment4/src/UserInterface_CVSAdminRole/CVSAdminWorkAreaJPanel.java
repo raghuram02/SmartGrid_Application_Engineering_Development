@@ -5,6 +5,8 @@
  */
 package UserInterface_CVSAdminRole;
 
+import Business.StoreDirectory;
+import Business.SupplierDirectory;
 import java.awt.CardLayout;
 import javax.swing.JPanel;
 
@@ -15,13 +17,18 @@ import javax.swing.JPanel;
 public class CVSAdminWorkAreaJPanel extends javax.swing.JPanel {
 
     private JPanel userProcessContainer;
+    private StoreDirectory storeDirectory;
+    private SupplierDirectory supplierDirectory;
 
     /**
      * Creates new form CVSAdminWorkAreaJPanel
      */
-    public CVSAdminWorkAreaJPanel(JPanel userProcessContainer) {
+    public CVSAdminWorkAreaJPanel(StoreDirectory storeDirectory, JPanel userProcessContainer,SupplierDirectory supplierDirectory) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
+        this.storeDirectory = storeDirectory;
+        this.supplierDirectory=supplierDirectory;
+        
     }
 
     /**
@@ -33,23 +40,20 @@ public class CVSAdminWorkAreaJPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        btnManageDrug = new javax.swing.JButton();
-        BtnCreateCVS = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        BtnManageCVS = new javax.swing.JButton();
+        btnManageSuppliers = new javax.swing.JButton();
 
-        btnManageDrug.setText("Manage Drug Catalog");
-
-        BtnCreateCVS.setText("Manage CVS Stores");
-        BtnCreateCVS.addActionListener(new java.awt.event.ActionListener() {
+        BtnManageCVS.setText("Manage CVS Stores");
+        BtnManageCVS.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BtnCreateCVSActionPerformed(evt);
+                BtnManageCVSActionPerformed(evt);
             }
         });
 
-        jButton3.setText("Manage Suppliers");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        btnManageSuppliers.setText("Manage Suppliers");
+        btnManageSuppliers.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                btnManageSuppliersActionPerformed(evt);
             }
         });
 
@@ -59,43 +63,41 @@ public class CVSAdminWorkAreaJPanel extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(69, 69, 69)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnManageDrug)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(BtnCreateCVS, javax.swing.GroupLayout.DEFAULT_SIZE, 137, Short.MAX_VALUE)
-                        .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(BtnManageCVS, javax.swing.GroupLayout.DEFAULT_SIZE, 137, Short.MAX_VALUE)
+                    .addComponent(btnManageSuppliers, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(194, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(61, 61, 61)
-                .addComponent(jButton3)
+                .addComponent(btnManageSuppliers)
                 .addGap(39, 39, 39)
-                .addComponent(BtnCreateCVS)
-                .addGap(41, 41, 41)
-                .addComponent(btnManageDrug)
-                .addContainerGap(90, Short.MAX_VALUE))
+                .addComponent(BtnManageCVS)
+                .addContainerGap(154, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void btnManageSuppliersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnManageSuppliersActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton3ActionPerformed
+        ManageSupplierJPanel workArea = new ManageSupplierJPanel(userProcessContainer,supplierDirectory);
+        userProcessContainer.add("workArea", workArea);
+        CardLayout cardLayout = (CardLayout) userProcessContainer.getLayout();
+        cardLayout.next(userProcessContainer);
+    }//GEN-LAST:event_btnManageSuppliersActionPerformed
 
-    private void BtnCreateCVSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCreateCVSActionPerformed
-
-        ManageCVSStoresJPanel workArea = new ManageCVSStoresJPanel(userProcessContainer);
+    private void BtnManageCVSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnManageCVSActionPerformed
+        ManageCVSStoresJPanel workArea = new ManageCVSStoresJPanel(userProcessContainer,storeDirectory);
         userProcessContainer.add("workArea", workArea);
         CardLayout cardLayout = (CardLayout) userProcessContainer.getLayout();
         cardLayout.next(userProcessContainer);
 // TODO add your handling code here:
-    }//GEN-LAST:event_BtnCreateCVSActionPerformed
+    }//GEN-LAST:event_BtnManageCVSActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton BtnCreateCVS;
-    private javax.swing.JButton btnManageDrug;
-    private javax.swing.JButton jButton3;
+    private javax.swing.JButton BtnManageCVS;
+    private javax.swing.JButton btnManageSuppliers;
     // End of variables declaration//GEN-END:variables
 }

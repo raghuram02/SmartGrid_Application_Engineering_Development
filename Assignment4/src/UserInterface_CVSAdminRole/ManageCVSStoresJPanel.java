@@ -5,8 +5,12 @@
  */
 package UserInterface_CVSAdminRole;
 
+import Business.Store;
+import Business.StoreDirectory;
 import java.awt.CardLayout;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -15,13 +19,27 @@ import javax.swing.JPanel;
 public class ManageCVSStoresJPanel extends javax.swing.JPanel {
 
     private JPanel userProcessContainer;
+    private StoreDirectory storeDirectory;
 
     /**
      * Creates new form ManageCVSStoresJPanel
      */
-    public ManageCVSStoresJPanel(JPanel userProcessContainer) {
+    public ManageCVSStoresJPanel(JPanel userProcessContainer, StoreDirectory storeDirectory) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
+        this.storeDirectory = storeDirectory;
+          populateTable();
+    }
+     public void populateTable() {
+        DefaultTableModel dtm = (DefaultTableModel) storeTable.getModel();
+        dtm.setRowCount(0);
+        for (Store S : storeDirectory.getStoreDirectory()) {
+            Object row[] = new Object[3];
+            row[0] = S;
+            row[1] = S.getStoreName();
+            row[2] = S.getStoreID();
+            dtm.addRow(row);
+        }
     }
 
     /**
@@ -34,21 +52,32 @@ public class ManageCVSStoresJPanel extends javax.swing.JPanel {
     private void initComponents() {
 
         btnDeleteCVS = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        btnSearch = new javax.swing.JButton();
         btnCreateCVS = new javax.swing.JButton();
         btnViewCVS = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        txtSearch = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
-        cvsTable = new javax.swing.JTable();
+        storeTable = new javax.swing.JTable();
+        btnBack = new javax.swing.JButton();
 
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         btnDeleteCVS.setText("Delete CVS stores");
+        btnDeleteCVS.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDeleteCVSActionPerformed(evt);
+            }
+        });
         add(btnDeleteCVS, new org.netbeans.lib.awtextra.AbsoluteConstraints(468, 216, 140, -1));
 
-        jButton4.setText("Search");
-        add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 280, -1, -1));
+        btnSearch.setText("Search");
+        btnSearch.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSearchActionPerformed(evt);
+            }
+        });
+        add(btnSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 280, -1, -1));
 
         btnCreateCVS.setText("Create CVS stores");
         btnCreateCVS.addActionListener(new java.awt.event.ActionListener() {
@@ -59,45 +88,58 @@ public class ManageCVSStoresJPanel extends javax.swing.JPanel {
         add(btnCreateCVS, new org.netbeans.lib.awtextra.AbsoluteConstraints(466, 59, 140, -1));
 
         btnViewCVS.setText("View CVS stores");
+        btnViewCVS.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnViewCVSActionPerformed(evt);
+            }
+        });
         add(btnViewCVS, new org.netbeans.lib.awtextra.AbsoluteConstraints(466, 132, 140, -1));
 
         jLabel1.setText("Search by CVS store");
         add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 280, -1, 20));
 
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        txtSearch.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                txtSearchActionPerformed(evt);
             }
         });
-        add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 280, 131, -1));
+        add(txtSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 280, 131, -1));
 
-        cvsTable.setModel(new javax.swing.table.DefaultTableModel(
+        storeTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Store Manager", "Store Name", "Store ID"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, true, true
+                false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(cvsTable);
+        jScrollPane1.setViewportView(storeTable);
 
         add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 60, 350, 110));
+
+        btnBack.setText("<<Back");
+        btnBack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBackActionPerformed(evt);
+            }
+        });
+        add(btnBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 190, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void txtSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSearchActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_txtSearchActionPerformed
 
     private void btnCreateCVSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateCVSActionPerformed
-        CreateCVSStoresJPanel workArea = new CreateCVSStoresJPanel();
+        CreateCVSStoresJPanel workArea = new CreateCVSStoresJPanel(storeDirectory, userProcessContainer);
         userProcessContainer.add("workArea", workArea);
         CardLayout cardLayout = (CardLayout) userProcessContainer.getLayout();
         cardLayout.next(userProcessContainer);
@@ -105,15 +147,75 @@ public class ManageCVSStoresJPanel extends javax.swing.JPanel {
 // TODO add your handling code here:
     }//GEN-LAST:event_btnCreateCVSActionPerformed
 
+    private void btnViewCVSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewCVSActionPerformed
+
+        int row = storeTable.getSelectedRow();
+        if (row < 0) {
+            JOptionPane.showMessageDialog(null, "Please select a Store from the table",
+                    "Warning", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+        Store store = (Store) storeTable.getValueAt(row, 0);
+        ViewCVSStoresJPanel VSD = new ViewCVSStoresJPanel(store, userProcessContainer);
+        userProcessContainer.add("VSD", VSD);
+        CardLayout Layout = (CardLayout) userProcessContainer.getLayout();
+        Layout.next(userProcessContainer);
+// TODO add your handling code here:
+    }//GEN-LAST:event_btnViewCVSActionPerformed
+
+    private void btnDeleteCVSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteCVSActionPerformed
+        int selectedRow = storeTable.getSelectedRow();
+        if (selectedRow < 0) {
+            JOptionPane.showMessageDialog(null, "Please select store from the table!!!", "Information", JOptionPane.INFORMATION_MESSAGE);
+        } else {
+
+            int dialogResult = JOptionPane.showConfirmDialog(null, "Do you want to delete Store", "Warning", JOptionPane.YES_NO_OPTION);
+            if (dialogResult == JOptionPane.YES_OPTION) {
+                Store store = (Store) storeTable.getValueAt(selectedRow, 0);
+                storeDirectory.deleteStore(store);
+                populateTable();
+            }
+        }
+
+// TODO add your handling code here:
+    }//GEN-LAST:event_btnDeleteCVSActionPerformed
+
+    private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
+        String key = txtSearch.getText().trim();
+        if (key == null || key.length() == 0) {
+            JOptionPane.showMessageDialog(null, "Please specify a name to search!!!", "Warning", JOptionPane.WARNING_MESSAGE);
+        } else {
+
+            Store store = storeDirectory.searchStore(key);
+            if (store != null) {
+                ViewCVSStoresJPanel searchResult = new ViewCVSStoresJPanel(store, userProcessContainer);
+                userProcessContainer.add("searchResult", searchResult);
+                CardLayout cardLayout = (CardLayout) userProcessContainer.getLayout();
+                cardLayout.next(userProcessContainer);
+            } else {
+                JOptionPane.showMessageDialog(null, "No matching names", "Information", JOptionPane.INFORMATION_MESSAGE);
+            }
+        }
+
+// TODO add your handling code here:
+    }//GEN-LAST:event_btnSearchActionPerformed
+
+    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
+        userProcessContainer.remove(this);
+        CardLayout Layout = (CardLayout) userProcessContainer.getLayout();
+        Layout.previous(userProcessContainer);
+    }//GEN-LAST:event_btnBackActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnBack;
     private javax.swing.JButton btnCreateCVS;
     private javax.swing.JButton btnDeleteCVS;
+    private javax.swing.JButton btnSearch;
     private javax.swing.JButton btnViewCVS;
-    private javax.swing.JTable cvsTable;
-    private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTable storeTable;
+    private javax.swing.JTextField txtSearch;
     // End of variables declaration//GEN-END:variables
 }

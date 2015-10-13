@@ -39,8 +39,8 @@ public class ManageDrugCatalogJPanel extends javax.swing.JPanel {
         for (Drug d : supplier.getDrugList().getDrugList()) {
             Object row[] = new Object[3];
             row[0] = d;
-            row[1] = d.getDrugID();
-            row[2] = d.getDrugPrice();
+            row[1] = d.getDrugPrice();
+            row[2] = d.getQuantity();
             dtm.addRow(row);
         }
     }
@@ -70,11 +70,11 @@ public class ManageDrugCatalogJPanel extends javax.swing.JPanel {
 
             },
             new String [] {
-                "Drug Name", "Drug ID", "Drug Price"
+                "Drug Name", "Drug Price", "Drug Quantity"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, true, false
+                false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -93,7 +93,7 @@ public class ManageDrugCatalogJPanel extends javax.swing.JPanel {
         txtName.setFont(new java.awt.Font("Georgia", 1, 18)); // NOI18N
         txtName.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txtName.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED, null, new java.awt.Color(102, 102, 102), null, null));
-        add(txtName, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 40, 150, 30));
+        add(txtName, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 50, 150, 30));
 
         btnDrug.setText("Add Drug");
         btnDrug.addActionListener(new java.awt.event.ActionListener() {

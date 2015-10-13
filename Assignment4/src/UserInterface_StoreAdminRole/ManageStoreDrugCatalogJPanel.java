@@ -7,6 +7,8 @@ package UserInterface_StoreAdminRole;
 
 import Business.Drug;
 import Business.Store;
+import Business.Supplier;
+import Business.SupplierDirectory;
 import java.awt.CardLayout;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -20,14 +22,16 @@ public class ManageStoreDrugCatalogJPanel extends javax.swing.JPanel {
 
     private Store store;
     private JPanel userProcessContainer;
+    private SupplierDirectory supplierDirectory;
 
     /**
      * Creates new form ManageDrugCatalogJPanel
      */
-    public ManageStoreDrugCatalogJPanel(Store store, JPanel userProcessContainer) {
+    public ManageStoreDrugCatalogJPanel(Store store, JPanel userProcessContainer, SupplierDirectory supplierDirectory) {
         initComponents();
         this.store = store;
         this.userProcessContainer = userProcessContainer;
+        this.supplierDirectory = supplierDirectory;
         txtSName.setText(store.getStoreName());
         populateTable();
     }
@@ -92,6 +96,11 @@ public class ManageStoreDrugCatalogJPanel extends javax.swing.JPanel {
         txtSName.setFont(new java.awt.Font("Georgia", 1, 18)); // NOI18N
         txtSName.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txtSName.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED, null, new java.awt.Color(102, 102, 102), null, null));
+        txtSName.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtSNameActionPerformed(evt);
+            }
+        });
         add(txtSName, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 40, 150, 30));
 
         btnDrug.setText("Add Drug");
@@ -145,7 +154,7 @@ public class ManageStoreDrugCatalogJPanel extends javax.swing.JPanel {
 
     private void btnDrugActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDrugActionPerformed
 
-        CreateNewStoreDrugJPanel CNP = new CreateNewStoreDrugJPanel(userProcessContainer,store.getDrugCatalog());
+        BrowseDrugs CNP = new BrowseDrugs(userProcessContainer,supplierDirectory, store);
         userProcessContainer.add("CNP", CNP);
         CardLayout Layout = (CardLayout) userProcessContainer.getLayout();
         Layout.next(userProcessContainer);
@@ -174,6 +183,10 @@ public class ManageStoreDrugCatalogJPanel extends javax.swing.JPanel {
         CardLayout Layout = (CardLayout) userProcessContainer.getLayout();
         Layout.previous(userProcessContainer);
     }//GEN-LAST:event_btnBackActionPerformed
+
+    private void txtSNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSNameActionPerformed
+populateTable();        // TODO add your handling code here:
+    }//GEN-LAST:event_txtSNameActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

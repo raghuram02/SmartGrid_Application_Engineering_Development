@@ -23,6 +23,16 @@ public class Drug {
     private String composition;
     private String manufactureDate;
     private String purpose;
+    private int threshold = 5;
+    
+    public int getThreshold() {
+        return threshold;
+    }
+
+    public void setThreshold(int threshold) {
+        this.threshold = threshold;
+    }
+    
 
     public String getDrugName() {
         return drugName;
@@ -104,8 +114,22 @@ public class Drug {
         this.purpose = purpose;
     }
 
-
-
+//    public void setFields(String drugName, String drugID, int drugPrice , int quantity , String expirationDate, 
+//            String manufactureDate, String composition, String description, String sideeffects, String purpose)
+//    {
+//        this.DrugPrice = DrugPrice;
+//        this.drugName = drugName;
+//        this.drugID = drugID;
+//        this.quantity = DrugPrice;
+//        this.description = description;
+//        this.manufactureDate = manufactureDate;
+//        this.expirationDate = expirationDate;
+//        this.purpose = purpose;
+//        this.composition = composition;
+//        this.sideeffects = sideeffects;
+        
+        
+   
 @Override
         public String toString() {
         return drugName;

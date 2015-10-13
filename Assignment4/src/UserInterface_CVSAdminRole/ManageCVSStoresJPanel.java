@@ -36,7 +36,7 @@ public class ManageCVSStoresJPanel extends javax.swing.JPanel {
         for (Store S : storeDirectory.getStoreDirectory()) {
             Object row[] = new Object[3];
             row[0] = S;
-            row[1] = S.getStoreName();
+            row[1] = S.getStoreManager();
             row[2] = S.getStoreID();
             dtm.addRow(row);
         }
@@ -95,7 +95,7 @@ public class ManageCVSStoresJPanel extends javax.swing.JPanel {
         });
         add(btnViewCVS, new org.netbeans.lib.awtextra.AbsoluteConstraints(466, 132, 140, -1));
 
-        jLabel1.setText("Search by CVS store");
+        jLabel1.setText("Search by Store Manager");
         add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 280, -1, 20));
 
         txtSearch.addActionListener(new java.awt.event.ActionListener() {
@@ -110,7 +110,7 @@ public class ManageCVSStoresJPanel extends javax.swing.JPanel {
 
             },
             new String [] {
-                "Store Manager", "Store Name", "Store ID"
+                "Store Name", "Store Manager", "Store ID"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -131,7 +131,7 @@ public class ManageCVSStoresJPanel extends javax.swing.JPanel {
                 btnBackActionPerformed(evt);
             }
         });
-        add(btnBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 190, -1, -1));
+        add(btnBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 190, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSearchActionPerformed

@@ -5,6 +5,7 @@
  */
 package UserInterface_MainJFrame;
 
+import Business.Init;
 import Business.StoreDirectory;
 import Business.SupplierDirectory;
 import UserInterface_CVSAdminRole.CVSAdminWorkAreaJPanel;
@@ -20,6 +21,7 @@ public class MainJFrame extends javax.swing.JFrame {
 
     private StoreDirectory storeDirectory;
     private SupplierDirectory supplierDirectory;
+    private Init init;
 
     /**
      * Creates new form MainJFrame
@@ -27,7 +29,10 @@ public class MainJFrame extends javax.swing.JFrame {
     public MainJFrame() {
         initComponents();
         storeDirectory = new StoreDirectory();
-        supplierDirectory = new SupplierDirectory();
+        init = new Init();
+        supplierDirectory = init.populateFields();
+        
+        
     }
 
     /**
@@ -78,10 +83,10 @@ public class MainJFrame extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(25, 25, 25)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btnStoreAdmin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnStoreAdmin, javax.swing.GroupLayout.DEFAULT_SIZE, 105, Short.MAX_VALUE)
                     .addComponent(btnCVSAdmin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnSupplier, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(33, Short.MAX_VALUE))
+                .addContainerGap(19, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -141,7 +146,7 @@ public class MainJFrame extends javax.swing.JFrame {
     private void btnStoreAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnStoreAdminActionPerformed
         // TODO add your handling code here:
         
-        LoginStore workArea = new LoginStore( userProcessContainer, storeDirectory);
+        LoginStore workArea = new LoginStore( userProcessContainer, storeDirectory, supplierDirectory);
         userProcessContainer.add("workArea", workArea);
         CardLayout cardLayout = (CardLayout) userProcessContainer.getLayout();
         cardLayout.next(userProcessContainer);

@@ -3,6 +3,8 @@ package UserInterface_StoreAdminRole;
 import Business.Store;
 import Business.StoreDirectory;
 import Business.Supplier;
+import Business.SupplierDirectory;
+import UserInterface_CVSAdminRole.ViewCVSStoresJPanel;
 import java.awt.CardLayout;
 import javax.swing.JPanel;
 
@@ -11,13 +13,14 @@ import javax.swing.JPanel;
  * @author Mihir Mehta / Hechen Gao
  */
 public class LoginStore extends javax.swing.JPanel {
-     private StoreDirectory storeDirectory;
-      private Store store;
+     private SupplierDirectory supplierDirectory;
+    private StoreDirectory storeDirectory;  
   private JPanel userProcessContainer;
-    public LoginStore(JPanel userProcessContainer,StoreDirectory storeDirectory) {
+    public LoginStore(JPanel userProcessContainer,StoreDirectory storeDirectory, SupplierDirectory supplierDirectory) {
         initComponents();
         this.storeDirectory = storeDirectory;
         this.userProcessContainer = userProcessContainer;
+        this.supplierDirectory = supplierDirectory;
         
         storeComboBox.removeAllItems();
         for(Store s : storeDirectory.getStoreDirectory()){
@@ -32,6 +35,7 @@ public class LoginStore extends javax.swing.JPanel {
         btnFind = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         storeComboBox = new javax.swing.JComboBox();
+        btnViewInventory = new javax.swing.JButton();
 
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -58,11 +62,19 @@ public class LoginStore extends javax.swing.JPanel {
             }
         });
         add(storeComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 130, 150, 30));
+
+        btnViewInventory.setText("View Inventory");
+        btnViewInventory.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnViewInventoryActionPerformed(evt);
+            }
+        });
+        add(btnViewInventory, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 230, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnFindActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFindActionPerformed
 Store s = (Store) storeComboBox.getSelectedItem();
-ManageStoreDrugCatalogJPanel storeWorkArea = new ManageStoreDrugCatalogJPanel(s,userProcessContainer);
+ManageStoreDrugCatalogJPanel storeWorkArea = new ManageStoreDrugCatalogJPanel(s,userProcessContainer, supplierDirectory);
         userProcessContainer.add("storeWorkArea", storeWorkArea);
         CardLayout Layout = (CardLayout) userProcessContainer.getLayout();
         Layout.next(userProcessContainer);
@@ -70,11 +82,23 @@ ManageStoreDrugCatalogJPanel storeWorkArea = new ManageStoreDrugCatalogJPanel(s,
 
     private void storeComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_storeComboBoxActionPerformed
 
+     
     }//GEN-LAST:event_storeComboBoxActionPerformed
+
+    private void btnViewInventoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewInventoryActionPerformed
+Store s = (Store) storeComboBox.getSelectedItem();
+        ViewInventoryJPanel VSD = new ViewInventoryJPanel(s, userProcessContainer);
+        userProcessContainer.add("VSD", VSD);
+        CardLayout Layout = (CardLayout) userProcessContainer.getLayout();
+        Layout.next(userProcessContainer);
+        
+// TODO add your handling code here:
+    }//GEN-LAST:event_btnViewInventoryActionPerformed
     
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnFind;
+    private javax.swing.JButton btnViewInventory;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JComboBox storeComboBox;

@@ -76,7 +76,7 @@ public class Store {
    
     @Override
     public String toString() {
-        return getStoreManager();
+        return getStoreName();
     }
         
 }

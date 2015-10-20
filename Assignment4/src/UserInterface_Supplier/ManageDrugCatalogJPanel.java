@@ -93,6 +93,11 @@ public class ManageDrugCatalogJPanel extends javax.swing.JPanel {
         txtName.setFont(new java.awt.Font("Georgia", 1, 18)); // NOI18N
         txtName.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txtName.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED, null, new java.awt.Color(102, 102, 102), null, null));
+        txtName.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtNameActionPerformed(evt);
+            }
+        });
         add(txtName, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 50, 150, 30));
 
         btnDrug.setText("Add Drug");
@@ -175,6 +180,10 @@ public class ManageDrugCatalogJPanel extends javax.swing.JPanel {
         CardLayout Layout = (CardLayout) userProcessContainer.getLayout();
         Layout.previous(userProcessContainer);
     }//GEN-LAST:event_btnBackActionPerformed
+
+    private void txtNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNameActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtNameActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -82,14 +82,14 @@ public class CVSAdminWorkAreaJPanel extends javax.swing.JPanel {
     private void btnManageSuppliersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnManageSuppliersActionPerformed
         // TODO add your handling code here:
         ManageSupplierJPanel workArea = new ManageSupplierJPanel(userProcessContainer,supplierDirectory);
-        userProcessContainer.add("workArea", workArea);
+        userProcessContainer.add("ManageSupplierJPanel", workArea);
         CardLayout cardLayout = (CardLayout) userProcessContainer.getLayout();
         cardLayout.next(userProcessContainer);
     }//GEN-LAST:event_btnManageSuppliersActionPerformed
 
     private void BtnManageCVSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnManageCVSActionPerformed
         ManageCVSStoresJPanel workArea = new ManageCVSStoresJPanel(userProcessContainer,storeDirectory);
-        userProcessContainer.add("workArea", workArea);
+        userProcessContainer.add("ManageCVSStoresJPanel", workArea);
         CardLayout cardLayout = (CardLayout) userProcessContainer.getLayout();
         cardLayout.next(userProcessContainer);
 // TODO add your handling code here:

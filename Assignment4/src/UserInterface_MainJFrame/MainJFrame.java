@@ -128,7 +128,7 @@ public class MainJFrame extends javax.swing.JFrame {
     private void btnCVSAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCVSAdminActionPerformed
 
         CVSAdminWorkAreaJPanel workArea = new CVSAdminWorkAreaJPanel(storeDirectory, userProcessContainer, supplierDirectory);
-        userProcessContainer.add("workArea", workArea);
+        userProcessContainer.add("CVSAdminWorkAreaJPanel", workArea);
         CardLayout cardLayout = (CardLayout) userProcessContainer.getLayout();
         cardLayout.next(userProcessContainer);
 // TODO add your handling code here:
@@ -136,7 +136,7 @@ public class MainJFrame extends javax.swing.JFrame {
 
     private void btnSupplierActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSupplierActionPerformed
         LoginSupplier workArea = new LoginSupplier( userProcessContainer, supplierDirectory);
-        userProcessContainer.add("workArea", workArea);
+        userProcessContainer.add("LoginSupplier", workArea);
         CardLayout cardLayout = (CardLayout) userProcessContainer.getLayout();
         cardLayout.next(userProcessContainer);
 

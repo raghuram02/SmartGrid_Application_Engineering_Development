@@ -1,6 +1,7 @@
 package UserInterface.AdminstrativeRole;
 
 import Business.EmployeeDirectory;
+import Business.Supplier;
 import Business.SupplierDirectory;
 import java.awt.CardLayout;
 import javax.swing.JPanel;
@@ -31,21 +32,22 @@ public class AdminWorkAreaJPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        btnManageEmployees = new javax.swing.JButton();
+        btnManageSalesPrice = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         btnManageSuppliers1 = new javax.swing.JButton();
+        btnManageEmployees1 = new javax.swing.JButton();
 
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        btnManageEmployees.setFont(new java.awt.Font("Lucida Calligraphy", 0, 18)); // NOI18N
-        btnManageEmployees.setText("Manage Employees >>");
-        btnManageEmployees.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        btnManageEmployees.addActionListener(new java.awt.event.ActionListener() {
+        btnManageSalesPrice.setFont(new java.awt.Font("Lucida Calligraphy", 0, 18)); // NOI18N
+        btnManageSalesPrice.setText("Manage Sales Price >>");
+        btnManageSalesPrice.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        btnManageSalesPrice.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnManageEmployeesActionPerformed(evt);
+                btnManageSalesPriceActionPerformed(evt);
             }
         });
-        add(btnManageEmployees, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 230, 260, -1));
+        add(btnManageSalesPrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 310, 260, -1));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel1.setText("ADMINISTRATIVE ROLE");
@@ -61,14 +63,24 @@ public class AdminWorkAreaJPanel extends javax.swing.JPanel {
             }
         });
         add(btnManageSuppliers1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 150, 260, -1));
+
+        btnManageEmployees1.setFont(new java.awt.Font("Lucida Calligraphy", 0, 18)); // NOI18N
+        btnManageEmployees1.setText("Manage Employees >>");
+        btnManageEmployees1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        btnManageEmployees1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnManageEmployees1ActionPerformed(evt);
+            }
+        });
+        add(btnManageEmployees1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 230, 260, -1));
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnManageEmployeesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnManageEmployeesActionPerformed
-        ManageEmployee me = new ManageEmployee(userProcessContainer, employeeDirectory);
-        userProcessContainer.add("me", me);
+    private void btnManageSalesPriceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnManageSalesPriceActionPerformed
+        AddProductPriceJPanel ppj = new AddProductPriceJPanel(userProcessContainer, supplierDirectory);
+        userProcessContainer.add("pppj", ppj);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer);
-    }//GEN-LAST:event_btnManageEmployeesActionPerformed
+    }//GEN-LAST:event_btnManageSalesPriceActionPerformed
 
     private void btnManageSuppliers1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnManageSuppliers1ActionPerformed
         ManageSuppliers ms = new ManageSuppliers(userProcessContainer, supplierDirectory);
@@ -79,9 +91,18 @@ public class AdminWorkAreaJPanel extends javax.swing.JPanel {
 // TODO add your handling code here:
     }//GEN-LAST:event_btnManageSuppliers1ActionPerformed
 
+    private void btnManageEmployees1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnManageEmployees1ActionPerformed
+        ManageEmployee me = new ManageEmployee(userProcessContainer, employeeDirectory);
+        userProcessContainer.add("me", me);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnManageEmployees1ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnManageEmployees;
+    private javax.swing.JButton btnManageEmployees1;
+    private javax.swing.JButton btnManageSalesPrice;
     private javax.swing.JButton btnManageSuppliers1;
     private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables

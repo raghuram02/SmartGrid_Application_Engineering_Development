@@ -5,6 +5,7 @@
  */
 package UserInterface.SalesManagerRole;
 
+import Business.Customer;
 import Business.Employee;
 import Business.MasterOrderCatalog;
 import Business.Order;
@@ -31,11 +32,12 @@ public class BookCustomerOrder extends javax.swing.JPanel {
     MasterOrderCatalog moc;
     Order order;
     boolean isCheckedOut = false;
+    double profitalias = 0.00;
 
     /**
      * Creates new form BookCustomerOrder
      */
-    public BookCustomerOrder(Employee employee,SupplierDirectory supplierDirectory,MasterOrderCatalog moc,Order order,JPanel userProcessContainer) {
+    public BookCustomerOrder(Employee employee, SupplierDirectory supplierDirectory, MasterOrderCatalog moc, Order order, JPanel userProcessContainer) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.employee = employee;
@@ -54,7 +56,7 @@ public class BookCustomerOrder extends javax.swing.JPanel {
         }
         populateProductTable();
         if (!isCheckedOut) {
-             order = new Order();
+            order = new Order();
         }
     }
 
@@ -121,13 +123,13 @@ public class BookCustomerOrder extends javax.swing.JPanel {
         jScrollPane2 = new javax.swing.JScrollPane();
         orderTable = new javax.swing.JTable();
         btnViewOrderItem = new javax.swing.JButton();
-        btnModifyQuantity = new javax.swing.JButton();
         btnRemoveOrderItem = new javax.swing.JButton();
         btnCheckOut = new javax.swing.JButton();
-        txtSearchKeyWord = new javax.swing.JTextField();
-        txtNewQuantity = new javax.swing.JTextField();
+        txtProfit = new javax.swing.JTextField();
         supplierCombo = new javax.swing.JComboBox();
         jLabel1 = new javax.swing.JLabel();
+        txtSearchKeyWord1 = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
 
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -151,12 +153,12 @@ public class BookCustomerOrder extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(productTable);
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 100, 590, 100));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 120, 590, 100));
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel2.setText("Sales Person Product Catalog");
         jLabel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 70, 240, -1));
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 90, 240, -1));
 
         btnBack.setFont(new java.awt.Font("Lucida Calligraphy", 0, 10)); // NOI18N
         btnBack.setText("<< Back");
@@ -166,7 +168,7 @@ public class BookCustomerOrder extends javax.swing.JPanel {
                 btnBackActionPerformed(evt);
             }
         });
-        add(btnBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 450, 80, 30));
+        add(btnBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 460, 80, 30));
 
         viewProdjButton2.setFont(new java.awt.Font("Lucida Calligraphy", 0, 12)); // NOI18N
         viewProdjButton2.setText("View Product Detail");
@@ -176,7 +178,7 @@ public class BookCustomerOrder extends javax.swing.JPanel {
                 viewProdjButton2ActionPerformed(evt);
             }
         });
-        add(viewProdjButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 220, 160, 30));
+        add(viewProdjButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 240, 160, 30));
 
         addtoCartButton6.setFont(new java.awt.Font("Lucida Calligraphy", 0, 12)); // NOI18N
         addtoCartButton6.setText("ADD TO CART");
@@ -186,14 +188,14 @@ public class BookCustomerOrder extends javax.swing.JPanel {
                 addtoCartButton6ActionPerformed(evt);
             }
         });
-        add(addtoCartButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 220, 120, 30));
+        add(addtoCartButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 240, 120, 30));
 
         quantitySpinner.setModel(new javax.swing.SpinnerNumberModel());
-        add(quantitySpinner, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 220, 40, -1));
+        add(quantitySpinner, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 240, 40, -1));
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel5.setText("Quantity:");
-        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 220, -1, -1));
+        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 240, -1, -1));
 
         btnSearchProduct.setFont(new java.awt.Font("Lucida Calligraphy", 0, 11)); // NOI18N
         btnSearchProduct.setText("Search Product By Name");
@@ -203,17 +205,17 @@ public class BookCustomerOrder extends javax.swing.JPanel {
                 btnSearchProductActionPerformed(evt);
             }
         });
-        add(btnSearchProduct, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 40, 160, 30));
+        add(btnSearchProduct, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 20, 160, 30));
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel6.setText("Sales Price");
-        add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 220, -1, -1));
-        add(txtSalesPrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 220, 40, -1));
+        add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 240, -1, -1));
+        add(txtSalesPrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 240, 40, -1));
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel7.setText("Item in cart");
         jLabel7.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 280, -1, -1));
+        add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 300, -1, -1));
 
         orderTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -233,7 +235,7 @@ public class BookCustomerOrder extends javax.swing.JPanel {
         });
         jScrollPane2.setViewportView(orderTable);
 
-        add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 310, 590, 110));
+        add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 330, 590, 110));
 
         btnViewOrderItem.setFont(new java.awt.Font("Lucida Calligraphy", 0, 10)); // NOI18N
         btnViewOrderItem.setText("View Item");
@@ -243,17 +245,7 @@ public class BookCustomerOrder extends javax.swing.JPanel {
                 btnViewOrderItemActionPerformed(evt);
             }
         });
-        add(btnViewOrderItem, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 450, 80, 30));
-
-        btnModifyQuantity.setFont(new java.awt.Font("Lucida Calligraphy", 0, 10)); // NOI18N
-        btnModifyQuantity.setText("Modify Quantity");
-        btnModifyQuantity.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        btnModifyQuantity.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnModifyQuantityActionPerformed(evt);
-            }
-        });
-        add(btnModifyQuantity, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 450, 110, 30));
+        add(btnViewOrderItem, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 460, 80, 30));
 
         btnRemoveOrderItem.setFont(new java.awt.Font("Lucida Calligraphy", 0, 10)); // NOI18N
         btnRemoveOrderItem.setText("Remove");
@@ -263,7 +255,7 @@ public class BookCustomerOrder extends javax.swing.JPanel {
                 btnRemoveOrderItemActionPerformed(evt);
             }
         });
-        add(btnRemoveOrderItem, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 450, 60, 30));
+        add(btnRemoveOrderItem, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 460, 60, 30));
 
         btnCheckOut.setFont(new java.awt.Font("Lucida Calligraphy", 0, 10)); // NOI18N
         btnCheckOut.setText("Check out");
@@ -273,14 +265,15 @@ public class BookCustomerOrder extends javax.swing.JPanel {
                 btnCheckOutActionPerformed(evt);
             }
         });
-        add(btnCheckOut, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 450, 80, 30));
+        add(btnCheckOut, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 460, 80, 30));
 
-        txtSearchKeyWord.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        add(txtSearchKeyWord, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 40, 110, 30));
-
-        txtNewQuantity.setFont(new java.awt.Font("Lucida Calligraphy", 0, 10)); // NOI18N
-        txtNewQuantity.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        add(txtNewQuantity, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 450, 80, 30));
+        txtProfit.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        txtProfit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtProfitActionPerformed(evt);
+            }
+        });
+        add(txtProfit, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 90, 110, 30));
 
         supplierCombo.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         supplierCombo.addActionListener(new java.awt.event.ActionListener() {
@@ -288,12 +281,20 @@ public class BookCustomerOrder extends javax.swing.JPanel {
                 supplierComboActionPerformed(evt);
             }
         });
-        add(supplierCombo, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 40, 250, -1));
+        add(supplierCombo, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 60, 250, -1));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel1.setText("Supplier");
+        jLabel1.setText("   Profit");
         jLabel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 0, 110, 30));
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 90, 80, 30));
+
+        txtSearchKeyWord1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        add(txtSearchKeyWord1, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 20, 110, 30));
+
+        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel3.setText("    Supplier");
+        jLabel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, 110, 30));
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
@@ -326,9 +327,7 @@ public class BookCustomerOrder extends javax.swing.JPanel {
     }//GEN-LAST:event_viewProdjButton2ActionPerformed
 
     private void addtoCartButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addtoCartButton6ActionPerformed
-        // TODO add your handling code here:
-
-        // TODO add your handling code here:
+        double profit;
         int selectedRow = productTable.getSelectedRow();
         Product selectedProduct;
         int salesPrice = 0;
@@ -363,6 +362,9 @@ public class BookCustomerOrder extends javax.swing.JPanel {
                     selectedProduct.setAvail(newAvail);
                     orderItem.setQuantity(fetchedQty + orderItem.getQuantity());
                     alreadyPresent = true;
+                    profit = employee.getProfit(orderItem, salesPrice, selectedProduct, fetchedQty);
+                    profitalias = profit + profitalias;
+                    txtProfit.setText(String.valueOf(profit));
                     refreshOrderTable();
                     populateProductTable();
                     break;
@@ -373,7 +375,10 @@ public class BookCustomerOrder extends javax.swing.JPanel {
                 int oldAvail = selectedProduct.getAvail();
                 int newAvail = oldAvail - fetchedQty;
                 selectedProduct.setAvail(newAvail);
-                order.addOrderItem(selectedProduct, fetchedQty, salesPrice);
+                OrderItem orderItem = order.addOrderItem(selectedProduct, fetchedQty, salesPrice);
+                profit = employee.getProfit(orderItem, salesPrice, selectedProduct, fetchedQty);
+
+                txtProfit.setText(String.valueOf(profit));
                 refreshOrderTable();
                 populateProductTable();
             }
@@ -383,7 +388,7 @@ public class BookCustomerOrder extends javax.swing.JPanel {
     }//GEN-LAST:event_addtoCartButton6ActionPerformed
 
     private void btnSearchProductActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchProductActionPerformed
-        String keyWord = txtSearchKeyWord.getText();
+        String keyWord = txtProfit.getText();
         refreshProductTable(keyWord);
     }//GEN-LAST:event_btnSearchProductActionPerformed
 
@@ -405,38 +410,6 @@ public class BookCustomerOrder extends javax.swing.JPanel {
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer);
     }//GEN-LAST:event_btnViewOrderItemActionPerformed
-
-    private void btnModifyQuantityActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModifyQuantityActionPerformed
-        // TODO add your handling code here:
-        int selectedRow = orderTable.getSelectedRow();
-        //Product selectedProduct;
-        //int salesPrice=0;
-        if (selectedRow < 0) {
-            JOptionPane.showMessageDialog(this, "Select a row", "Warning", JOptionPane.WARNING_MESSAGE);
-            return;
-        }
-        if (!txtNewQuantity.getText().isEmpty() && !txtNewQuantity.getText().equals("0")) {
-            OrderItem orderItem = (OrderItem) orderTable.getValueAt(selectedRow, 0);
-            int currentAvail = orderItem.getProduct().getAvail();
-            int oldQty = orderItem.getQuantity();
-            int newQty = Integer.parseInt(txtNewQuantity.getText());
-            if (newQty > (currentAvail + oldQty)) {
-                JOptionPane.showMessageDialog(null, "Quantity is more than the availability");
-                //return;
-            } else {
-                if (newQty <= 0) {
-                    JOptionPane.showMessageDialog(null, "Invalid qty");
-                    return;
-                }
-                orderItem.setQuantity(newQty);
-                orderItem.getProduct().setAvail(currentAvail + (oldQty - newQty));
-                refreshOrderTable();
-                populateProductTable();
-            }
-        } else {
-            JOptionPane.showMessageDialog(null, "Quantity cannot be zero!!");
-        }
-    }//GEN-LAST:event_btnModifyQuantityActionPerformed
 
     private void btnRemoveOrderItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRemoveOrderItemActionPerformed
         int selectedRowCount = orderTable.getSelectedRowCount();
@@ -464,23 +437,45 @@ public class BookCustomerOrder extends javax.swing.JPanel {
 
     private void btnCheckOutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCheckOutActionPerformed
         // TODO add your handling code here:
+        int aboveTargetPrice = 0;
+        int belowTargetPrice = 0;
         if (order.getOrderItemList().size() > 0) {
             moc.addOrder(order);
+            order.setEmployee(employee);
+            int sumTotal=0;
+            for(OrderItem oi: order.getOrderItemList())
+            {
+                sumTotal = sumTotal + oi.getSalesPrice();
+                if(oi.getSalesPrice() > oi.getProduct().getTargetPrice()){
+                    aboveTargetPrice = aboveTargetPrice+1;
+                }
+                else if(oi.getSalesPrice() < oi.getProduct().getTargetPrice()){
+                    belowTargetPrice = belowTargetPrice+1;
+                }
+            }
+            employee.setTargetPriceAbove(aboveTargetPrice);
+            employee.setTargetPriceBelow(belowTargetPrice);
+            order.setSumTotal(sumTotal);
             isCheckedOut = true;
-            JOptionPane.showMessageDialog(null, "Order added ssuccessfully!!");
+            JOptionPane.showMessageDialog(null, "Order added successfully!!");
             order = new Order();
             refreshOrderTable();
             populateProductTable();
         } else {
             JOptionPane.showMessageDialog(null, "Order not added as there are no items!!");
         }
+                          
     }//GEN-LAST:event_btnCheckOutActionPerformed
 
     private void supplierComboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_supplierComboActionPerformed
         // TODO add your handling code here:
         populateProductTable();
     }//GEN-LAST:event_supplierComboActionPerformed
-public void refreshOrderTable() {
+
+    private void txtProfitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtProfitActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtProfitActionPerformed
+    public void refreshOrderTable() {
         int rowCount = orderTable.getRowCount();
         for (int i = rowCount - 1; i >= 0; i--) {
             ((DefaultTableModel) orderTable.getModel()).removeRow(i);
@@ -500,12 +495,12 @@ public void refreshOrderTable() {
     private javax.swing.JButton addtoCartButton6;
     private javax.swing.JButton btnBack;
     private javax.swing.JButton btnCheckOut;
-    private javax.swing.JButton btnModifyQuantity;
     private javax.swing.JButton btnRemoveOrderItem;
     private javax.swing.JButton btnSearchProduct;
     private javax.swing.JButton btnViewOrderItem;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
@@ -515,9 +510,9 @@ public void refreshOrderTable() {
     private javax.swing.JTable productTable;
     private javax.swing.JSpinner quantitySpinner;
     private javax.swing.JComboBox supplierCombo;
-    private javax.swing.JTextField txtNewQuantity;
+    private javax.swing.JTextField txtProfit;
     private javax.swing.JTextField txtSalesPrice;
-    private javax.swing.JTextField txtSearchKeyWord;
+    private javax.swing.JTextField txtSearchKeyWord1;
     private javax.swing.JButton viewProdjButton2;
     // End of variables declaration//GEN-END:variables
 }

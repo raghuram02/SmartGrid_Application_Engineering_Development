@@ -3,9 +3,7 @@ package Business;
 import java.util.ArrayList;
 
 /**
- * @author Hechen Gao
- * @contact gao.h@husky.neu.edu
- * @date Oct 2, 2014
+ * 
  */
 public class MasterOrderCatalog {
 

@@ -3,10 +3,12 @@ package UserInterface;
 import Business.Business;
 import Business.CustomerDirectory;
 import Business.EmployeeDirectory;
+import Business.Init;
 import Business.MasterOrderCatalog;
 import Business.Order;
 import Business.SupplierDirectory;
 import UserInterface.AdminstrativeRole.AdminWorkAreaJPanel;
+import UserInterface.ReportGeneration.ReportJPanel;
 
 import UserInterface.SalesManagerRole.SalesManagerWorkAreaJPanel;
 import UserInterface.SupplierRole.LoginSupplier;
@@ -27,6 +29,7 @@ public class MainJFrame extends javax.swing.JFrame {
     private EmployeeDirectory employeeDirectory;
     private MasterOrderCatalog moc;
     private Order order;
+    private Init init;
 
     public MainJFrame() {
         initComponents();
@@ -38,6 +41,8 @@ public class MainJFrame extends javax.swing.JFrame {
         employeeDirectory = business.getEmployeeDirectory();
         supplierDirectory = business.getSupplierDirectory();
         moc = business.getMasterOrderCatalog();
+        init = new Init();
+        supplierDirectory = init.populateFields();
     }
 
     /**
@@ -54,6 +59,7 @@ public class MainJFrame extends javax.swing.JFrame {
         btnAdmin = new javax.swing.JButton();
         btnSupplierManager = new javax.swing.JButton();
         btnSalesManager = new javax.swing.JButton();
+        btnReport = new javax.swing.JButton();
         userProcessContainer = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -87,16 +93,27 @@ public class MainJFrame extends javax.swing.JFrame {
             }
         });
 
+        btnReport.setFont(new java.awt.Font("Lucida Calligraphy", 0, 12)); // NOI18N
+        btnReport.setText("Report Generation");
+        btnReport.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        btnReport.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnReportActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btnSupplierManager, javax.swing.GroupLayout.DEFAULT_SIZE, 156, Short.MAX_VALUE)
-                    .addComponent(btnAdmin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnSalesManager, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(btnSupplierManager, javax.swing.GroupLayout.DEFAULT_SIZE, 156, Short.MAX_VALUE)
+                        .addComponent(btnAdmin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnSalesManager, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(btnReport, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(33, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -106,9 +123,11 @@ public class MainJFrame extends javax.swing.JFrame {
                 .addComponent(btnAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnSupplierManager, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(13, 13, 13)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnSalesManager, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(214, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnReport, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(173, Short.MAX_VALUE))
         );
 
         jSplitPane1.setLeftComponent(jPanel1);
@@ -146,6 +165,14 @@ public class MainJFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnSalesManagerActionPerformed
 
+    private void btnReportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReportActionPerformed
+        ReportJPanel smwajp = new ReportJPanel(employeeDirectory, moc, userProcessContainer);
+        userProcessContainer.add("smwajp", smwajp);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnReportActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -159,6 +186,7 @@ public class MainJFrame extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdmin;
+    private javax.swing.JButton btnReport;
     private javax.swing.JButton btnSalesManager;
     private javax.swing.JButton btnSupplierManager;
     private javax.swing.JPanel jPanel1;

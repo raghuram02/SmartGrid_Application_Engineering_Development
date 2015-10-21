@@ -5,35 +5,59 @@
  */
 package Business;
 
-/**
- *
- * @author abhishekashwathnarayanvenkat
- */
 public class Product {
-    
+
     private String prodName;
     private int price;
     private int modelNumber;
     private int avail;
+    private int ceilingPrice;
+    private int floorPrice;
+
+    public int getTargetPrice() {
+        return targetPrice;
+    }
+
+    public void setTargetPrice(int targetPrice) {
+        this.targetPrice = targetPrice;
+    }
+    private int targetPrice;
     
-    private static int count =0;
+
+    public int getCeilingPrice() {
+        return ceilingPrice;
+    }
+
+    public void setCeilingPrice(int ceilingPrice) {
+        this.ceilingPrice = ceilingPrice;
+    }
+
+    public int getFloorPrice() {
+        return floorPrice;
+    }
+
+    public void setFloorPrice(int floorPrice) {
+        this.floorPrice = floorPrice;
+    }
+
+    private static int count = 0;
 
     @Override
     public String toString() {
         return prodName; //To change body of generated methods, choose Tools | Templates.
     }
 
-     public int getAvail() {
+    public int getAvail() {
         return avail;
     }
-    
+
     public void setAvail(int avail) {
         this.avail = avail;
     }
-    
+
     public Product() {
-    count++;
-    modelNumber = count;
+        count++;
+        modelNumber = count;
     }
 
     public String getProdName() {
@@ -59,7 +83,13 @@ public class Product {
     public void setModelNumber(int modelNumber) {
         this.modelNumber = modelNumber;
     }
-    
-    
-    
+    public void addProductInfo(String productName, int price, int modelNumber, int avail, int ceilingPrice, int floorPrice){
+        this.prodName = productName;
+        this.price = price;
+        this.avail = avail;
+        this.modelNumber = modelNumber;
+        this.ceilingPrice = ceilingPrice;
+        this.floorPrice = floorPrice;
+    }
+
 }

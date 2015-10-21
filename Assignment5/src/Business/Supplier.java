@@ -7,7 +7,7 @@ package Business;
 
 /**
  *
- * @author abhishekashwathnarayanvenkat
+ * 
  */
 public class Supplier {
     private String supplyName;

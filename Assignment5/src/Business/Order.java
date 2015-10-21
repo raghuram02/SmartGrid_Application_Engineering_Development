@@ -3,15 +3,60 @@ package Business;
 import java.util.ArrayList;
 
 /**
- * @author Hechen Gao
- * @contact gao.h@husky.neu.edu
- * @date Oct 2, 2014
+ * 
  */
 public class Order {
 
     private static int count = 0;
     private ArrayList<OrderItem> orderItemList;
     private int orderNumber;
+    private String employeeID;
+    private String customerID;
+    private Customer customer;
+    private Employee employee;
+    private int sumTotal;
+
+    public int getSumTotal() {
+        return sumTotal;
+    }
+
+    public void setSumTotal(int sumTotal) {
+        this.sumTotal = sumTotal;
+    }
+
+    public Customer getCustomer() {
+        return customer;
+    }
+
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
+    }
+
+    public Employee getEmployee() {
+        return employee;
+    }
+
+    public void setEmployee(Employee employee) {
+        this.employee = employee;
+    }
+    
+
+    public String getEmployeeID() {
+        return employeeID;
+    }
+
+    public void setEmployeeID(String employeeID) {
+        this.employeeID = employeeID;
+    }
+
+    public String getCustomerID() {
+        return customerID;
+    }
+
+    public void setCustomerID(String customerID) {
+        this.customerID = customerID;
+    }
+    
     
     public Order() {
         count++;

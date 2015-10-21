@@ -32,11 +32,9 @@ public class ViewProductDetailJPanel extends javax.swing.JPanel {
         txtName = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         txtPrice = new javax.swing.JTextField();
-        btnUpdate = new javax.swing.JButton();
         btnBack = new javax.swing.JButton();
         txtId = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-        btnSave = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
         txtAvail = new javax.swing.JTextField();
 
@@ -65,16 +63,6 @@ public class ViewProductDetailJPanel extends javax.swing.JPanel {
         txtPrice.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         add(txtPrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 170, 159, -1));
 
-        btnUpdate.setFont(new java.awt.Font("Lucida Calligraphy", 0, 14)); // NOI18N
-        btnUpdate.setText("Update Product");
-        btnUpdate.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        btnUpdate.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnUpdateActionPerformed(evt);
-            }
-        });
-        add(btnUpdate, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 300, 176, -1));
-
         btnBack.setFont(new java.awt.Font("Lucida Calligraphy", 0, 14)); // NOI18N
         btnBack.setText("<< Back");
         btnBack.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -94,17 +82,6 @@ public class ViewProductDetailJPanel extends javax.swing.JPanel {
         jLabel5.setText("Product ID:");
         add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 130, -1, 30));
 
-        btnSave.setFont(new java.awt.Font("Lucida Calligraphy", 0, 14)); // NOI18N
-        btnSave.setText("SAVE");
-        btnSave.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        btnSave.setEnabled(false);
-        btnSave.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSaveActionPerformed(evt);
-            }
-        });
-        add(btnSave, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 300, 70, -1));
-
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel4.setText("Availability:");
         add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 210, -1, 30));
@@ -115,50 +92,16 @@ public class ViewProductDetailJPanel extends javax.swing.JPanel {
         add(txtAvail, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 210, 159, -1));
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
-
-        //txtId.setEditable(true);
-        txtName.setEditable(true);
-        txtPrice.setEditable(true);
-        txtAvail.setEditable(true);
-        btnSave.setEnabled(true);
-}//GEN-LAST:event_btnUpdateActionPerformed
-
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
 
-        backAction();
+     userProcessContainer.remove(this);
+      CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+      layout.previous(userProcessContainer);
     }//GEN-LAST:event_btnBackActionPerformed
 
-      private void backAction() {
-        userProcessContainer.remove(this);
-        Component[] componentArray = userProcessContainer.getComponents();
-        Component component = componentArray[componentArray.length - 1];
-        ManageProductCatalogJPanel manageProductCatalogJPanel = (ManageProductCatalogJPanel) component;
-        manageProductCatalogJPanel.refreshTable();
-        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-        layout.previous(userProcessContainer);
-    }
-    private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
-if (txtName.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Enter a valid Name");
-            return;
-
-        } else if (!txtPrice.getText().matches("\\d+")) {
-            JOptionPane.showMessageDialog(null, "Enter a valid Price");
-            return;
-        } else if (!txtAvail.getText().matches("\\d+")) {
-            JOptionPane.showMessageDialog(null, "Enter a valid Availability");
-            return;
-        }
-        product.setPrice(Integer.parseInt(txtPrice.getText()));
-        product.setProdName(txtName.getText());
-        product.setAvail(Integer.parseInt(txtAvail.getText()));
-    }//GEN-LAST:event_btnSaveActionPerformed
-   
+     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBack;
-    private javax.swing.JButton btnSave;
-    private javax.swing.JButton btnUpdate;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

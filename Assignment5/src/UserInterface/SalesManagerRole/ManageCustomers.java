@@ -74,8 +74,6 @@ public class ManageCustomers extends javax.swing.JPanel {
         jLabel2 = new javax.swing.JLabel();
         txtEName = new javax.swing.JTextField();
         btnServeCustomer = new javax.swing.JButton();
-        btnOrderHistory = new javax.swing.JButton();
-        btnSalesCommision = new javax.swing.JButton();
 
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -87,7 +85,7 @@ public class ManageCustomers extends javax.swing.JPanel {
                 btnDeleteCustomerActionPerformed(evt);
             }
         });
-        add(btnDeleteCustomer, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 270, 220, 30));
+        add(btnDeleteCustomer, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 300, 220, 30));
 
         btnEnterCustomer.setFont(new java.awt.Font("Lucida Calligraphy", 0, 12)); // NOI18N
         btnEnterCustomer.setText("Enter Customer Details");
@@ -97,7 +95,7 @@ public class ManageCustomers extends javax.swing.JPanel {
                 btnEnterCustomerActionPerformed(evt);
             }
         });
-        add(btnEnterCustomer, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 230, 230, 30));
+        add(btnEnterCustomer, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 260, 230, 30));
 
         btnViewCustomer.setFont(new java.awt.Font("Lucida Calligraphy", 0, 12)); // NOI18N
         btnViewCustomer.setText("View Customer Details");
@@ -107,7 +105,7 @@ public class ManageCustomers extends javax.swing.JPanel {
                 btnViewCustomerActionPerformed(evt);
             }
         });
-        add(btnViewCustomer, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 230, 220, 30));
+        add(btnViewCustomer, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 260, 220, 30));
 
         customerTable.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         customerTable.setModel(new javax.swing.table.DefaultTableModel(
@@ -128,7 +126,7 @@ public class ManageCustomers extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(customerTable);
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 110, 480, 110));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 140, 480, 110));
 
         btnBack.setFont(new java.awt.Font("Lucida Calligraphy", 0, 12)); // NOI18N
         btnBack.setText("<<Back");
@@ -138,11 +136,11 @@ public class ManageCustomers extends javax.swing.JPanel {
                 btnBackActionPerformed(evt);
             }
         });
-        add(btnBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 270, 230, 30));
+        add(btnBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 300, 230, 30));
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel2.setText("Employee:");
-        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 40, 170, -1));
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 70, 170, -1));
 
         txtEName.setEditable(false);
         txtEName.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
@@ -153,7 +151,7 @@ public class ManageCustomers extends javax.swing.JPanel {
                 txtENameActionPerformed(evt);
             }
         });
-        add(txtEName, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 70, 150, 30));
+        add(txtEName, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 100, 150, 30));
 
         btnServeCustomer.setFont(new java.awt.Font("Lucida Calligraphy", 0, 12)); // NOI18N
         btnServeCustomer.setText("Serve Customer>>");
@@ -163,27 +161,7 @@ public class ManageCustomers extends javax.swing.JPanel {
                 btnServeCustomerActionPerformed(evt);
             }
         });
-        add(btnServeCustomer, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 110, 210, 30));
-
-        btnOrderHistory.setFont(new java.awt.Font("Lucida Calligraphy", 0, 12)); // NOI18N
-        btnOrderHistory.setText("Review Sales Order History>>");
-        btnOrderHistory.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        btnOrderHistory.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnOrderHistoryActionPerformed(evt);
-            }
-        });
-        add(btnOrderHistory, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 150, 210, 30));
-
-        btnSalesCommision.setFont(new java.awt.Font("Lucida Calligraphy", 0, 12)); // NOI18N
-        btnSalesCommision.setText("Review Sales Comission>>");
-        btnSalesCommision.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        btnSalesCommision.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSalesCommisionActionPerformed(evt);
-            }
-        });
-        add(btnSalesCommision, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 190, 210, 30));
+        add(btnServeCustomer, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 100, 210, 30));
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnDeleteCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteCustomerActionPerformed
@@ -251,29 +229,11 @@ public class ManageCustomers extends javax.swing.JPanel {
 // TODO add your handling code here:
     }//GEN-LAST:event_btnServeCustomerActionPerformed
     }
-    private void btnOrderHistoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOrderHistoryActionPerformed
-        ReviewSalesOrderHistory sc = new ReviewSalesOrderHistory(userProcessContainer);
-        userProcessContainer.add("sc", sc);
-        CardLayout cardLayout = (CardLayout) userProcessContainer.getLayout();
-        cardLayout.next(userProcessContainer);
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnOrderHistoryActionPerformed
-
-    private void btnSalesCommisionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalesCommisionActionPerformed
-        ReviewSalesComission sc = new ReviewSalesComission(userProcessContainer);
-        userProcessContainer.add("sc", sc);
-        CardLayout cardLayout = (CardLayout) userProcessContainer.getLayout();
-        cardLayout.next(userProcessContainer);
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnSalesCommisionActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBack;
     private javax.swing.JButton btnDeleteCustomer;
     private javax.swing.JButton btnEnterCustomer;
-    private javax.swing.JButton btnOrderHistory;
-    private javax.swing.JButton btnSalesCommision;
     private javax.swing.JButton btnServeCustomer;
     private javax.swing.JButton btnViewCustomer;
     private javax.swing.JTable customerTable;

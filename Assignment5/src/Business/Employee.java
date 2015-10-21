@@ -14,14 +14,33 @@ public class Employee {
     private String employeeName;
     private String employeeID;
     private int employeePhone;
+    double profit;
     private CustomerDirectory customerDirectory;
-     public Employee()
-     {
-         customerDirectory = new CustomerDirectory();
-     }
+    private int targetPriceAbove = 0;
+    private int targetPriceBelow = 0;
+    
+    public Employee() {
+        customerDirectory = new CustomerDirectory();
+    }
 
     public CustomerDirectory getCustomerDirectory() {
         return customerDirectory;
+    }
+
+    public int getTargetPriceAbove() {
+        return targetPriceAbove;
+    }
+
+    public void setTargetPriceAbove(int targetPriceAbove) {
+        this.targetPriceAbove = targetPriceAbove;
+    }
+
+    public int getTargetPriceBelow() {
+        return targetPriceBelow;
+    }
+
+    public void setTargetPriceBelow(int targetPriceBelow) {
+        this.targetPriceBelow = targetPriceBelow;
     }
 
     public void setCustomerDirectory(CustomerDirectory customerDirectory) {
@@ -50,6 +69,24 @@ public class Employee {
 
     public void setEmployeePhone(int employeePhone) {
         this.employeePhone = employeePhone;
+    }
+
+    public double getProfit(OrderItem orderItem, int salesPrice, Product selectedProduct, int fetchedQuantity) {
+
+        if ((salesPrice >= (selectedProduct.getTargetPrice())) && (salesPrice <= (selectedProduct.getTargetPrice() + ((0.20) * ((selectedProduct.getCeilingPrice()) - (selectedProduct.getTargetPrice())))))) {
+            profit = (0.05) * salesPrice;
+        } else if ((salesPrice >= (selectedProduct.getTargetPrice() + ((0.20) * ((selectedProduct.getCeilingPrice()) - (selectedProduct.getTargetPrice()))))) && (salesPrice <= (selectedProduct.getTargetPrice() + ((0.40) * ((selectedProduct.getCeilingPrice()) - (selectedProduct.getTargetPrice())))))) {
+            profit = (0.10) * salesPrice;
+        } else if ((salesPrice >= (selectedProduct.getTargetPrice() + ((0.40) * ((selectedProduct.getCeilingPrice()) - (selectedProduct.getTargetPrice()))))) && (salesPrice <= (selectedProduct.getTargetPrice() + ((0.60) * ((selectedProduct.getCeilingPrice()) - (selectedProduct.getTargetPrice())))))) {
+            profit = (0.15) * salesPrice;
+        } else if ((salesPrice >= (selectedProduct.getTargetPrice() + ((0.60) * ((selectedProduct.getCeilingPrice()) - (selectedProduct.getTargetPrice()))))) && (salesPrice <= (selectedProduct.getTargetPrice() + ((0.80) * ((selectedProduct.getCeilingPrice()) - (selectedProduct.getTargetPrice())))))) {
+            profit = (0.20) * salesPrice;
+        } else if ((salesPrice >= (selectedProduct.getTargetPrice() + ((0.80) * ((selectedProduct.getCeilingPrice()) - (selectedProduct.getTargetPrice()))))) && (salesPrice <= (selectedProduct.getCeilingPrice()))) {
+            profit = (0.25) * salesPrice;
+        } else if ((salesPrice >= (selectedProduct.getFloorPrice())) && (salesPrice <= (selectedProduct.getTargetPrice()))) {
+            profit = (0.05) * salesPrice;
+        }
+        return (profit * fetchedQuantity);
     }
 
     @Override

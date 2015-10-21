@@ -47,9 +47,7 @@ public class ServeCustomer extends javax.swing.JPanel {
     private void initComponents() {
 
         btnBack = new javax.swing.JButton();
-        btnCheckOrder = new javax.swing.JButton();
         btnBookOrder = new javax.swing.JButton();
-        btnBrowseProduct = new javax.swing.JButton();
 
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -63,16 +61,6 @@ public class ServeCustomer extends javax.swing.JPanel {
         });
         add(btnBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 300, 70, -1));
 
-        btnCheckOrder.setFont(new java.awt.Font("Lucida Calligraphy", 0, 14)); // NOI18N
-        btnCheckOrder.setText("Check Order Status");
-        btnCheckOrder.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        btnCheckOrder.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCheckOrderActionPerformed(evt);
-            }
-        });
-        add(btnCheckOrder, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 150, 240, -1));
-
         btnBookOrder.setFont(new java.awt.Font("Lucida Calligraphy", 0, 14)); // NOI18N
         btnBookOrder.setText("Book Customer Order");
         btnBookOrder.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -81,17 +69,7 @@ public class ServeCustomer extends javax.swing.JPanel {
                 btnBookOrderActionPerformed(evt);
             }
         });
-        add(btnBookOrder, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 190, 240, -1));
-
-        btnBrowseProduct.setFont(new java.awt.Font("Lucida Calligraphy", 0, 14)); // NOI18N
-        btnBrowseProduct.setText("Browse Product Catalog");
-        btnBrowseProduct.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        btnBrowseProduct.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnBrowseProductActionPerformed(evt);
-            }
-        });
-        add(btnBrowseProduct, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 110, 240, -1));
+        add(btnBookOrder, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 150, 240, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
@@ -99,22 +77,6 @@ public class ServeCustomer extends javax.swing.JPanel {
         CardLayout Layout = (CardLayout) userProcessContainer.getLayout();
         Layout.previous(userProcessContainer);
     }//GEN-LAST:event_btnBackActionPerformed
-
-    private void btnBrowseProductActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBrowseProductActionPerformed
-        BrowseProductCatalog bpc = new BrowseProductCatalog(userProcessContainer);
-        userProcessContainer.add("bpc", bpc);
-        CardLayout cardLayout = (CardLayout) userProcessContainer.getLayout();
-        cardLayout.next(userProcessContainer);
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnBrowseProductActionPerformed
-
-    private void btnCheckOrderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCheckOrderActionPerformed
-        CheckOrderStatus cos = new CheckOrderStatus(userProcessContainer);
-        userProcessContainer.add("cos", cos);
-        CardLayout cardLayout = (CardLayout) userProcessContainer.getLayout();
-        cardLayout.next(userProcessContainer);
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnCheckOrderActionPerformed
 
     private void btnBookOrderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBookOrderActionPerformed
         BookCustomerOrder bco = new BookCustomerOrder(employee,supplierDirectory,moc,order,userProcessContainer);
@@ -128,7 +90,5 @@ public class ServeCustomer extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBack;
     private javax.swing.JButton btnBookOrder;
-    private javax.swing.JButton btnBrowseProduct;
-    private javax.swing.JButton btnCheckOrder;
     // End of variables declaration//GEN-END:variables
 }

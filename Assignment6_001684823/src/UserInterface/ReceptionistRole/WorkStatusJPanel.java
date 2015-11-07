@@ -4,16 +4,21 @@
  */
 package UserInterface.ReceptionistRole;
 
-import Business.EcoSystem;
 import Business.Employee.Employee;
+import Business.Employee.EmployeeDirectory;
 import Business.Enterprise.Enterprise;
+import Business.Organization.DonorOrganization;
 import Business.Organization.Organization;
+import static Business.Organization.Organization.Type.Donor;
+import static Business.Role.Role.RoleType.Donor;
 import Business.UserAccount.UserAccount;
 import Business.WorkQueue.BloodDonationWorkRequest;
 import Business.WorkQueue.WorkRequest;
 import java.awt.CardLayout;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
+import static jdk.nashorn.internal.codegen.OptimisticTypesPersistence.store;
 
 /**
  *
@@ -44,22 +49,27 @@ public class WorkStatusJPanel extends javax.swing.JPanel {
     }
 
     public void populateRequestTable() {
+        
         DefaultTableModel model = (DefaultTableModel) workRequestJTable.getModel();
 
         model.setRowCount(0);
         for (WorkRequest request : userAccount.getWorkQueue().getWorkRequestList()) {
-            Object[] row = new Object[6];
-            row[0] = request.getMessage();
-            row[1] = request.getReceiver();
-            row[2] = request.getStatus();
+            if((!request.getSender().toString().isEmpty()) && (((BloodDonationWorkRequest)request).getDonor().getName().equals(employee.getName()))){
+            Object[] row = new Object[8];
+            row[0] = ((BloodDonationWorkRequest) request).getRequestDate();
+            row[1] = request.getMessage();
+            row[2] = request.getReceiver() == null ? null : request.getReceiver().getEmployee().getName();
+            row[3] = request.getStatus();
             String result = ((BloodDonationWorkRequest) request).getTestResult();
-            row[3] = result == null ? "Waiting" : result;
-            row[4] = ((BloodDonationWorkRequest) request).getDonor();
-            row[5] = ((BloodDonationWorkRequest) request).getBloodGroup();
-            
-            
+            row[4] = result == null ? "Waiting" : result;
+            row[5] = ((BloodDonationWorkRequest) request).getDonor();
+            row[6] = ((BloodDonationWorkRequest) request).getBloodGroup();
+            row[7] = request.getResolveDate();
+
             model.addRow(row);
+            }
         }
+
     }
 
     /**
@@ -76,6 +86,9 @@ public class WorkStatusJPanel extends javax.swing.JPanel {
         requestTestJButton = new javax.swing.JButton();
         refreshTestJButton = new javax.swing.JButton();
         backJButton = new javax.swing.JButton();
+        btnSearch = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        txtSearch = new javax.swing.JTextField();
 
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -84,14 +97,14 @@ public class WorkStatusJPanel extends javax.swing.JPanel {
 
             },
             new String [] {
-                "Message", "Receiver", "Status", "Result", "Donor", "Blood Group"
+                "TimeStamp", "Message", "Receiver", "Status", "Result", "Donor", "Blood Group", "Resolve date"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Object.class, java.lang.Object.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, true
+                false, false, false, false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -104,15 +117,10 @@ public class WorkStatusJPanel extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(workRequestJTable);
         if (workRequestJTable.getColumnModel().getColumnCount() > 0) {
-            workRequestJTable.getColumnModel().getColumn(0).setResizable(false);
-            workRequestJTable.getColumnModel().getColumn(1).setResizable(false);
-            workRequestJTable.getColumnModel().getColumn(2).setResizable(false);
-            workRequestJTable.getColumnModel().getColumn(3).setResizable(false);
-            workRequestJTable.getColumnModel().getColumn(4).setResizable(false);
-            workRequestJTable.getColumnModel().getColumn(5).setResizable(false);
+            workRequestJTable.getColumnModel().getColumn(0).setMaxWidth(200);
         }
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, 740, 130));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, 780, 130));
 
         requestTestJButton.setText("Request Test");
         requestTestJButton.addActionListener(new java.awt.event.ActionListener() {
@@ -128,7 +136,7 @@ public class WorkStatusJPanel extends javax.swing.JPanel {
                 refreshTestJButtonActionPerformed(evt);
             }
         });
-        add(refreshTestJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 20, -1, -1));
+        add(refreshTestJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 40, -1, -1));
 
         backJButton.setText("<< Back");
         backJButton.addActionListener(new java.awt.event.ActionListener() {
@@ -137,6 +145,24 @@ public class WorkStatusJPanel extends javax.swing.JPanel {
             }
         });
         add(backJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 230, -1, -1));
+
+        btnSearch.setText("Search");
+        btnSearch.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSearchActionPerformed(evt);
+            }
+        });
+        add(btnSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 40, -1, -1));
+
+        jLabel1.setText("Search by Donor name");
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 40, -1, 20));
+
+        txtSearch.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtSearchActionPerformed(evt);
+            }
+        });
+        add(txtSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 40, 131, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void requestTestJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_requestTestJButtonActionPerformed
@@ -160,11 +186,59 @@ public class WorkStatusJPanel extends javax.swing.JPanel {
         layout.previous(userProcessContainer);
     }//GEN-LAST:event_backJButtonActionPerformed
 
+    private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
+        String key = txtSearch.getText().trim();
+        DefaultTableModel model = (DefaultTableModel) workRequestJTable.getModel();
+
+        model.setRowCount(0);
+        if (key == null || key.length() == 0) {
+            JOptionPane.showMessageDialog(null, "Please specify a name to search!!!", "Warning", JOptionPane.WARNING_MESSAGE);
+        } else {
+            for (Organization organization : enterprise.getOrganizationDirectory().getOrganizationList()) {
+                if (organization instanceof DonorOrganization) {
+                    for (Employee employee : organization.getEmployeeDirectory().getEmployeeList()) {
+                        if (key != null) {
+                            if (employee.getName().contains(key)) {
+                                for (WorkRequest request : userAccount.getWorkQueue().getWorkRequestList()) {
+
+                                    Object[] row = new Object[8];
+                                    row[0] = ((BloodDonationWorkRequest) request).getRequestDate();
+                                    row[1] = request.getMessage();
+                                    row[2] = request.getReceiver() == null ? null : request.getReceiver().getEmployee().getName();
+                                    row[3] = request.getStatus();
+                                    String result = ((BloodDonationWorkRequest) request).getTestResult();
+                                    row[4] = result == null ? "Waiting" : result;
+                                    row[5] = ((BloodDonationWorkRequest) request).getDonor();
+                                    row[6] = ((BloodDonationWorkRequest) request).getBloodGroup();
+                                    row[7] = request.getResolveDate();
+                                    model.addRow(row);
+
+                                }
+                            }
+                        } else {
+                            JOptionPane.showMessageDialog(null, "No matching names", "Information", JOptionPane.INFORMATION_MESSAGE);
+                        }
+                    }
+                }
+            }
+        }
+
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnSearchActionPerformed
+
+    private void txtSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSearchActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtSearchActionPerformed
+
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton backJButton;
+    private javax.swing.JButton btnSearch;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton refreshTestJButton;
     private javax.swing.JButton requestTestJButton;
+    private javax.swing.JTextField txtSearch;
     private javax.swing.JTable workRequestJTable;
     // End of variables declaration//GEN-END:variables
 }

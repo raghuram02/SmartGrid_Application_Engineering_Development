@@ -19,8 +19,8 @@ import Role.AdminRole;
  */
 public class ConfigureBusiness {
 
-    public static EcoSystem configureBusiness() {
-        EcoSystem ecosystem = ConfigureASystem.configure();
+    public static EcoSystem configureBusiness(EcoSystem ecosystem) {
+
         Network network = ecosystem.createAndAddNetwork();
         network.setName("MA");
         for (Network n : ecosystem.getNetworkList()) {

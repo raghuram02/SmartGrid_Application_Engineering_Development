@@ -8,8 +8,6 @@ package User_Interface;
 import Business.VitalSign;
 import Business.VitalSignHistory;
 import javax.swing.JOptionPane;
-import java.util.Date;
-import java.sql.Timestamp;
 
 /**
  *

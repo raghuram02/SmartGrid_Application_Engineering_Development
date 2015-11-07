@@ -39,20 +39,18 @@ public class ReceptionistWorkAreaJPanel extends javax.swing.JPanel {
         this.userAccount = account;
         populateDonorCombo();
     }
-    
-    public void populateDonorCombo(){
+
+    public void populateDonorCombo() {
         donorCombo.removeAllItems();
-        for(Organization org: enterprise.getOrganizationDirectory().getOrganizationList()){
-            System.out.println("inside org");
-            if(org instanceof DonorOrganization){
-                System.out.println("inside donor");
-                for(Employee employee : org.getEmployeeDirectory().getEmployeeList()){
-                    System.out.println("inside employee");
+        for (Organization org : enterprise.getOrganizationDirectory().getOrganizationList()) {
+            if (org instanceof DonorOrganization) {
+                for (Employee employee : org.getEmployeeDirectory().getEmployeeList()) {
                     donorCombo.addItem(employee);
                 }
             }
         }
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -94,7 +92,7 @@ public class ReceptionistWorkAreaJPanel extends javax.swing.JPanel {
 
     private void btnWorkStatusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnWorkStatusActionPerformed
         Employee emp = (Employee) donorCombo.getSelectedItem();
-        WorkStatusJPanel workStatusJPanel = new WorkStatusJPanel(userProcessContainer, userAccount,organization,  enterprise, emp);
+        WorkStatusJPanel workStatusJPanel = new WorkStatusJPanel(userProcessContainer, userAccount, organization, enterprise, emp);
         userProcessContainer.add("workStatusJPanel", workStatusJPanel);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer);
@@ -103,6 +101,7 @@ public class ReceptionistWorkAreaJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_btnWorkStatusActionPerformed
 
     private void donorComboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_donorComboActionPerformed
+
         // TODO add your handling code here:
     }//GEN-LAST:event_donorComboActionPerformed
 

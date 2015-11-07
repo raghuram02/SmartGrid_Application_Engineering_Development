@@ -50,6 +50,8 @@ public class NurseWorkAreaJPanel extends javax.swing.JPanel {
         model.setRowCount(0);
 
         for (WorkRequest request : organization.getWorkQueue().getWorkRequestList()) {
+            if(userAccount.getUsername().equalsIgnoreCase(request.getReceiver().getUsername()))
+            {
             Object[] row = new Object[4];
             row[0] = request;
             row[1] = request.getSender().getEmployee().getName();
@@ -57,7 +59,7 @@ public class NurseWorkAreaJPanel extends javax.swing.JPanel {
             row[3] = request.getStatus();
 
             model.addRow(row);
-        }
+        }}
     }
 
     /**

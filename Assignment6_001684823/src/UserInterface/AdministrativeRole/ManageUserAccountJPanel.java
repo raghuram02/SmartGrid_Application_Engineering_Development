@@ -7,6 +7,7 @@ package UserInterface.AdministrativeRole;
 import Business.ConfigureBusiness;
 import Business.Employee.Employee;
 import Business.Enterprise.Enterprise;
+import Business.Organization.DonorOrganization;
 import Business.Organization.Organization;
 import Business.Role.Role;
 import Business.UserAccount.UserAccount;
@@ -39,8 +40,10 @@ public class ManageUserAccountJPanel extends javax.swing.JPanel {
         organizationJComboBox.removeAllItems();
 
         for (Organization organization : e.getOrganizationDirectory().getOrganizationList()) {
+            if(!(organization instanceof DonorOrganization)){
+               
             organizationJComboBox.addItem(organization);
-        }
+        }}
     }
 
     public void populateEmployeeComboBox(Organization organization) {

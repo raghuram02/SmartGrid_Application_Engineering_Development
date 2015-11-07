@@ -5,6 +5,8 @@
 package Business.WorkQueue;
 
 import Business.Employee.Employee;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 /**
  *
@@ -14,7 +16,7 @@ public class BloodDonationWorkRequest extends WorkRequest{
     
     private String testResult;
     private String bloodGroup;
-    private String date;
+    private String requestDate;
     private String barCode;
     private Employee donor;
 
@@ -26,14 +28,10 @@ public class BloodDonationWorkRequest extends WorkRequest{
         this.bloodGroup = bloodGroup;
     }
 
-    public String getDate() {
-        return date;
+  public String getrequestDate() {
+        requestDate = new SimpleDateFormat("dd/MM/yyyy HH:mm").format(new Date());
+        return requestDate;
     }
-
-    public void setDate(String date) {
-        this.date = date;
-    }
-
     public String getBarCode() {
         return barCode;
     }
@@ -57,6 +55,8 @@ public class BloodDonationWorkRequest extends WorkRequest{
     public void setTestResult(String testResult) {
         this.testResult = testResult;
     }
-    
-    
+    @Override
+    public String toString(){ 
+            return this.getMessage();
+    }
 }

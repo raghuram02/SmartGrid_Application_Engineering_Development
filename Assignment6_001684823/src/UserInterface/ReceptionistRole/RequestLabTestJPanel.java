@@ -133,7 +133,7 @@ public class RequestLabTestJPanel extends javax.swing.JPanel {
         UserAccount UA = (UserAccount) employeeJComboBox.getSelectedItem();
         String message = messageJTextField.getText();
          if (messageJTextField.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Enter a valid name");
+            JOptionPane.showMessageDialog(null, "Enter a valid Message");
             return;
 
         } 

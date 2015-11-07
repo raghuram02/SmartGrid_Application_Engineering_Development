@@ -7,6 +7,8 @@ package UserInterface.NurseRoleJPanel;
 import Business.WorkQueue.BloodDonationWorkRequest;
 import java.awt.CardLayout;
 import java.awt.Component;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
@@ -18,6 +20,7 @@ public class ProcessWorkRequestJPanel extends javax.swing.JPanel {
 
     JPanel userProcessContainer;
     BloodDonationWorkRequest request;
+
     /**
      * Creates new form ProcessWorkRequestJPanel
      */
@@ -40,8 +43,6 @@ public class ProcessWorkRequestJPanel extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         btnBarCode = new javax.swing.JTextField();
         backJButton = new javax.swing.JButton();
-        jLabel2 = new javax.swing.JLabel();
-        btnDate = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         btnBG = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
@@ -59,8 +60,8 @@ public class ProcessWorkRequestJPanel extends javax.swing.JPanel {
         add(submitJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 230, 90, -1));
 
         jLabel1.setText("Bar Code");
-        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 70, 80, 20));
-        add(btnBarCode, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 70, 88, -1));
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 90, 80, 20));
+        add(btnBarCode, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 90, 88, -1));
 
         backJButton.setText("Back");
         backJButton.addActionListener(new java.awt.event.ActionListener() {
@@ -70,17 +71,13 @@ public class ProcessWorkRequestJPanel extends javax.swing.JPanel {
         });
         add(backJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 230, -1, 20));
 
-        jLabel2.setText("Date");
-        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 190, 70, -1));
-        add(btnDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 190, 88, -1));
-
         jLabel4.setText("Blood Group");
-        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 110, 100, -1));
-        add(btnBG, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 110, 88, -1));
+        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 130, 100, -1));
+        add(btnBG, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 130, 88, -1));
 
         jLabel5.setText("Result");
-        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 150, 70, -1));
-        add(resultJTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 150, 88, -1));
+        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 170, 70, -1));
+        add(resultJTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 170, 88, -1));
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel3.setText("Process Work Request");
@@ -107,31 +104,27 @@ public class ProcessWorkRequestJPanel extends javax.swing.JPanel {
         } else if (btnBG.getText().isEmpty()) {
             JOptionPane.showMessageDialog(null, "Enter the Blood Group");
             return;
-        } else if (btnDate.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Enter the Date");
-            return;
-        }
-        else if (btnBarCode.getText().isEmpty()) {
+
+        } else if (btnBarCode.getText().isEmpty()) {
             JOptionPane.showMessageDialog(null, "Enter the Barcode");
             return;
         }
-        
+        Date d = new Date();
+        String resolveDate = new SimpleDateFormat("dd/MM/yyyy HH:mm").format(d);
         request.setTestResult(resultJTextField.getText());
         request.setBloodGroup(btnBG.getText());
-        request.setDate(btnDate.getText());
+        request.setResolveDate(d);
         request.setBarCode(btnBarCode.getText());
         request.setStatus("Completed");
         JOptionPane.showMessageDialog(null, "Message processed");
-     
+
     }//GEN-LAST:event_submitJButtonActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton backJButton;
     private javax.swing.JTextField btnBG;
     private javax.swing.JTextField btnBarCode;
-    private javax.swing.JTextField btnDate;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;

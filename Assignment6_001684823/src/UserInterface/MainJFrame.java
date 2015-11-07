@@ -6,6 +6,7 @@
 package UserInterface;
 
 import Business.ConfigureBusiness;
+import Business.DB4OUtil.DB4OUtil;
 import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
 import Business.Network.Network;
@@ -27,15 +28,18 @@ public class MainJFrame extends javax.swing.JFrame {
     private Enterprise enterprise;
     private OrganizationDirectory organizationDirectory;
     private UserAccount userAccount;
+    private DB4OUtil dB4OUtil = DB4OUtil.getInstance();
 
     /**
      * Creates new form MainJFrame
      */
     public MainJFrame() {
         initComponents();
-        ecosystem = ConfigureBusiness.configureBusiness();
+
         organizationDirectory = new OrganizationDirectory();
         userAccount = new UserAccount();
+        ecosystem = dB4OUtil.retrieveSystem();
+        ConfigureBusiness.configureBusiness(ecosystem);
     }
 
     /**
@@ -211,6 +215,7 @@ public class MainJFrame extends javax.swing.JFrame {
         logoutJButton.setEnabled(true);
         userNameJTextField.setEnabled(false);
         passwordField.setEnabled(false);
+        dB4OUtil.storeSystem(ecosystem);
 
 // TODO add your handling code here:
     }//GEN-LAST:event_loginJButtonActionPerformed

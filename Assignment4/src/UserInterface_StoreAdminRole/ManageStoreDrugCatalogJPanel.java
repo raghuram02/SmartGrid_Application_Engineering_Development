@@ -66,8 +66,10 @@ public class ManageStoreDrugCatalogJPanel extends javax.swing.JPanel {
         btnView = new javax.swing.JButton();
         btnBack = new javax.swing.JButton();
 
+        setBackground(new java.awt.Color(102, 255, 102));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        drugTable.setBackground(new java.awt.Color(102, 255, 51));
         drugTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -95,7 +97,7 @@ public class ManageStoreDrugCatalogJPanel extends javax.swing.JPanel {
         txtSName.setEditable(false);
         txtSName.setFont(new java.awt.Font("Georgia", 1, 18)); // NOI18N
         txtSName.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        txtSName.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED, null, new java.awt.Color(102, 102, 102), null, null));
+        txtSName.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         txtSName.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtSNameActionPerformed(evt);
@@ -103,37 +105,45 @@ public class ManageStoreDrugCatalogJPanel extends javax.swing.JPanel {
         });
         add(txtSName, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 40, 150, 30));
 
+        btnDrug.setFont(new java.awt.Font("Lucida Calligraphy", 0, 14)); // NOI18N
         btnDrug.setText("Add Drug");
+        btnDrug.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         btnDrug.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnDrugActionPerformed(evt);
             }
         });
-        add(btnDrug, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 230, -1, -1));
+        add(btnDrug, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 300, 150, -1));
 
+        btnRemove.setFont(new java.awt.Font("Lucida Calligraphy", 0, 14)); // NOI18N
         btnRemove.setText("Remove Drugs");
+        btnRemove.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         btnRemove.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnRemoveActionPerformed(evt);
             }
         });
-        add(btnRemove, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 230, -1, -1));
+        add(btnRemove, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 300, 190, -1));
 
+        btnView.setFont(new java.awt.Font("Lucida Calligraphy", 0, 14)); // NOI18N
         btnView.setText("View Drug Details");
+        btnView.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         btnView.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnViewActionPerformed(evt);
             }
         });
-        add(btnView, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 230, -1, -1));
+        add(btnView, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 230, 220, -1));
 
+        btnBack.setFont(new java.awt.Font("Lucida Calligraphy", 0, 14)); // NOI18N
         btnBack.setText("<<Back");
+        btnBack.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         btnBack.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnBackActionPerformed(evt);
             }
         });
-        add(btnBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 230, -1, -1));
+        add(btnBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 230, 130, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnRemoveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRemoveActionPerformed

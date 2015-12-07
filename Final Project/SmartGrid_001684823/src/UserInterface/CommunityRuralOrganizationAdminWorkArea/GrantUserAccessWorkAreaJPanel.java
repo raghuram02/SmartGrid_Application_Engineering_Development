@@ -31,14 +31,14 @@ public class GrantUserAccessWorkAreaJPanel extends javax.swing.JPanel {
     /**
      * Creates new form GrantUserAccessWorkAreaJPanel
      */
-    public GrantUserAccessWorkAreaJPanel(JPanel userProcessContainer, UserAccount account, 
+    public GrantUserAccessWorkAreaJPanel(JPanel userProcessContainer, UserAccount account,
             Organization organization, Enterprise enterprise) {
         initComponents();
 
         this.userProcessContainer = userProcessContainer;
         this.userAccount = account;
         this.enterprise = enterprise;
-        this.organization =  organization;
+        this.organization = organization;
 
         populateTable();
     }
@@ -49,16 +49,18 @@ public class GrantUserAccessWorkAreaJPanel extends javax.swing.JPanel {
         model.setRowCount(0);
 
         for (WorkRequest request : organization.getWorkQueue().getWorkRequestList()) {
-            if(userAccount.getUsername().equalsIgnoreCase(request.getReceiver().getUsername()))
-            {
-            Object[] row = new Object[4];
-            row[0] = request;
-            row[1] = request.getSender().getPerson().getName();
-            row[2] = request.getReceiver() == null ? null : request.getReceiver().getPerson().getName();
-            row[3] = request.getStatus();
+            if (request instanceof RequestAccessWorkRequest) {
+                if (userAccount.getUsername().equalsIgnoreCase(request.getReceiver().getUsername())) {
+                    Object[] row = new Object[4];
+                    row[0] = request;
+                    row[1] = request.getSender().getPerson().getName();
+                    row[2] = request.getReceiver() == null ? null : request.getReceiver().getPerson().getName();
+                    row[3] = request.getStatus();
 
-            model.addRow(row);
-        }}
+                    model.addRow(row);
+                }
+            }
+        }
     }
 
     /**
@@ -83,7 +85,7 @@ public class GrantUserAccessWorkAreaJPanel extends javax.swing.JPanel {
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel3.setText("Grant User Access");
         jLabel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 20, -1, -1));
+        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 50, -1, -1));
 
         workRequestJTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -110,7 +112,7 @@ public class GrantUserAccessWorkAreaJPanel extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(workRequestJTable);
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 160, 375, 96));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 190, 375, 96));
 
         processJButton.setFont(new java.awt.Font("Lucida Calligraphy", 0, 14)); // NOI18N
         processJButton.setText("Process");
@@ -120,7 +122,7 @@ public class GrantUserAccessWorkAreaJPanel extends javax.swing.JPanel {
                 processJButtonActionPerformed(evt);
             }
         });
-        add(processJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 290, 70, 30));
+        add(processJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 320, 70, 30));
 
         refreshJButton.setFont(new java.awt.Font("Lucida Calligraphy", 0, 14)); // NOI18N
         refreshJButton.setText("Refresh");
@@ -130,7 +132,7 @@ public class GrantUserAccessWorkAreaJPanel extends javax.swing.JPanel {
                 refreshJButtonActionPerformed(evt);
             }
         });
-        add(refreshJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 110, 70, 30));
+        add(refreshJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 140, 70, 30));
 
         backJButton.setFont(new java.awt.Font("Lucida Calligraphy", 0, 14)); // NOI18N
         backJButton.setText("<< Back");
@@ -140,7 +142,7 @@ public class GrantUserAccessWorkAreaJPanel extends javax.swing.JPanel {
                 backJButtonActionPerformed(evt);
             }
         });
-        add(backJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 290, 70, 30));
+        add(backJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 320, 70, 30));
     }// </editor-fold>//GEN-END:initComponents
 
     private void processJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_processJButtonActionPerformed

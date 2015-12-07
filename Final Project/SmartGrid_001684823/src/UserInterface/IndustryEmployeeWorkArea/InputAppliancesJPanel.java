@@ -7,8 +7,11 @@ package UserInterface.IndustryEmployeeWorkArea;
 
 import Business.Appliances.Appliance;
 import Business.Appliances.AppliancesDirectory;
+import Business.Enterprise.Enterprise;
+import Business.Organization.Organization;
 import Business.Person.Person;
-import Business.WorkQueue.AddAppliancesWorkRequest;
+import Business.UserAccount.UserAccount;
+import Business.WorkQueue.UpdateAppliancesWorkRequest;
 import java.awt.CardLayout;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -23,20 +26,27 @@ import javax.swing.table.DefaultTableModel;
 public class InputAppliancesJPanel extends javax.swing.JPanel {
 
     private JPanel userProcessContainer;
-    private AddAppliancesWorkRequest request;
+    private UpdateAppliancesWorkRequest request;
     private AppliancesDirectory appliancesDirectory;
-    private Person p;
+    private Person person;
     private Appliance appliance;
+    private Enterprise enterprise;
+    private UserAccount userAccount;
+    private Organization organization;
 
     /**
      * Creates new form InputAppliancesJPanel
      */
-    public InputAppliancesJPanel(JPanel userProcessContainer, AddAppliancesWorkRequest request, Appliance appliance, Person p) {
+    public InputAppliancesJPanel(JPanel userProcessContainer, UserAccount account, Organization organization, Enterprise enterprise, Appliance appliance, Person p) {
         initComponents();
-        this.request = request;
+
         this.userProcessContainer = userProcessContainer;
-        this.p = p;
         this.appliance = appliance;
+        this.userProcessContainer = userProcessContainer;
+        this.enterprise = enterprise;
+        this.organization = organization;
+        this.userAccount = account;
+        this.person = p;
         System.out.println("person inside IA" + p);
         populateApplianceTable();
     }
@@ -44,7 +54,7 @@ public class InputAppliancesJPanel extends javax.swing.JPanel {
     private void populateApplianceTable() {
         DefaultTableModel model = (DefaultTableModel) applianceTbl.getModel();
         model.setRowCount(0);
-        for (Appliance a : p.getAppliancesDirectory().getApplianceList()) {
+        for (Appliance a : person.getAppliancesDirectory().getApplianceList()) {
             Object[] row = new Object[2];
             row[0] = a.getApplianceName();
             row[1] = a.getQuantity();
@@ -70,8 +80,7 @@ public class InputAppliancesJPanel extends javax.swing.JPanel {
         submitJButton = new javax.swing.JButton();
         backJButton = new javax.swing.JButton();
         applianceComboBox1 = new javax.swing.JComboBox();
-        jLabel5 = new javax.swing.JLabel();
-        resultJTextField = new javax.swing.JTextField();
+        backJButton4 = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 153));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -79,7 +88,7 @@ public class InputAppliancesJPanel extends javax.swing.JPanel {
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel2.setText("INPUT APPLIANCES");
         jLabel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 20, -1, -1));
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 20, -1, -1));
 
         applianceTbl.setBackground(new java.awt.Color(102, 255, 51));
         applianceTbl.setModel(new javax.swing.table.DefaultTableModel(
@@ -100,11 +109,11 @@ public class InputAppliancesJPanel extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(applianceTbl);
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 60, 540, 280));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 60, 540, 280));
 
         jLabel1.setFont(new java.awt.Font("Lucida Calligraphy", 0, 14)); // NOI18N
         jLabel1.setText("Quantity");
-        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 390, -1, 30));
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 390, -1, 30));
 
         quantityComboBox.setFont(new java.awt.Font("Lucida Calligraphy", 0, 14)); // NOI18N
         quantityComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", " ", " " }));
@@ -113,11 +122,11 @@ public class InputAppliancesJPanel extends javax.swing.JPanel {
                 quantityComboBoxActionPerformed(evt);
             }
         });
-        add(quantityComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 390, 50, -1));
+        add(quantityComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 390, 50, -1));
 
         jLabel3.setFont(new java.awt.Font("Lucida Calligraphy", 0, 14)); // NOI18N
         jLabel3.setText("Appliance Name");
-        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 350, -1, 30));
+        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 350, -1, 30));
 
         submitJButton.setFont(new java.awt.Font("Lucida Calligraphy", 0, 14)); // NOI18N
         submitJButton.setText("Submit");
@@ -127,7 +136,7 @@ public class InputAppliancesJPanel extends javax.swing.JPanel {
                 submitJButtonActionPerformed(evt);
             }
         });
-        add(submitJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 490, 90, 30));
+        add(submitJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 430, 90, 30));
 
         backJButton.setFont(new java.awt.Font("Lucida Calligraphy", 0, 14)); // NOI18N
         backJButton.setText("<< Back");
@@ -137,7 +146,7 @@ public class InputAppliancesJPanel extends javax.swing.JPanel {
                 backJButtonActionPerformed(evt);
             }
         });
-        add(backJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 490, 80, 30));
+        add(backJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 480, 80, 30));
 
         applianceComboBox1.setFont(new java.awt.Font("Lucida Calligraphy", 0, 14)); // NOI18N
         applianceComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Light Duty Appliances", "Medium Duty Appliances", "Heavy Duty Appliances", " " }));
@@ -146,34 +155,25 @@ public class InputAppliancesJPanel extends javax.swing.JPanel {
                 applianceComboBox1ActionPerformed(evt);
             }
         });
-        add(applianceComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 350, 200, 30));
+        add(applianceComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 350, 200, 30));
 
-        jLabel5.setFont(new java.awt.Font("Lucida Calligraphy", 0, 14)); // NOI18N
-        jLabel5.setText("Result");
-        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 430, 100, 30));
-
-        resultJTextField.setFont(new java.awt.Font("Lucida Calligraphy", 0, 14)); // NOI18N
-        resultJTextField.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        add(resultJTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 430, 120, 30));
+        backJButton4.setFont(new java.awt.Font("Lucida Calligraphy", 0, 14)); // NOI18N
+        backJButton4.setText("Request Updation of Appliances");
+        backJButton4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        backJButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                backJButton4ActionPerformed(evt);
+            }
+        });
+        add(backJButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 430, 250, 30));
     }// </editor-fold>//GEN-END:initComponents
 
     private void submitJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitJButtonActionPerformed
-        if (resultJTextField.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Enter the Result");
-            return;
-
-        }
-        Date d = new Date();
-        String resolveDate = new SimpleDateFormat("dd/MM/yyyy HH:mm").format(d);
-        request.setResult(resultJTextField.getText());
-        request.setResolveDate(d);
-        request.setStatus("Completed");
-        JOptionPane.showMessageDialog(null, "Message processed");
 
         String applianceName = (String) applianceComboBox1.getSelectedItem();
         String quantity = (String) quantityComboBox.getSelectedItem();
 
-        Appliance a = p.getAppliancesDirectory().createAppliance(applianceName);
+        Appliance a = person.getAppliancesDirectory().createAppliance(applianceName);
         a.setApplianceName(applianceName);
         a.setQuantity(quantity);
         populateApplianceTable();
@@ -194,18 +194,24 @@ public class InputAppliancesJPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_applianceComboBox1ActionPerformed
 
+    private void backJButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backJButton4ActionPerformed
+        RequestAppliancesUpdationJPanel requestAppliancesUpdationJPanel = new RequestAppliancesUpdationJPanel(userProcessContainer, enterprise, userAccount, organization, person);
+        userProcessContainer.add("requestAppliancesUpdationJPanel", requestAppliancesUpdationJPanel);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
+    }//GEN-LAST:event_backJButton4ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox applianceComboBox1;
     private javax.swing.JTable applianceTbl;
     private javax.swing.JButton backJButton;
+    private javax.swing.JButton backJButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JComboBox quantityComboBox;
-    private javax.swing.JTextField resultJTextField;
     private javax.swing.JButton submitJButton;
     // End of variables declaration//GEN-END:variables
 }

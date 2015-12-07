@@ -19,11 +19,7 @@ public class UserAccount {
     private String password;
     private Person person;
     private Role role;
-    private WorkQueue workQueue;
-
-    public UserAccount() {
-        workQueue = new WorkQueue();
-    }
+    private WorkQueue workQueue = new WorkQueue();
 
     public String getUsername() {
         return username;
@@ -61,9 +57,8 @@ public class UserAccount {
         return workQueue;
     }
 
-    @Override
-    public String toString() {
-        return username;
-    }
-
+//    @Override
+//    public String toString() {
+//        return username;
+//    }
 }

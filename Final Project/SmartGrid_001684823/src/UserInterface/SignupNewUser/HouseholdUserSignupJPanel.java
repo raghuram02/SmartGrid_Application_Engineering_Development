@@ -17,6 +17,7 @@ import Business.Role.Role;
 import Business.Role.RuralHouseHoldRole;
 import Business.Role.UrbanHouseHoldRole;
 import Business.SmartGrid;
+import Business.UserAccount.UserAccount;
 import java.awt.CardLayout;
 import java.io.File;
 import javax.swing.ImageIcon;
@@ -347,12 +348,25 @@ public class HouseholdUserSignupJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_btnBackActionPerformed
 
     private void btnCreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateActionPerformed
-        if (organization == null) {
+        Role role = (Role) roleJComboBox.getSelectedItem();
+        if (role instanceof RuralHouseHoldRole) {
             for (Network network : sg.getNetworkList()) {
                 for (Enterprise enterprise : network.getEnterpriseDirectory().getEnterpriseList()) {
                     if (enterprise instanceof CommunityEnterprise) {
                         for (Organization org : enterprise.getOrganizationDirectory().getOrganizationList()) {
-                            if ((org instanceof RuralOrganization) || (org instanceof UrbanOrganization)) {
+                            if ((org instanceof RuralOrganization)) {
+                                organization = org;
+                            }
+                        }
+                    }
+                }
+            }
+        } else if (role instanceof UrbanHouseHoldRole) {
+            for (Network network : sg.getNetworkList()) {
+                for (Enterprise enterprise : network.getEnterpriseDirectory().getEnterpriseList()) {
+                    if (enterprise instanceof CommunityEnterprise) {
+                        for (Organization org : enterprise.getOrganizationDirectory().getOrganizationList()) {
+                            if ((org instanceof UrbanOrganization)) {
                                 organization = org;
                             }
                         }
@@ -360,6 +374,7 @@ public class HouseholdUserSignupJPanel extends javax.swing.JPanel {
                 }
             }
         }
+        System.out.println("organization+++++++++++++++++" + organization);
         String name = txtEName.getText();
         String address = txtAddress.getText();
         Person p = organization.getPersonDirectory().createPerson(name);
@@ -377,14 +392,14 @@ public class HouseholdUserSignupJPanel extends javax.swing.JPanel {
         p.setSSN(SSN);
         p.setPassword(password);
         p.setUserName(userName);
-        for (Organization.Type type : Organization.Type.values()) {
-            if (type.getValue().equals(Organization.Type.Rural.getValue())) {
-                organization.getUserAccountDirectory().createUserAccount(userName, password, p, new RuralHouseHoldRole());
-            }
-            if (type.getValue().equals(Organization.Type.Urban.getValue())) {
-                organization.getUserAccountDirectory().createUserAccount(userName, password, p, new UrbanHouseHoldRole());
-            }
+        if (role instanceof RuralHouseHoldRole) {
+            UserAccount account = organization.getUserAccountDirectory().createUserAccount(userName, password, p, new RuralHouseHoldRole());
+            System.out.println("role insid ruralsignup" + account.getRole());
+        } else if (role instanceof UrbanHouseHoldRole) {
+            UserAccount account = organization.getUserAccountDirectory().createUserAccount(userName, password, p, new UrbanHouseHoldRole());
+            System.out.println("role insid urban signup " + account.getRole());
         }
+
 
     }//GEN-LAST:event_btnCreateActionPerformed
 

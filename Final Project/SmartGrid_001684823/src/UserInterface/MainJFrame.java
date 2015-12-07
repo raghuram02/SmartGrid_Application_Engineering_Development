@@ -226,6 +226,7 @@ public class MainJFrame extends javax.swing.JFrame {
         } else {
             CardLayout layout = (CardLayout) userProcessContainer.getLayout();
             System.out.println("inside else part");
+            System.out.println("role"+userAccount.getRole());
             userProcessContainer.add("workArea", userAccount.getRole().createWorkArea(userProcessContainer, userAccount, inOrganization, inEnterprise, sg));
             layout.next(userProcessContainer);
         }

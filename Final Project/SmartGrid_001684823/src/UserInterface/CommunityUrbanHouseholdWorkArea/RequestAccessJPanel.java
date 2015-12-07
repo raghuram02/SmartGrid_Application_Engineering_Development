@@ -45,23 +45,22 @@ public class RequestAccessJPanel extends javax.swing.JPanel {
         DefaultTableModel model = (DefaultTableModel) workRequestJTable.getModel();
 
         model.setRowCount(0);
-        System.out.println("Work Req size:" + account.getWorkQueue().getWorkRequestList().size());
-        for (WorkRequest request : account.getWorkQueue().getWorkRequestList()) {
-            System.out.println("Sender:" + request.getSender().toString());
-//            System.out.println("User:" +((RequestAccessWorkRequest) request).getEmp().getName());
-//            if ((!(request.getSender().toString().isEmpty())) && (((RequestAccessWorkRequest) request).getReceiver().getPerson().getName().equals(account.getPerson().getName()))) {
-            Object[] row = new Object[8];
-            row[0] = ((RequestAccessWorkRequest) request).getRequestDate();
-            row[1] = request.getMessage();
-            row[2] = request.getReceiver() == null ? null : request.getReceiver().getPerson().getName();
-            row[3] = request.getStatus();
-            String result = ((WorkRequest) request).getResult();
-            row[4] = result == null ? "Waiting" : result;
-            row[5] = (request).getSender().getPerson().getName();
-            row[6] = ((RequestAccessWorkRequest) request).getId();
-            row[7] = request.getResolveDate();
 
-            model.addRow(row);
+        for (WorkRequest request : account.getWorkQueue().getWorkRequestList()) {
+            if (request instanceof RequestAccessWorkRequest) {
+                Object[] row = new Object[8];
+                row[0] = ((RequestAccessWorkRequest) request).getRequestDate();
+                row[1] = request.getMessage();
+                row[2] = request.getReceiver() == null ? null : request.getReceiver().getPerson().getName();
+                row[3] = request.getStatus();
+                String result = ((WorkRequest) request).getResult();
+                row[4] = result == null ? "Waiting" : result;
+                row[5] = (request).getSender().getPerson().getName();
+                row[6] = ((RequestAccessWorkRequest) request).getId();
+                row[7] = request.getResolveDate();
+
+                model.addRow(row);
+            }
         }
 //        }
 
@@ -89,7 +88,7 @@ public class RequestAccessJPanel extends javax.swing.JPanel {
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel2.setText("REQUEST ACCESS");
         jLabel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 10, -1, -1));
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 20, -1, -1));
 
         workRequestJTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -109,7 +108,7 @@ public class RequestAccessJPanel extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(workRequestJTable);
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 150, 630, 120));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 160, 630, 120));
 
         btnAccessRequest.setFont(new java.awt.Font("Lucida Calligraphy", 0, 14)); // NOI18N
         btnAccessRequest.setText("Request for Access");
@@ -119,7 +118,7 @@ public class RequestAccessJPanel extends javax.swing.JPanel {
                 btnAccessRequestActionPerformed(evt);
             }
         });
-        add(btnAccessRequest, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 300, 160, 30));
+        add(btnAccessRequest, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 310, 160, 30));
 
         backJButton2.setFont(new java.awt.Font("Lucida Calligraphy", 0, 14)); // NOI18N
         backJButton2.setText("Refresh");
@@ -129,7 +128,7 @@ public class RequestAccessJPanel extends javax.swing.JPanel {
                 backJButton2ActionPerformed(evt);
             }
         });
-        add(backJButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 110, 80, 30));
+        add(backJButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 120, 80, 30));
 
         backJButton3.setFont(new java.awt.Font("Lucida Calligraphy", 0, 14)); // NOI18N
         backJButton3.setText("<< Back");
@@ -139,7 +138,7 @@ public class RequestAccessJPanel extends javax.swing.JPanel {
                 backJButton3ActionPerformed(evt);
             }
         });
-        add(backJButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 300, 80, 30));
+        add(backJButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 310, 80, 30));
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAccessRequestActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAccessRequestActionPerformed

@@ -88,19 +88,19 @@ public class PlaceRequestJPanel extends javax.swing.JPanel {
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel2.setText("PLACE REQUEST ");
         jLabel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 10, -1, -1));
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 20, -1, -1));
 
         jLabel1.setFont(new java.awt.Font("Lucida Calligraphy", 0, 14)); // NOI18N
         jLabel1.setText("Message");
-        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 120, -1, 40));
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 120, -1, 50));
 
         messageJTextField.setFont(new java.awt.Font("Lucida Calligraphy", 0, 14)); // NOI18N
         messageJTextField.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        add(messageJTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 120, 140, 30));
+        add(messageJTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 130, 140, 30));
 
         jLabel3.setFont(new java.awt.Font("Lucida Calligraphy", 0, 14)); // NOI18N
         jLabel3.setText("Employee");
-        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 200, -1, 30));
+        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 210, -1, 30));
 
         employeeJComboBox.setFont(new java.awt.Font("Lucida Calligraphy", 0, 14)); // NOI18N
         employeeJComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
@@ -110,11 +110,11 @@ public class PlaceRequestJPanel extends javax.swing.JPanel {
                 employeeJComboBoxActionPerformed(evt);
             }
         });
-        add(employeeJComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 200, 146, 30));
+        add(employeeJComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 210, 146, 30));
 
         jLabel5.setFont(new java.awt.Font("Lucida Calligraphy", 0, 14)); // NOI18N
         jLabel5.setText("Organization");
-        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 160, -1, 30));
+        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 170, -1, 30));
 
         organizationJComboBox.setFont(new java.awt.Font("Lucida Calligraphy", 0, 14)); // NOI18N
         organizationJComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
@@ -124,7 +124,7 @@ public class PlaceRequestJPanel extends javax.swing.JPanel {
                 organizationJComboBoxActionPerformed(evt);
             }
         });
-        add(organizationJComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 160, 146, 30));
+        add(organizationJComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 170, 146, 30));
 
         requestTestJButton.setFont(new java.awt.Font("Lucida Calligraphy", 0, 14)); // NOI18N
         requestTestJButton.setText("Request Access");
@@ -134,7 +134,7 @@ public class PlaceRequestJPanel extends javax.swing.JPanel {
                 requestTestJButtonActionPerformed(evt);
             }
         });
-        add(requestTestJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 330, 140, 30));
+        add(requestTestJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 290, 150, 30));
 
         backJButton.setFont(new java.awt.Font("Lucida Calligraphy", 0, 14)); // NOI18N
         backJButton.setText("<<Back");
@@ -144,7 +144,7 @@ public class PlaceRequestJPanel extends javax.swing.JPanel {
                 backJButtonActionPerformed(evt);
             }
         });
-        add(backJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 330, 70, 30));
+        add(backJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 430, 70, 30));
     }// </editor-fold>//GEN-END:initComponents
 
     private void employeeJComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_employeeJComboBoxActionPerformed

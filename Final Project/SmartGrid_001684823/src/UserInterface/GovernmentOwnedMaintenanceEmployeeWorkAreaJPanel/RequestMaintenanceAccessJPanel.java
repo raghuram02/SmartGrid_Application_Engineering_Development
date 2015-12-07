@@ -5,7 +5,6 @@
  */
 package UserInterface.GovernmentOwnedMaintenanceEmployeeWorkAreaJPanel;
 
-
 import Business.Enterprise.Enterprise;
 import Business.Organization.Organization;
 import Business.Person.Person;
@@ -46,11 +45,9 @@ public class RequestMaintenanceAccessJPanel extends javax.swing.JPanel {
         DefaultTableModel model = (DefaultTableModel) workRequestJTable.getModel();
 
         model.setRowCount(0);
-        
+
         for (WorkRequest request : account.getWorkQueue().getWorkRequestList()) {
-          
-//            System.out.println("User:" +((RequestAccessWorkRequest) request).getEmp().getName());
-//            if ((!(request.getSender().toString().isEmpty())) && (((RequestAccessWorkRequest) request).getReceiver().getPerson().getName().equals(account.getPerson().getName()))) {
+            if (request instanceof RequestAccessWorkRequest) {
                 Object[] row = new Object[8];
                 row[0] = ((RequestAccessWorkRequest) request).getRequestDate();
                 row[1] = request.getMessage();
@@ -64,6 +61,7 @@ public class RequestMaintenanceAccessJPanel extends javax.swing.JPanel {
 
                 model.addRow(row);
             }
+        }
 //        }
 
     }
@@ -145,7 +143,7 @@ public class RequestMaintenanceAccessJPanel extends javax.swing.JPanel {
 
     private void btnAccessRequestActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAccessRequestActionPerformed
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-        userProcessContainer.add("PlaceARequestJPanel", new PlaceARequestJPanel(userProcessContainer, enterprise, account, organization, person));
+        userProcessContainer.add("PlaceARequestJPanel", new PlaceRequestJPanel(userProcessContainer, enterprise, account, organization, person));
         layout.next(userProcessContainer);
         // TODO add your handling code here:
     }//GEN-LAST:event_btnAccessRequestActionPerformed

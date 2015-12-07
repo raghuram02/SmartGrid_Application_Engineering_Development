@@ -5,12 +5,9 @@
  */
 package UserInterface.GovernmentOwnedPublicOrganization;
 
-import UserInterface.IndustryOrganizationAdminWorkArea.*;
 import Business.Enterprise.Enterprise;
 import Business.Organization.Organization;
 import Business.UserAccount.UserAccount;
-import UserInterface.IndustryEmployeeWorkArea.PayEBillJPanel;
-import UserInterface.IndustryEmployeeWorkArea.RequestEBillJPanel;
 import java.awt.CardLayout;
 import javax.swing.JPanel;
 
@@ -109,8 +106,8 @@ public class PublicAdminWorkAreaJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_serveConsumerActionPerformed
 
     private void payEBillActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_payEBillActionPerformed
-//        PayEBillJPanel payEBillJPanel = new PayEBillJPanel(userProcessContainer, enterprise);
-//        userProcessContainer.add("PayEBillJPanel", payEBillJPanel);
+//        SensorInputJPanel payEBillJPanel = new SensorInputJPanel(userProcessContainer, enterprise);
+//        userProcessContainer.add("SensorInputJPanel", payEBillJPanel);
 //
 //        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
 //        layout.next(userProcessContainer);

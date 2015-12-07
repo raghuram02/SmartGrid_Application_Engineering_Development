@@ -5,6 +5,7 @@
  */
 package UserInterface.GovernmentOwnedMaintenanceEmployeeWorkAreaJPanel;
 
+import Business.Appliances.Appliance;
 import UserInterface.IndustryEmployeeWorkArea.*;
 import Business.Enterprise.Enterprise;
 import Business.Organization.Organization;
@@ -24,6 +25,7 @@ public class MaintenanceEmployeeWorkAreaJPanel extends javax.swing.JPanel {
     private UserAccount userAccount;
     private Organization organization;
     private Person person;
+    private Appliance appliance;
 
     /**
      * Creates new form HouseHoldWorkAreaJPanel
@@ -31,13 +33,13 @@ public class MaintenanceEmployeeWorkAreaJPanel extends javax.swing.JPanel {
     public MaintenanceEmployeeWorkAreaJPanel(JPanel userProcessContainer, Enterprise enterprise, UserAccount account,
             Organization organization) {
         initComponents();
-        System.out.print("Organization"+organization);
+        System.out.print("Organization" + organization);
         this.userProcessContainer = userProcessContainer;
         this.enterprise = enterprise;
         this.organization = organization;
         this.userAccount = account;
         this.person = person;
-     System.out.println("Enterprise" + enterprise);
+        System.out.println("Enterprise" + enterprise);
     }
 
     /**
@@ -53,13 +55,13 @@ public class MaintenanceEmployeeWorkAreaJPanel extends javax.swing.JPanel {
         backJButton = new javax.swing.JButton();
         btnAccess = new javax.swing.JButton();
         reqEBill = new javax.swing.JButton();
-        payEBill = new javax.swing.JButton();
+        sensorInput = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 153));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel3.setText("Maintenance EMPLOYEE WORKAREA ");
+        jLabel3.setText("MAINTENANCE EMPLOYEE WORKAREA ");
         jLabel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 10, -1, -1));
 
@@ -86,7 +88,6 @@ public class MaintenanceEmployeeWorkAreaJPanel extends javax.swing.JPanel {
         reqEBill.setFont(new java.awt.Font("Lucida Calligraphy", 0, 14)); // NOI18N
         reqEBill.setText("Input Appliances");
         reqEBill.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        reqEBill.setEnabled(false);
         reqEBill.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 reqEBillActionPerformed(evt);
@@ -94,16 +95,15 @@ public class MaintenanceEmployeeWorkAreaJPanel extends javax.swing.JPanel {
         });
         add(reqEBill, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 210, 240, 40));
 
-        payEBill.setFont(new java.awt.Font("Lucida Calligraphy", 0, 14)); // NOI18N
-        payEBill.setText("Pay Electricity Bill");
-        payEBill.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        payEBill.setEnabled(false);
-        payEBill.addActionListener(new java.awt.event.ActionListener() {
+        sensorInput.setFont(new java.awt.Font("Lucida Calligraphy", 0, 14)); // NOI18N
+        sensorInput.setText("Sensor Input");
+        sensorInput.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        sensorInput.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                payEBillActionPerformed(evt);
+                sensorInputActionPerformed(evt);
             }
         });
-        add(payEBill, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 270, 240, 40));
+        add(sensorInput, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 270, 240, 40));
     }// </editor-fold>//GEN-END:initComponents
 
     private void backJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backJButtonActionPerformed
@@ -115,7 +115,7 @@ public class MaintenanceEmployeeWorkAreaJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_backJButtonActionPerformed
 
     private void btnAccessActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAccessActionPerformed
-        RequestMaintenanceAccessJPanel requestMaintenanceAccessJPanel = new RequestMaintenanceAccessJPanel(userProcessContainer,enterprise,userAccount, organization,person);
+        RequestMaintenanceAccessJPanel requestMaintenanceAccessJPanel = new RequestMaintenanceAccessJPanel(userProcessContainer, enterprise, userAccount, organization, person);
         userProcessContainer.add("requestAccessJPanel", requestMaintenanceAccessJPanel);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer);
@@ -123,30 +123,36 @@ public class MaintenanceEmployeeWorkAreaJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_btnAccessActionPerformed
 
     private void reqEBillActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reqEBillActionPerformed
-//        RequestEBillJPanel requestEBillJPanel = new RequestEBillJPanel(userProcessContainer, organization);
-//        userProcessContainer.add("requestEBillJPanel", requestEBillJPanel);
-//
-//        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-//        layout.next(userProcessContainer);
+        for (Person p : organization.getPersonDirectory().getPersonList()) {
+            if (p.getName().equals(userAccount.getPerson().getName())) {
+                person = p;
+            }
+        }
+        System.out.println("person inside " + person);
+        InputAppliancesJPanel aawj = new InputAppliancesJPanel(userProcessContainer, userAccount, organization, enterprise, appliance, person);
+        userProcessContainer.add("aawj", aawj);
+
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
 
         // TODO add your handling code here:
     }//GEN-LAST:event_reqEBillActionPerformed
 
-    private void payEBillActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_payEBillActionPerformed
-//        PayEBillJPanel payEBillJPanel = new PayEBillJPanel(userProcessContainer,enterprise,sg);
-//        userProcessContainer.add("PayEBillJPanel", payEBillJPanel);
-//
-//        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-//        layout.next(userProcessContainer);
+    private void sensorInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sensorInputActionPerformed
+        SensorInputJPanel sensorInput = new SensorInputJPanel(userProcessContainer);
+        userProcessContainer.add("SensorInput", sensorInput);
+
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
         // TODO add your handling code here:
-    }//GEN-LAST:event_payEBillActionPerformed
+    }//GEN-LAST:event_sensorInputActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton backJButton;
     private javax.swing.JButton btnAccess;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JButton payEBill;
     private javax.swing.JButton reqEBill;
+    private javax.swing.JButton sensorInput;
     // End of variables declaration//GEN-END:variables
 }

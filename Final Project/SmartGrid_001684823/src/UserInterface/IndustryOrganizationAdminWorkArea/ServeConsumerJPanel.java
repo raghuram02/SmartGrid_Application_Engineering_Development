@@ -71,6 +71,7 @@ public class ServeConsumerJPanel extends javax.swing.JPanel {
         btnViewCDetails = new javax.swing.JButton();
         backJButton = new javax.swing.JButton();
         btnAppliances = new javax.swing.JButton();
+        payEBill = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 153));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -78,7 +79,7 @@ public class ServeConsumerJPanel extends javax.swing.JPanel {
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel2.setText("Serve Consumer");
         jLabel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 10, -1, 30));
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 30, -1, 30));
 
         consumerTbl.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -98,7 +99,7 @@ public class ServeConsumerJPanel extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(consumerTbl);
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 70, 540, 150));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 130, 530, 150));
 
         btnViewCDetails.setFont(new java.awt.Font("Lucida Calligraphy", 0, 14)); // NOI18N
         btnViewCDetails.setText("Customer Details");
@@ -108,7 +109,7 @@ public class ServeConsumerJPanel extends javax.swing.JPanel {
                 btnViewCDetailsActionPerformed(evt);
             }
         });
-        add(btnViewCDetails, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 250, 160, 30));
+        add(btnViewCDetails, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 310, 160, 30));
 
         backJButton.setFont(new java.awt.Font("Lucida Calligraphy", 0, 14)); // NOI18N
         backJButton.setText("<< Back");
@@ -118,17 +119,27 @@ public class ServeConsumerJPanel extends javax.swing.JPanel {
                 backJButtonActionPerformed(evt);
             }
         });
-        add(backJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 400, 100, 30));
+        add(backJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 390, 80, 30));
 
         btnAppliances.setFont(new java.awt.Font("Lucida Calligraphy", 0, 14)); // NOI18N
-        btnAppliances.setText("Appliances Status");
+        btnAppliances.setText("Appliances List");
         btnAppliances.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         btnAppliances.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAppliancesActionPerformed(evt);
             }
         });
-        add(btnAppliances, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 250, 160, 30));
+        add(btnAppliances, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 310, 150, 30));
+
+        payEBill.setFont(new java.awt.Font("Lucida Calligraphy", 0, 14)); // NOI18N
+        payEBill.setText("Updation of Appliances");
+        payEBill.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        payEBill.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                payEBillActionPerformed(evt);
+            }
+        });
+        add(payEBill, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 310, 190, 30));
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnViewCDetailsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewCDetailsActionPerformed
@@ -170,6 +181,14 @@ public class ServeConsumerJPanel extends javax.swing.JPanel {
 // TODO add your handling code here:
     }//GEN-LAST:event_btnAppliancesActionPerformed
 
+    private void payEBillActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_payEBillActionPerformed
+        AppliancesUpdationWorkAreaJPanel appliancesUpdationWorkAreaJPanel = new AppliancesUpdationWorkAreaJPanel(userProcessContainer, account, organization, enterprise);
+        userProcessContainer.add("AppliancesUpdationWorkAreaJPanel", appliancesUpdationWorkAreaJPanel);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
+        // TODO add your handling code here:
+    }//GEN-LAST:event_payEBillActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton backJButton;
@@ -178,5 +197,6 @@ public class ServeConsumerJPanel extends javax.swing.JPanel {
     private javax.swing.JTable consumerTbl;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JButton payEBill;
     // End of variables declaration//GEN-END:variables
 }

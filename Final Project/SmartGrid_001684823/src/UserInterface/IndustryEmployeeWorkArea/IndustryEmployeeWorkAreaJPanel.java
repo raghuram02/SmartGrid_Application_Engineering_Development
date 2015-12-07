@@ -36,7 +36,7 @@ public class IndustryEmployeeWorkAreaJPanel extends javax.swing.JPanel {
         this.enterprise = enterprise;
         this.organization = organization;
         this.userAccount = account;
-        this.person = person;
+        
      System.out.println("person inside workarea" + person);
     }
 
@@ -94,9 +94,8 @@ public class IndustryEmployeeWorkAreaJPanel extends javax.swing.JPanel {
         add(btnInputAppliances, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 210, 240, 40));
 
         payEBill.setFont(new java.awt.Font("Lucida Calligraphy", 0, 14)); // NOI18N
-        payEBill.setText("Pay Electricity Bill");
+        payEBill.setText("Sensor Input");
         payEBill.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        payEBill.setEnabled(false);
         payEBill.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 payEBillActionPerformed(evt);
@@ -122,7 +121,13 @@ public class IndustryEmployeeWorkAreaJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_btnAccessActionPerformed
 
     private void btnInputAppliancesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInputAppliancesActionPerformed
-     AddAppliancesWorkRequestJPanel aawj = new AddAppliancesWorkRequestJPanel(userProcessContainer,userAccount, organization,enterprise,appliance,person);
+        for (Person p : organization.getPersonDirectory().getPersonList()) {
+            if (p.getName().equals(userAccount.getPerson().getName())) {
+                person = p;
+            }
+        }
+        System.out.println("person inside " + person);
+        InputAppliancesJPanel aawj = new InputAppliancesJPanel(userProcessContainer, userAccount, organization, enterprise, appliance, person);
         userProcessContainer.add("aawj", aawj);
 
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
@@ -132,11 +137,11 @@ public class IndustryEmployeeWorkAreaJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_btnInputAppliancesActionPerformed
 
     private void payEBillActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_payEBillActionPerformed
-//        PayEBillJPanel payEBillJPanel = new PayEBillJPanel(userProcessContainer,enterprise,sg);
-//        userProcessContainer.add("PayEBillJPanel", payEBillJPanel);
-//
-//        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-//        layout.next(userProcessContainer);
+        SensorInputJPanel sensorInput = new SensorInputJPanel(userProcessContainer);
+        userProcessContainer.add("SensorInput", sensorInput);
+
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
         // TODO add your handling code here:
     }//GEN-LAST:event_payEBillActionPerformed
 

@@ -45,23 +45,22 @@ public class RequestAccessJPanel extends javax.swing.JPanel {
         DefaultTableModel model = (DefaultTableModel) workRequestJTable.getModel();
 
         model.setRowCount(0);
-        System.out.println("Work Req size:" + account.getWorkQueue().getWorkRequestList().size());
-        for (WorkRequest request : account.getWorkQueue().getWorkRequestList()) {
-            System.out.println("Sender:" + request.getSender().toString());
-//            System.out.println("User:" +((RequestAccessWorkRequest) request).getEmp().getName());
-//            if ((!(request.getSender().toString().isEmpty())) && (((RequestAccessWorkRequest) request).getReceiver().getPerson().getName().equals(account.getPerson().getName()))) {
-            Object[] row = new Object[8];
-            row[0] = ((RequestAccessWorkRequest) request).getRequestDate();
-            row[1] = request.getMessage();
-            row[2] = request.getReceiver() == null ? null : request.getReceiver().getPerson().getName();
-            row[3] = request.getStatus();
-            String result = ((WorkRequest) request).getResult();
-            row[4] = result == null ? "Waiting" : result;
-            row[5] = (request).getSender().getPerson().getName();
-            row[6] = ((RequestAccessWorkRequest) request).getId();
-            row[7] = request.getResolveDate();
 
-            model.addRow(row);
+        for (WorkRequest request : account.getWorkQueue().getWorkRequestList()) {
+            if (request instanceof RequestAccessWorkRequest) {
+                Object[] row = new Object[8];
+                row[0] = ((RequestAccessWorkRequest) request).getRequestDate();
+                row[1] = request.getMessage();
+                row[2] = request.getReceiver() == null ? null : request.getReceiver().getPerson().getName();
+                row[3] = request.getStatus();
+                String result = ((WorkRequest) request).getResult();
+                row[4] = result == null ? "Waiting" : result;
+                row[5] = (request).getSender().getPerson().getName();
+                row[6] = ((RequestAccessWorkRequest) request).getId();
+                row[7] = request.getResolveDate();
+
+                model.addRow(row);
+            }
         }
 //        }
 

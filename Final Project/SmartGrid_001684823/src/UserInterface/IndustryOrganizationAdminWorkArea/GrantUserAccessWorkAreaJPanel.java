@@ -31,14 +31,14 @@ public class GrantUserAccessWorkAreaJPanel extends javax.swing.JPanel {
     /**
      * Creates new form GrantUserAccessWorkAreaJPanel
      */
-    public GrantUserAccessWorkAreaJPanel(JPanel userProcessContainer, UserAccount account, 
+    public GrantUserAccessWorkAreaJPanel(JPanel userProcessContainer, UserAccount account,
             Organization organization, Enterprise enterprise) {
         initComponents();
 
         this.userProcessContainer = userProcessContainer;
         this.userAccount = account;
         this.enterprise = enterprise;
-        this.organization =  organization;
+        this.organization = organization;
 
         populateTable();
     }
@@ -49,16 +49,18 @@ public class GrantUserAccessWorkAreaJPanel extends javax.swing.JPanel {
         model.setRowCount(0);
 
         for (WorkRequest request : organization.getWorkQueue().getWorkRequestList()) {
-            if(userAccount.getUsername().equalsIgnoreCase(request.getReceiver().getUsername()))
-            {
-            Object[] row = new Object[4];
-            row[0] = request;
-            row[1] = request.getSender().getPerson().getName();
-            row[2] = request.getReceiver() == null ? null : request.getReceiver().getPerson().getName();
-            row[3] = request.getStatus();
+            if (request instanceof RequestAccessWorkRequest) {
+                if (userAccount.getUsername().equalsIgnoreCase(request.getReceiver().getUsername())) {
+                    Object[] row = new Object[4];
+                    row[0] = request;
+                    row[1] = request.getSender().getPerson().getName();
+                    row[2] = request.getReceiver() == null ? null : request.getReceiver().getPerson().getName();
+                    row[3] = request.getStatus();
 
-            model.addRow(row);
-        }}
+                    model.addRow(row);
+                }
+            }
+        }
     }
 
     /**
@@ -164,7 +166,10 @@ public class GrantUserAccessWorkAreaJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_processJButtonActionPerformed
 
     private void refreshJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshJButtonActionPerformed
+
         populateTable();
+
+
     }//GEN-LAST:event_refreshJButtonActionPerformed
 
     private void backJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backJButtonActionPerformed

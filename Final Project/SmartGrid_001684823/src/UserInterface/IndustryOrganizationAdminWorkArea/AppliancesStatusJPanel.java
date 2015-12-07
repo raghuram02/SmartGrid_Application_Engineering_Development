@@ -5,16 +5,15 @@
  */
 package UserInterface.IndustryOrganizationAdminWorkArea;
 
+import UserInterface.CommunityRuralOrganizationAdminWorkArea.*;
+import Business.Appliances.Appliance;
 import Business.Enterprise.Enterprise;
 import Business.Organization.Organization;
 import Business.Person.Person;
 import Business.SmartGrid;
 import Business.UserAccount.UserAccount;
-import Business.WorkQueue.AddAppliancesWorkRequest;
-import Business.WorkQueue.RequestAccessWorkRequest;
-import Business.WorkQueue.WorkRequest;
-import UserInterface.IndustryEmployeeWorkArea.PlaceRequestJPanel;
 import java.awt.CardLayout;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 
@@ -29,38 +28,33 @@ public class AppliancesStatusJPanel extends javax.swing.JPanel {
     private UserAccount account;
     private Enterprise enterprise;
     private Organization organization;
-    private Person p;
+    private Person person;
 
+//    private Appliance appliance;
     /**
      * Creates new form AppliancesStatusJPanel
      */
-    public AppliancesStatusJPanel(JPanel userProcessContainer, UserAccount account, Organization organization, Enterprise enterprise, Person p) {
+    public AppliancesStatusJPanel(JPanel userProcessContainer, UserAccount account, Organization organization, Enterprise enterprise, Person person) {
         initComponents();
+
         this.userProcessContainer = userProcessContainer;
-        this.account = account;
+//        this.appliance = appliance;
+        this.userProcessContainer = userProcessContainer;
         this.enterprise = enterprise;
         this.organization = organization;
-        this.p = p;
-        System.out.println("pppppppeee"+p);
-        populateRequestTable();
+        this.account = account;
+        this.person = person;
+        System.out.println("person inside IA" + person);
+        populateApplianceTable();
     }
 
-    public void populateRequestTable() {
-
-        DefaultTableModel model = (DefaultTableModel) workRequestJTable.getModel();
-
+    private void populateApplianceTable() {
+        DefaultTableModel model = (DefaultTableModel) applianceTbl.getModel();
         model.setRowCount(0);
-           for (WorkRequest request : account.getWorkQueue().getWorkRequestList()) {
-            Object[] row = new Object[7];
-            row[0] = ((AddAppliancesWorkRequest) request).getRequestDate();
-            row[1] = request.getMessage();
-            row[2] = request.getReceiver() == null ? null : request.getReceiver().getPerson().getName();
-            row[3] = request.getStatus();
-            String result = ((WorkRequest) request).getResult();
-            row[4] = result == null ? "Waiting" : result;
-            row[5] = (request).getSender().getPerson().getName();
-            row[6] = request.getResolveDate();
-
+        for (Appliance a : person.getAppliancesDirectory().getApplianceList()) {
+            Object[] row = new Object[2];
+            row[0] = a;
+            row[1] = a.getQuantity();
             model.addRow(row);
         }
     }
@@ -74,77 +68,26 @@ public class AppliancesStatusJPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jSlider1 = new javax.swing.JSlider();
-        jButton1 = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        workRequestJTable = new javax.swing.JTable();
-        btnAccessRequest = new javax.swing.JButton();
-        backJButton2 = new javax.swing.JButton();
         backJButton3 = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        applianceTbl = new javax.swing.JTable();
+        viewDetails = new javax.swing.JButton();
+        jLabel6 = new javax.swing.JLabel();
+        txtQuantity = new javax.swing.JTextField();
+        jLabel8 = new javax.swing.JLabel();
+        txtApplianceName = new javax.swing.JTextField();
+        btnUpdateStore = new javax.swing.JButton();
+        btnSave = new javax.swing.JButton();
+        refreshJButton1 = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 153));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jSlider1.setMajorTickSpacing(2);
-        jSlider1.setMaximum(20);
-        jSlider1.setPaintLabels(true);
-        jSlider1.setPaintTicks(true);
-        jSlider1.setSnapToTicks(true);
-        add(jSlider1, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 420, -1, -1));
-
-        jButton1.setText("jButton1");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-        add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 390, -1, -1));
-
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel3.setText("APPLIANCES STATUS");
         jLabel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 20, -1, -1));
-
-        workRequestJTable.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-                "Request Date", "Message", "Receiver", "Status", "Result", "Name", "Resolve Date"
-            }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false
-            };
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        jScrollPane1.setViewportView(workRequestJTable);
-
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 140, 630, 120));
-
-        btnAccessRequest.setFont(new java.awt.Font("Lucida Calligraphy", 0, 14)); // NOI18N
-        btnAccessRequest.setText("Request for Access");
-        btnAccessRequest.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        btnAccessRequest.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAccessRequestActionPerformed(evt);
-            }
-        });
-        add(btnAccessRequest, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 280, 160, 30));
-
-        backJButton2.setFont(new java.awt.Font("Lucida Calligraphy", 0, 14)); // NOI18N
-        backJButton2.setText("Refresh");
-        backJButton2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        backJButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                backJButton2ActionPerformed(evt);
-            }
-        });
-        add(backJButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 100, 80, 30));
+        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 20, -1, 20));
 
         backJButton3.setFont(new java.awt.Font("Lucida Calligraphy", 0, 14)); // NOI18N
         backJButton3.setText("<< Back");
@@ -154,25 +97,86 @@ public class AppliancesStatusJPanel extends javax.swing.JPanel {
                 backJButton3ActionPerformed(evt);
             }
         });
-        add(backJButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 280, 80, 30));
+        add(backJButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 490, 80, 30));
+
+        applianceTbl.setBackground(new java.awt.Color(102, 255, 51));
+        applianceTbl.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Appliance Name", "Quantity"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(applianceTbl);
+
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 80, 540, 230));
+
+        viewDetails.setFont(new java.awt.Font("Lucida Calligraphy", 0, 14)); // NOI18N
+        viewDetails.setText("View Details");
+        viewDetails.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        viewDetails.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                viewDetailsActionPerformed(evt);
+            }
+        });
+        add(viewDetails, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 420, 130, 30));
+
+        jLabel6.setFont(new java.awt.Font("Lucida Calligraphy", 0, 14)); // NOI18N
+        jLabel6.setText("Quantity");
+        add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 360, 140, 40));
+
+        txtQuantity.setFont(new java.awt.Font("Lucida Calligraphy", 0, 14)); // NOI18N
+        txtQuantity.setEnabled(false);
+        add(txtQuantity, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 360, 90, 30));
+
+        jLabel8.setFont(new java.awt.Font("Lucida Calligraphy", 0, 14)); // NOI18N
+        jLabel8.setText("Appliance Name");
+        add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 320, 200, 40));
+
+        txtApplianceName.setFont(new java.awt.Font("Lucida Calligraphy", 0, 14)); // NOI18N
+        txtApplianceName.setEnabled(false);
+        add(txtApplianceName, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 320, 240, 30));
+
+        btnUpdateStore.setFont(new java.awt.Font("Lucida Calligraphy", 0, 14)); // NOI18N
+        btnUpdateStore.setText("Update Details");
+        btnUpdateStore.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        btnUpdateStore.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUpdateStoreActionPerformed(evt);
+            }
+        });
+        add(btnUpdateStore, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 420, 140, 30));
+
+        btnSave.setFont(new java.awt.Font("Lucida Calligraphy", 0, 14)); // NOI18N
+        btnSave.setText("Save");
+        btnSave.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        btnSave.setEnabled(false);
+        btnSave.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSaveActionPerformed(evt);
+            }
+        });
+        add(btnSave, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 420, 70, 30));
+
+        refreshJButton1.setFont(new java.awt.Font("Lucida Calligraphy", 0, 14)); // NOI18N
+        refreshJButton1.setText("Refresh");
+        refreshJButton1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        refreshJButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                refreshJButton1ActionPerformed(evt);
+            }
+        });
+        add(refreshJButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 40, 70, 30));
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-        int value = jSlider1.getValue();
-    }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void btnAccessRequestActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAccessRequestActionPerformed
-        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-        userProcessContainer.add("RequestDetailsJPanel", new RequestDetailsJPanel(userProcessContainer, enterprise, account, organization, p));
-        layout.next(userProcessContainer);
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnAccessRequestActionPerformed
-
-    private void backJButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backJButton2ActionPerformed
-
-        populateRequestTable();
-    }//GEN-LAST:event_backJButton2ActionPerformed
 
     private void backJButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backJButton3ActionPerformed
         userProcessContainer.remove(this);
@@ -180,15 +184,74 @@ public class AppliancesStatusJPanel extends javax.swing.JPanel {
         layout.previous(userProcessContainer);    // TODO add your handling code here:
     }//GEN-LAST:event_backJButton3ActionPerformed
 
+    private void viewDetailsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewDetailsActionPerformed
+        int selectedRow = applianceTbl.getSelectedRow();
+        if (selectedRow >= 0) {
+            Appliance a = (Appliance) applianceTbl.getValueAt(selectedRow, 0);
+            txtApplianceName.setText(a.getApplianceName());
+            txtQuantity.setText(a.getQuantity());
+         } else {
+            JOptionPane.showMessageDialog(null, "Please select an entry from the table", "Warning", JOptionPane.INFORMATION_MESSAGE);
+        } 
+        // TODO add your handling code here:
+    }//GEN-LAST:event_viewDetailsActionPerformed
+
+    private void btnUpdateStoreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateStoreActionPerformed
+        txtApplianceName.setEnabled(true);
+        txtQuantity.setEnabled(true);
+        btnSave.setEnabled(true);
+        btnUpdateStore.setEnabled(false);
+    }//GEN-LAST:event_btnUpdateStoreActionPerformed
+
+    private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
+
+        if (txtApplianceName.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Enter a Customer Name");
+            return;
+        } else if (txtQuantity.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Enter a valid Address");
+            return;
+        }
+
+        //
+        //        } else if (!txtPhone.getText().matches("\\d+")) {
+        //            JOptionPane.showMessageDialog(null, "Enter a valid Phone Number");
+        //            return;
+        //        }
+        int selectedRow = applianceTbl.getSelectedRow();
+        Appliance a = (Appliance) applianceTbl.getValueAt(selectedRow, 0);
+        a.setApplianceName(txtApplianceName.getText());
+        a.setQuantity(txtQuantity.getText());
+
+//            p.setPhoneNumber(Integer.parseInt(txtPhone.getText()));
+        JOptionPane.showMessageDialog(null, "Customer Details saved successfully",
+                "Information", JOptionPane.INFORMATION_MESSAGE);
+
+        txtApplianceName.setEditable(false);
+        txtQuantity.setEditable(false);
+        btnSave.setEnabled(false);
+        btnUpdateStore.setEnabled(true);
+        populateApplianceTable();
+
+    }//GEN-LAST:event_btnSaveActionPerformed
+
+    private void refreshJButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshJButton1ActionPerformed
+     
+    }//GEN-LAST:event_refreshJButton1ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton backJButton2;
+    private javax.swing.JTable applianceTbl;
     private javax.swing.JButton backJButton3;
-    private javax.swing.JButton btnAccessRequest;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton btnSave;
+    private javax.swing.JButton btnUpdateStore;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JSlider jSlider1;
-    private javax.swing.JTable workRequestJTable;
+    private javax.swing.JButton refreshJButton1;
+    private javax.swing.JTextField txtApplianceName;
+    private javax.swing.JTextField txtQuantity;
+    private javax.swing.JButton viewDetails;
     // End of variables declaration//GEN-END:variables
 }

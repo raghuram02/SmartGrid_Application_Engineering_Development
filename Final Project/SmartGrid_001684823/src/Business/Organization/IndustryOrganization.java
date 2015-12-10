@@ -8,8 +8,6 @@ package Business.Organization;
 import Business.Role.IndustryEmployeeRole;
 import Business.Role.IndustryOrganizationAdmin;
 import Business.Role.Role;
-import static Business.Role.Role.RoleType.IndustryOrganizationAdmin;
-import Business.Role.RuralHouseHoldRole;
 import java.util.ArrayList;
 
 /**

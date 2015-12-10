@@ -6,8 +6,10 @@
 package Business.Organization;
 
 
+import Business.Appliances.AppliancesDirectory;
 import Business.Person.PersonDirectory;
 import Business.Role.Role;
+import Business.Sensors.SensorDirectory;
 import Business.UserAccount.UserAccountDirectory;
 import Business.WorkQueue.WorkQueue;
 import java.util.ArrayList;
@@ -23,6 +25,8 @@ public abstract class Organization {
     private WorkQueue workQueue;
     private PersonDirectory personDirectory;
     private UserAccountDirectory userAccountDirectory;
+    private SensorDirectory sensorDirectory;
+    private AppliancesDirectory appliancesDirectory;
     private int organizationID;
     private static int counter;
 
@@ -44,6 +48,8 @@ public abstract class Organization {
         this.name = name;
         workQueue = new WorkQueue();
         personDirectory = new PersonDirectory();  
+        appliancesDirectory = new AppliancesDirectory();  
+        sensorDirectory = new SensorDirectory();
         userAccountDirectory = new UserAccountDirectory();
         organizationID = counter;
         ++counter;
@@ -51,7 +57,21 @@ public abstract class Organization {
 
     public abstract ArrayList<Role> getSupportedRole();
 
-    
+    public SensorDirectory getSensorDirectory() {
+        return sensorDirectory;
+    }
+
+    public void setSensorDirectory(SensorDirectory sensorDirectory) {
+        this.sensorDirectory = sensorDirectory;
+    }
+
+    public AppliancesDirectory getAppliancesDirectory() {
+        return appliancesDirectory;
+    }
+
+    public void setAppliancesDirectory(AppliancesDirectory appliancesDirectory) {
+        this.appliancesDirectory = appliancesDirectory;
+    }
 
     public UserAccountDirectory getUserAccountDirectory() {
         return userAccountDirectory;

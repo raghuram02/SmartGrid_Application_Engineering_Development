@@ -7,11 +7,7 @@ package UserInterface.CommunityUrbanOrganizationAdminWorkArea;
 
 import Business.Enterprise.Enterprise;
 import Business.Organization.Organization;
-import Business.SmartGrid;
 import Business.UserAccount.UserAccount;
-import UserInterface.AdministrativeRole.ManageOrganizationJPanel;
-import UserInterface.AdministrativeRole.ManagePersonJPanel;
-import UserInterface.AdministrativeRole.ManageUserAccountJPanel;
 import java.awt.CardLayout;
 import javax.swing.JPanel;
 

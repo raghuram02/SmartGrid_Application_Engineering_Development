@@ -6,7 +6,6 @@
 package UserInterface.GovernmentOwnedMaintenanceEmployeeWorkAreaJPanel;
 
 import Business.Appliances.Appliance;
-import UserInterface.IndustryEmployeeWorkArea.*;
 import Business.Enterprise.Enterprise;
 import Business.Organization.Organization;
 import Business.Person.Person;
@@ -38,8 +37,29 @@ public class MaintenanceEmployeeWorkAreaJPanel extends javax.swing.JPanel {
         this.enterprise = enterprise;
         this.organization = organization;
         this.userAccount = account;
-        this.person = person;
+
         System.out.println("Enterprise" + enterprise);
+        populateLabel();
+    }
+
+    public void populateLabel() {
+
+        for (Person p : organization.getPersonDirectory().getPersonList()) {
+            valueLabel.setText(p.getName());
+            if (p.getName().equals(userAccount.getPerson().getName())) {
+                labelPhoto.setIcon(new javax.swing.JLabel() {
+                    public javax.swing.Icon getIcon() {
+                        try {
+                            return new javax.swing.ImageIcon(
+                                    new java.net.URL(p.getUrl())
+                            );
+                        } catch (java.net.MalformedURLException e) {
+                        }
+                        return null;
+                    }
+                }.getIcon());
+            }
+        }
     }
 
     /**
@@ -52,10 +72,12 @@ public class MaintenanceEmployeeWorkAreaJPanel extends javax.swing.JPanel {
     private void initComponents() {
 
         jLabel3 = new javax.swing.JLabel();
-        backJButton = new javax.swing.JButton();
         btnAccess = new javax.swing.JButton();
         reqEBill = new javax.swing.JButton();
         sensorInput = new javax.swing.JButton();
+        valueLabel = new javax.swing.JLabel();
+        labelPhoto = new javax.swing.JLabel();
+        btnGenerateConsumption = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 153));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -63,17 +85,7 @@ public class MaintenanceEmployeeWorkAreaJPanel extends javax.swing.JPanel {
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel3.setText("MAINTENANCE EMPLOYEE WORKAREA ");
         jLabel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 10, -1, -1));
-
-        backJButton.setFont(new java.awt.Font("Lucida Calligraphy", 0, 14)); // NOI18N
-        backJButton.setText("<< Back");
-        backJButton.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        backJButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                backJButtonActionPerformed(evt);
-            }
-        });
-        add(backJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 420, 70, 30));
+        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 10, -1, -1));
 
         btnAccess.setFont(new java.awt.Font("Lucida Calligraphy", 0, 14)); // NOI18N
         btnAccess.setText("Request Access");
@@ -83,7 +95,7 @@ public class MaintenanceEmployeeWorkAreaJPanel extends javax.swing.JPanel {
                 btnAccessActionPerformed(evt);
             }
         });
-        add(btnAccess, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 150, 240, 40));
+        add(btnAccess, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 280, 240, 40));
 
         reqEBill.setFont(new java.awt.Font("Lucida Calligraphy", 0, 14)); // NOI18N
         reqEBill.setText("Input Appliances");
@@ -93,7 +105,7 @@ public class MaintenanceEmployeeWorkAreaJPanel extends javax.swing.JPanel {
                 reqEBillActionPerformed(evt);
             }
         });
-        add(reqEBill, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 210, 240, 40));
+        add(reqEBill, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 340, 240, 40));
 
         sensorInput.setFont(new java.awt.Font("Lucida Calligraphy", 0, 14)); // NOI18N
         sensorInput.setText("Sensor Input");
@@ -103,16 +115,23 @@ public class MaintenanceEmployeeWorkAreaJPanel extends javax.swing.JPanel {
                 sensorInputActionPerformed(evt);
             }
         });
-        add(sensorInput, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 270, 240, 40));
+        add(sensorInput, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 400, 240, 40));
+
+        valueLabel.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        valueLabel.setText("<value>");
+        add(valueLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 230, 90, 30));
+        add(labelPhoto, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 50, 160, 160));
+
+        btnGenerateConsumption.setFont(new java.awt.Font("Lucida Calligraphy", 0, 14)); // NOI18N
+        btnGenerateConsumption.setText("Consumption");
+        btnGenerateConsumption.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        btnGenerateConsumption.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGenerateConsumptionActionPerformed(evt);
+            }
+        });
+        add(btnGenerateConsumption, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 460, 240, 40));
     }// </editor-fold>//GEN-END:initComponents
-
-    private void backJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backJButtonActionPerformed
-
-        userProcessContainer.remove(this);
-        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-        layout.previous(userProcessContainer);
-
-    }//GEN-LAST:event_backJButtonActionPerformed
 
     private void btnAccessActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAccessActionPerformed
         RequestMaintenanceAccessJPanel requestMaintenanceAccessJPanel = new RequestMaintenanceAccessJPanel(userProcessContainer, enterprise, userAccount, organization, person);
@@ -139,7 +158,7 @@ public class MaintenanceEmployeeWorkAreaJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_reqEBillActionPerformed
 
     private void sensorInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sensorInputActionPerformed
-        SensorInputJPanel sensorInput = new SensorInputJPanel(userProcessContainer);
+        SensorInputJPanel sensorInput = new SensorInputJPanel(userProcessContainer, userAccount, organization);
         userProcessContainer.add("SensorInput", sensorInput);
 
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
@@ -147,12 +166,22 @@ public class MaintenanceEmployeeWorkAreaJPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_sensorInputActionPerformed
 
+    private void btnGenerateConsumptionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGenerateConsumptionActionPerformed
+        GenerateConsumptionJPanel generateConsumption = new GenerateConsumptionJPanel(userProcessContainer, userAccount, organization);
+        userProcessContainer.add("generateConsumption", generateConsumption);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnGenerateConsumptionActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton backJButton;
     private javax.swing.JButton btnAccess;
+    private javax.swing.JButton btnGenerateConsumption;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel labelPhoto;
     private javax.swing.JButton reqEBill;
     private javax.swing.JButton sensorInput;
+    private javax.swing.JLabel valueLabel;
     // End of variables declaration//GEN-END:variables
 }

@@ -236,6 +236,8 @@ public class IndustryUserSignupJPanel extends javax.swing.JPanel {
             }
         });
         add(txtAttach, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 70, 140, 20));
+
+        labelPhoto.setToolTipText("");
         add(labelPhoto, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 60, 160, 160));
 
         btnAttach.setFont(new java.awt.Font("Lucida Calligraphy", 0, 14)); // NOI18N
@@ -246,7 +248,7 @@ public class IndustryUserSignupJPanel extends javax.swing.JPanel {
                 btnAttachActionPerformed(evt);
             }
         });
-        add(btnAttach, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 70, 120, -1));
+        add(btnAttach, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 60, 130, 30));
 
         jLabel13.setFont(new java.awt.Font("Lucida Calligraphy", 0, 14)); // NOI18N
         jLabel13.setText("Enterprise Name");
@@ -375,12 +377,15 @@ public class IndustryUserSignupJPanel extends javax.swing.JPanel {
         p.setPhoneNumber(phoneNumber);
         p.setTIN(TIN);
         p.setPassword(password);
+        p.setUrl(txtAttach.getText());
         p.setUserName(userName);
         for (Organization.Type type : Organization.Type.values()) {
             if (type.getValue().equals(Organization.Type.Industry.getValue())) {
                 organization.getUserAccountDirectory().createUserAccount(userName, password, p, new IndustryEmployeeRole());
             }
         }
+        
+        System.out.println("URL"+p.getUrl() + labelPhoto.getText());
 
     }//GEN-LAST:event_btnCreateActionPerformed
 
@@ -389,13 +394,24 @@ public class IndustryUserSignupJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_txtAttachActionPerformed
 
     private void btnAttachActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAttachActionPerformed
-        JFileChooser jfc = new JFileChooser();
-        jfc.showOpenDialog(null);
-        File file = jfc.getSelectedFile();
-        String filename = file.getPath();
-        txtAttach.setText(filename);
-        ImageIcon icon = new ImageIcon(filename);
-        labelPhoto.setIcon(icon);
+        /* JFileChooser jfc = new JFileChooser();
+         jfc.showOpenDialog(null);
+         File file = jfc.getSelectedFile();
+         String filename = file.getPath();
+         txtAttach.setText(filename);*/
+        labelPhoto.setIcon(new javax.swing.JLabel() {
+            public javax.swing.Icon getIcon() {
+                try {
+                    return new javax.swing.ImageIcon(
+                            new java.net.URL(txtAttach.getText())
+                    );
+                } catch (java.net.MalformedURLException e) {
+                }
+                return null;
+            }
+        }.getIcon());
+//        ImageIcon icon = new ImageIcon(filename);
+//        labelPhoto.setIcon(icon);
 
         // TODO add your handling code here:
     }//GEN-LAST:event_btnAttachActionPerformed

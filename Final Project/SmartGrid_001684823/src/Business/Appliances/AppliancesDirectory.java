@@ -24,9 +24,11 @@ public class AppliancesDirectory {
     }
 
     public Appliance createAppliance(String applianceName) {
-        Appliance a = new Appliance();
-        a.setApplianceName(applianceName);
+        Appliance a = new Appliance(applianceName);
         applianceList.add(a);
         return a;
+    }
+     public void deleteAppliance(Appliance appliance) {
+        applianceList.remove(appliance);
     }
 }

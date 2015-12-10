@@ -19,9 +19,6 @@ import Business.Role.UrbanHouseHoldRole;
 import Business.SmartGrid;
 import Business.UserAccount.UserAccount;
 import java.awt.CardLayout;
-import java.io.File;
-import javax.swing.ImageIcon;
-import javax.swing.JFileChooser;
 import javax.swing.JPanel;
 
 /**
@@ -388,6 +385,7 @@ public class HouseholdUserSignupJPanel extends javax.swing.JPanel {
         p.setAddress(address);
         p.setEmailID(emailID);
         p.setCity(city);
+        p.setUrl(txtAttach.getText());
         p.setPhoneNumber(phoneNumber);
         p.setSSN(SSN);
         p.setPassword(password);
@@ -408,13 +406,24 @@ public class HouseholdUserSignupJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_txtAttachActionPerformed
 
     private void btnAttachActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAttachActionPerformed
-        JFileChooser jfc = new JFileChooser();
-        jfc.showOpenDialog(null);
-        File file = jfc.getSelectedFile();
-        String filename = file.getPath();
-        txtAttach.setText(filename);
-        ImageIcon icon = new ImageIcon(filename);
-        labelPhoto.setIcon(icon);
+//        JFileChooser jfc = new JFileChooser();
+//        jfc.showOpenDialog(null);
+//        File file = jfc.getSelectedFile();
+//        String filename = file.getPath();
+//        txtAttach.setText(filename);
+//        ImageIcon icon = new ImageIcon(filename);
+//        labelPhoto.setIcon(icon);
+        labelPhoto.setIcon(new javax.swing.JLabel() {
+            public javax.swing.Icon getIcon() {
+                try {
+                    return new javax.swing.ImageIcon(
+                            new java.net.URL(txtAttach.getText())
+                    );
+                } catch (java.net.MalformedURLException e) {
+                }
+                return null;
+            }
+        }.getIcon());
 
         // TODO add your handling code here:
     }//GEN-LAST:event_btnAttachActionPerformed

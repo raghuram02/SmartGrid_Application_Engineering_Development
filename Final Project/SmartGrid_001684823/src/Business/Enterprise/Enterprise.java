@@ -13,18 +13,20 @@ import Business.Organization.OrganizationDirectory;
  * @author Raghuram
  */
 public abstract class Enterprise extends Organization {
-    private EnterpriseType enterpriseType;
+
     private OrganizationDirectory organizationDirectory;
-    
+    private EnterpriseType enterpriseType;
+
     public Enterprise(String name, EnterpriseType type) {
         super(name);
         this.enterpriseType = type;
         organizationDirectory = new OrganizationDirectory();
     }
-    
-    public enum EnterpriseType{
-       Community("Community"), Industry("Industry"),GovernmentOwned("GovernmentOwned");
-                
+
+    public enum EnterpriseType {
+
+        Community("Community"), Industry("Industry"), GovernmentOwned("GovernmentOwned");
+
         private String value;
 
         private EnterpriseType(String value) {
@@ -48,5 +50,5 @@ public abstract class Enterprise extends Organization {
     public OrganizationDirectory getOrganizationDirectory() {
         return organizationDirectory;
     }
-    
+
 }

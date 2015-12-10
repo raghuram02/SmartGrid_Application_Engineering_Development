@@ -32,19 +32,19 @@ public class PersonDirectory {
         personDirectory.add(person);
         return person;
     }
-     public void deletePerson(Person person)
-{
-personDirectory.remove(person);  
-}
-     public Person searchPerson(String name){
-        for(Person a : personDirectory)
-        {
-            if(a.getName().equalsIgnoreCase(name)){
-                return a;
-            
-        }
+
+    public void deletePerson(Person person) {
+        personDirectory.remove(person);
     }
-    return null;
+
+    public Person searchPerson(String name) {
+        for (Person a : personDirectory) {
+            if (a.getName().equalsIgnoreCase(name)) {
+                return a;
+
+            }
+        }
+        return null;
     }
 
 }

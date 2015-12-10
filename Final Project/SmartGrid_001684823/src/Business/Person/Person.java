@@ -13,7 +13,11 @@ import Business.Appliances.AppliancesDirectory;
  */
 public class Person {
 
+    private String url;
+    private float totalAmount;
+
     private String name;
+
     private String industryName;
     private String emailID;
     private int phoneNumber;
@@ -23,6 +27,7 @@ public class Person {
     private int SSN;
     private String userName;
     private String password;
+
     private AppliancesDirectory appliancesDirectory;
 
     public AppliancesDirectory getAppliancesDirectory() {
@@ -37,6 +42,14 @@ public class Person {
         appliancesDirectory = new AppliancesDirectory();
         id = count;
         count++;
+    }
+
+    public float getTotalAmount() {
+        return totalAmount;
+    }
+
+    public void setTotalAmount(float totalAmount) {
+        this.totalAmount = totalAmount;
     }
 
     public int getSSN() {
@@ -60,6 +73,14 @@ public class Person {
 
     public int getId() {
         return id;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
     }
 
     public void setName(String name) {

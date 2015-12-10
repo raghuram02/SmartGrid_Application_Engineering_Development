@@ -6,11 +6,11 @@
 package UserInterface.CommunityRuralHouseholdWorkArea;
 
 import Business.Enterprise.Enterprise;
-import Business.Organization.IndustryOrganization;
 import Business.Organization.Organization;
+import Business.Organization.RuralOrganization;
 import Business.Person.Person;
-import Business.Role.IndustryOrganizationAdmin;
 import Business.Role.Role;
+import Business.Role.RuralOrganizationAdmin;
 import Business.UserAccount.UserAccount;
 import Business.WorkQueue.UpdateAppliancesWorkRequest;
 import Business.WorkQueue.WorkRequest;
@@ -50,7 +50,7 @@ public class RequestAppliancesUpdationJPanel extends javax.swing.JPanel {
         organizationJComboBox.removeAllItems();
 
         for (Organization organization : enterprise.getOrganizationDirectory().getOrganizationList()) {
-            if (organization instanceof IndustryOrganization) {
+            if (organization instanceof RuralOrganization) {
                 organizationJComboBox.addItem(organization);
             }
         }
@@ -61,7 +61,7 @@ public class RequestAppliancesUpdationJPanel extends javax.swing.JPanel {
 
         for (UserAccount userAccount : organization.getUserAccountDirectory().getUserAccountList()) {
             for (Role role : organization.getSupportedRole()) {
-                if (role instanceof IndustryOrganizationAdmin) {
+                if (role instanceof RuralOrganizationAdmin) {
                     employeeJComboBox.addItem(userAccount);
                 }
             }
@@ -118,7 +118,7 @@ public class RequestAppliancesUpdationJPanel extends javax.swing.JPanel {
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel2.setText("REQUEST APPLIANCES UPDATION");
+        jLabel2.setText("REQUEST RURAL APPLIANCES UPDATION");
         jLabel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 10, -1, -1));
 
@@ -234,6 +234,7 @@ public class RequestAppliancesUpdationJPanel extends javax.swing.JPanel {
 
     private void requestTestJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_requestTestJButtonActionPerformed
         UserAccount UA = (UserAccount) employeeJComboBox.getSelectedItem();
+        System.out.println("User acc" + UA);
         String message = messageJTextField.getText();
         if (messageJTextField.getText().isEmpty()) {
             JOptionPane.showMessageDialog(null, "Enter a valid Message");
@@ -250,17 +251,21 @@ public class RequestAppliancesUpdationJPanel extends javax.swing.JPanel {
         request.setReceiver(UA);
         request.setStatus("Sent");
         request.setEmp(person);
+        System.out.println("Person" + person);
 
         Organization org = null;
         for (Organization organization : enterprise.getOrganizationDirectory().getOrganizationList()) {
-            if (organization instanceof IndustryOrganization) {
+            if (organization instanceof RuralOrganization) {
                 org = organization;
+                System.out.println("Organization" + organization);
+                System.out.println("Organization" + org);
                 break;
             }
         }
         if (org != null) {
             org.getWorkQueue().getWorkRequestList().add(request);
             account.getWorkQueue().getWorkRequestList().add(request);
+            System.out.println("account" + account);
         }
 
         JOptionPane.showMessageDialog(null, "Request message sent");

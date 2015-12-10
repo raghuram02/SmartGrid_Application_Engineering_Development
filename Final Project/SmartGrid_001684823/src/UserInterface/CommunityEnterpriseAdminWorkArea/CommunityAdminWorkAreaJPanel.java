@@ -52,7 +52,7 @@ JPanel userProcessContainer;
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel2.setText("MY WORK AREA - COMMUNITY ADMIN ROLE");
         jLabel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 40, -1, -1));
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 50, -1, -1));
 
         manageOrganizationJButton2.setFont(new java.awt.Font("Lucida Calligraphy", 0, 14)); // NOI18N
         manageOrganizationJButton2.setText("Manage Organization");
@@ -62,7 +62,7 @@ JPanel userProcessContainer;
                 manageOrganizationJButton2ActionPerformed(evt);
             }
         });
-        add(manageOrganizationJButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 220, 240, -1));
+        add(manageOrganizationJButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 230, 240, 40));
 
         manageEmployeeJButton2.setFont(new java.awt.Font("Lucida Calligraphy", 0, 14)); // NOI18N
         manageEmployeeJButton2.setText("Manage Person");
@@ -72,7 +72,7 @@ JPanel userProcessContainer;
                 manageEmployeeJButton2ActionPerformed(evt);
             }
         });
-        add(manageEmployeeJButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 270, 240, -1));
+        add(manageEmployeeJButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 290, 240, 40));
 
         userJButton2.setFont(new java.awt.Font("Lucida Calligraphy", 0, 14)); // NOI18N
         userJButton2.setText("Manage User");
@@ -82,16 +82,16 @@ JPanel userProcessContainer;
                 userJButton2ActionPerformed(evt);
             }
         });
-        add(userJButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 320, 240, -1));
+        add(userJButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 350, 240, 40));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel1.setText("Enterprise");
         jLabel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 140, -1, 30));
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 150, -1, 30));
 
         valueLabel.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         valueLabel.setText("<value>");
-        add(valueLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 140, 240, 30));
+        add(valueLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 150, 240, 30));
     }// </editor-fold>//GEN-END:initComponents
 
     private void manageOrganizationJButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_manageOrganizationJButton2ActionPerformed

@@ -10,8 +10,18 @@ package Business.Appliances;
  * @author Raghuram
  */
 public class Appliance {
+
     private String applianceName;
-    private String quantity;
+    private int quantity;
+
+    
+    private ApplianceType applianceType;
+
+    public Appliance(String name) {
+
+        this.applianceName = name;
+
+    }
 
     public String getApplianceName() {
         return applianceName;
@@ -21,15 +31,37 @@ public class Appliance {
         this.applianceName = applianceName;
     }
 
-    public String getQuantity() {
+   
+
+    public int getQuantity() {
         return quantity;
     }
 
-    public void setQuantity(String quantity) {
+    public void setQuantity(int quantity) {
         this.quantity = quantity;
     }
 
-    
-    
-    
+    public enum ApplianceType {
+
+        LightDutyAppliance("LightDutyAppliance"), MediumDutyAppliance("MediumDutyAppliance"), HeavyDutyAppliance("HeavyDutyAppliance"),
+        TV("TV"), Fridge("Fridge"), Motor("Motor"), WashingMachine("WashingMachine"), Blender("Blender"), Heater("Heater"),
+        Computer("Computer"), Oven("Oven"), AirConditioner("AirConditioner"), OtherPluggableDevices("OtherPluggableDevices");
+
+        private String value;
+
+        private ApplianceType(String value) {
+            this.value = value;
+        }
+
+        public String getValue() {
+            return value;
+        }
+
+    }
+
+    @Override
+    public String toString() {
+        return applianceName;
+    }
+
 }

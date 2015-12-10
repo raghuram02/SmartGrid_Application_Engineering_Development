@@ -254,7 +254,7 @@ public class RequestAppliancesUpdationJPanel extends javax.swing.JPanel {
 
         Organization org = null;
         for (Organization organization : enterprise.getOrganizationDirectory().getOrganizationList()) {
-            if (organization instanceof IndustryOrganization) {
+            if (organization instanceof PublicOrganization) {
                 org = organization;
                 break;
             }

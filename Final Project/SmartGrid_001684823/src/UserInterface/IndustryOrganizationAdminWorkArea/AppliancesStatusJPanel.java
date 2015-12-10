@@ -79,7 +79,7 @@ public class AppliancesStatusJPanel extends javax.swing.JPanel {
         txtApplianceName = new javax.swing.JTextField();
         btnUpdateStore = new javax.swing.JButton();
         btnSave = new javax.swing.JButton();
-        refreshJButton1 = new javax.swing.JButton();
+        btnDelete = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 153));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -128,23 +128,23 @@ public class AppliancesStatusJPanel extends javax.swing.JPanel {
                 viewDetailsActionPerformed(evt);
             }
         });
-        add(viewDetails, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 420, 130, 30));
+        add(viewDetails, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 130, 110, 30));
 
         jLabel6.setFont(new java.awt.Font("Lucida Calligraphy", 0, 14)); // NOI18N
         jLabel6.setText("Quantity");
-        add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 360, 140, 40));
+        add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 360, 140, 40));
 
         txtQuantity.setFont(new java.awt.Font("Lucida Calligraphy", 0, 14)); // NOI18N
         txtQuantity.setEnabled(false);
-        add(txtQuantity, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 360, 90, 30));
+        add(txtQuantity, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 360, 90, 30));
 
         jLabel8.setFont(new java.awt.Font("Lucida Calligraphy", 0, 14)); // NOI18N
         jLabel8.setText("Appliance Name");
-        add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 320, 200, 40));
+        add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 320, 200, 40));
 
         txtApplianceName.setFont(new java.awt.Font("Lucida Calligraphy", 0, 14)); // NOI18N
         txtApplianceName.setEnabled(false);
-        add(txtApplianceName, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 320, 240, 30));
+        add(txtApplianceName, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 320, 240, 30));
 
         btnUpdateStore.setFont(new java.awt.Font("Lucida Calligraphy", 0, 14)); // NOI18N
         btnUpdateStore.setText("Update Details");
@@ -154,7 +154,7 @@ public class AppliancesStatusJPanel extends javax.swing.JPanel {
                 btnUpdateStoreActionPerformed(evt);
             }
         });
-        add(btnUpdateStore, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 420, 140, 30));
+        add(btnUpdateStore, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 420, 140, 30));
 
         btnSave.setFont(new java.awt.Font("Lucida Calligraphy", 0, 14)); // NOI18N
         btnSave.setText("Save");
@@ -165,17 +165,17 @@ public class AppliancesStatusJPanel extends javax.swing.JPanel {
                 btnSaveActionPerformed(evt);
             }
         });
-        add(btnSave, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 420, 70, 30));
+        add(btnSave, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 420, 70, 30));
 
-        refreshJButton1.setFont(new java.awt.Font("Lucida Calligraphy", 0, 14)); // NOI18N
-        refreshJButton1.setText("Refresh");
-        refreshJButton1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        refreshJButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnDelete.setFont(new java.awt.Font("Lucida Calligraphy", 0, 14)); // NOI18N
+        btnDelete.setText("Delete");
+        btnDelete.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        btnDelete.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                refreshJButton1ActionPerformed(evt);
+                btnDeleteActionPerformed(evt);
             }
         });
-        add(refreshJButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 40, 70, 30));
+        add(btnDelete, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 230, 110, 30));
     }// </editor-fold>//GEN-END:initComponents
 
     private void backJButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backJButton3ActionPerformed
@@ -189,10 +189,10 @@ public class AppliancesStatusJPanel extends javax.swing.JPanel {
         if (selectedRow >= 0) {
             Appliance a = (Appliance) applianceTbl.getValueAt(selectedRow, 0);
             txtApplianceName.setText(a.getApplianceName());
-            txtQuantity.setText(a.getQuantity());
-         } else {
+            txtQuantity.setText(String.valueOf(a.getQuantity()));
+        } else {
             JOptionPane.showMessageDialog(null, "Please select an entry from the table", "Warning", JOptionPane.INFORMATION_MESSAGE);
-        } 
+        }
         // TODO add your handling code here:
     }//GEN-LAST:event_viewDetailsActionPerformed
 
@@ -221,7 +221,7 @@ public class AppliancesStatusJPanel extends javax.swing.JPanel {
         int selectedRow = applianceTbl.getSelectedRow();
         Appliance a = (Appliance) applianceTbl.getValueAt(selectedRow, 0);
         a.setApplianceName(txtApplianceName.getText());
-        a.setQuantity(txtQuantity.getText());
+        a.setQuantity(Integer.parseInt(txtQuantity.getText()));
 
 //            p.setPhoneNumber(Integer.parseInt(txtPhone.getText()));
         JOptionPane.showMessageDialog(null, "Customer Details saved successfully",
@@ -235,21 +235,31 @@ public class AppliancesStatusJPanel extends javax.swing.JPanel {
 
     }//GEN-LAST:event_btnSaveActionPerformed
 
-    private void refreshJButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshJButton1ActionPerformed
-     
-    }//GEN-LAST:event_refreshJButton1ActionPerformed
+    private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
+        int selectedRow = applianceTbl.getSelectedRow();
+        if (selectedRow < 0) {
+            JOptionPane.showMessageDialog(null, "Please select the appliance from the table!!!", "Information", JOptionPane.INFORMATION_MESSAGE);
+        } else {
 
+            int dialogResult = JOptionPane.showConfirmDialog(null, "Do you want to delete the appliance associated with the customer", "Warning", JOptionPane.YES_NO_OPTION);
+            if (dialogResult == JOptionPane.YES_OPTION) {
+                Appliance a = (Appliance) applianceTbl.getValueAt(selectedRow, 0);
+                person.getAppliancesDirectory().deleteAppliance(a);
+                populateApplianceTable();
+    }//GEN-LAST:event_btnDeleteActionPerformed
+        }
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable applianceTbl;
     private javax.swing.JButton backJButton3;
+    private javax.swing.JButton btnDelete;
     private javax.swing.JButton btnSave;
     private javax.swing.JButton btnUpdateStore;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JButton refreshJButton1;
     private javax.swing.JTextField txtApplianceName;
     private javax.swing.JTextField txtQuantity;
     private javax.swing.JButton viewDetails;

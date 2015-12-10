@@ -5,7 +5,6 @@
  */
 package UserInterface.CommunityUrbanHouseholdWorkArea;
 
-import UserInterface.IndustryEmployeeWorkArea.*;
 import Business.Appliances.Appliance;
 import Business.Appliances.AppliancesDirectory;
 import Business.Enterprise.Enterprise;
@@ -14,9 +13,6 @@ import Business.Person.Person;
 import Business.UserAccount.UserAccount;
 import Business.WorkQueue.UpdateAppliancesWorkRequest;
 import java.awt.CardLayout;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 
@@ -89,7 +85,7 @@ public class InputAppliancesJPanel extends javax.swing.JPanel {
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel2.setText("INPUT APPLIANCES");
         jLabel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 20, -1, -1));
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 10, -1, -1));
 
         applianceTbl.setBackground(new java.awt.Color(102, 255, 51));
         applianceTbl.setModel(new javax.swing.table.DefaultTableModel(
@@ -110,11 +106,11 @@ public class InputAppliancesJPanel extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(applianceTbl);
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 50, 540, 280));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 50, 730, 280));
 
         jLabel1.setFont(new java.awt.Font("Lucida Calligraphy", 0, 14)); // NOI18N
         jLabel1.setText("Quantity");
-        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 390, -1, 30));
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 380, -1, 30));
 
         quantityComboBox.setFont(new java.awt.Font("Lucida Calligraphy", 0, 14)); // NOI18N
         quantityComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", " ", " " }));
@@ -123,11 +119,11 @@ public class InputAppliancesJPanel extends javax.swing.JPanel {
                 quantityComboBoxActionPerformed(evt);
             }
         });
-        add(quantityComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 390, 50, -1));
+        add(quantityComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 380, 50, -1));
 
         jLabel3.setFont(new java.awt.Font("Lucida Calligraphy", 0, 14)); // NOI18N
         jLabel3.setText("Appliance Name");
-        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 350, -1, 30));
+        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 340, -1, 30));
 
         submitJButton.setFont(new java.awt.Font("Lucida Calligraphy", 0, 14)); // NOI18N
         submitJButton.setText("Submit");
@@ -137,7 +133,7 @@ public class InputAppliancesJPanel extends javax.swing.JPanel {
                 submitJButtonActionPerformed(evt);
             }
         });
-        add(submitJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 440, 90, 30));
+        add(submitJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 440, 90, 30));
 
         backJButton.setFont(new java.awt.Font("Lucida Calligraphy", 0, 14)); // NOI18N
         backJButton.setText("<< Back");
@@ -147,16 +143,16 @@ public class InputAppliancesJPanel extends javax.swing.JPanel {
                 backJButtonActionPerformed(evt);
             }
         });
-        add(backJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 490, 80, 30));
+        add(backJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 480, 80, 30));
 
         applianceComboBox1.setFont(new java.awt.Font("Lucida Calligraphy", 0, 14)); // NOI18N
-        applianceComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Computer", "Fridge", "Heater", "Air Conditioner", "Other Pluggable Appliances", "Light Duty Appliances", "Television", "Washing Machine", " " }));
+        applianceComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "LightDutyAppliance", "TV", "Blender", "Oven", "Fridge", "Heater", "AirConditioner", "OtherPluggableDevices", "WashingMachine", "Computer", " ", " " }));
         applianceComboBox1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 applianceComboBox1ActionPerformed(evt);
             }
         });
-        add(applianceComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 350, 200, 30));
+        add(applianceComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 340, 200, 30));
 
         backJButton4.setFont(new java.awt.Font("Lucida Calligraphy", 0, 14)); // NOI18N
         backJButton4.setText("Request Updation of Appliances");
@@ -166,20 +162,17 @@ public class InputAppliancesJPanel extends javax.swing.JPanel {
                 backJButton4ActionPerformed(evt);
             }
         });
-        add(backJButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 440, 250, 30));
+        add(backJButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 480, 250, 30));
     }// </editor-fold>//GEN-END:initComponents
 
     private void submitJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitJButtonActionPerformed
 
-        
-
-       
         String applianceName = (String) applianceComboBox1.getSelectedItem();
         String quantity = (String) quantityComboBox.getSelectedItem();
 
         Appliance a = person.getAppliancesDirectory().createAppliance(applianceName);
         a.setApplianceName(applianceName);
-        a.setQuantity(quantity);
+        a.setQuantity(Integer.parseInt(quantity));
         populateApplianceTable();
 
     }//GEN-LAST:event_submitJButtonActionPerformed

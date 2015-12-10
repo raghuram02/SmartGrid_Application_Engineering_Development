@@ -4,17 +4,13 @@
  */
 package UserInterface.IndustryEnterpriseAdminWorkArea;
 
-import UserInterface.GovernmentOwnedEnterpriseAdminWorkArea.*;
-import UserInterface.AdministrativeRole.*;
 import Business.Enterprise.Enterprise;
+import Business.Enterprise.IndustryEnterprise;
 import Business.Network.Network;
 import Business.Organization.Organization;
-import Business.Organization.OrganizationDirectory;
 import Business.Person.Person;
 import Business.Role.IndustryOrganizationAdmin;
-import Business.Role.PublicOrganizationAdmin;
 import Business.Role.Role;
-import static Business.Role.Role.RoleType.IndustryOrganizationAdmin;
 import Business.SmartGrid;
 import Business.UserAccount.UserAccount;
 import java.awt.CardLayout;
@@ -33,9 +29,8 @@ public class ManageUserAccountJPanel extends javax.swing.JPanel {
     private JPanel container;
     private SmartGrid sg;
     private Enterprise enterprise;
-   
 
-    public ManageUserAccountJPanel(JPanel container,Enterprise enterprise,SmartGrid sg) {
+    public ManageUserAccountJPanel(JPanel container, Enterprise enterprise, SmartGrid sg) {
         initComponents();
         this.enterprise = enterprise;
         this.container = container;
@@ -50,20 +45,23 @@ public class ManageUserAccountJPanel extends javax.swing.JPanel {
         networkJComboBox.removeAllItems();
         enterpriseTypeJComboBox.removeAllItems();
         enterpriseJComboBox.removeAllItems();
-       
 
         for (Network network : sg.getNetworkList()) {
             networkJComboBox.addItem(network);
         }
 
         for (Enterprise.EnterpriseType type : Enterprise.EnterpriseType.values()) {
-            enterpriseTypeJComboBox.addItem(type);
+            if (type.equals(Enterprise.EnterpriseType.Industry)) {
+                enterpriseTypeJComboBox.addItem(type);
+            }
         }
         for (Network network : sg.getNetworkList()) {
             for (Enterprise enterprise : network.getEnterpriseDirectory().getEnterpriseList()) {
-                enterpriseJComboBox.addItem(enterprise);
+                if (enterprise instanceof IndustryEnterprise) {
+                    enterpriseJComboBox.addItem(enterprise);
+                }
+
             }
-            
         }
     }
 
@@ -86,9 +84,10 @@ public class ManageUserAccountJPanel extends javax.swing.JPanel {
     private void populateRoleComboBox(Organization organization) {
         roleJComboBox.removeAllItems();
         for (Role role : organization.getSupportedRole()) {
-              if (role instanceof IndustryOrganizationAdmin){
-            roleJComboBox.addItem(role);
-        }}
+            if (role instanceof IndustryOrganizationAdmin) {
+                roleJComboBox.addItem(role);
+            }
+        }
     }
 
     public void popData() {

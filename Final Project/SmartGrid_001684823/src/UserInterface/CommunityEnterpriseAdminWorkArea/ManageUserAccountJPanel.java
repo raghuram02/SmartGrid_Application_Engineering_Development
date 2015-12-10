@@ -4,11 +4,15 @@
  */
 package UserInterface.CommunityEnterpriseAdminWorkArea;
 
+import Business.Enterprise.CommunityEnterprise;
 import Business.Enterprise.Enterprise;
+import Business.Enterprise.Enterprise.EnterpriseType;
 import Business.Network.Network;
 import Business.Organization.Organization;
 import Business.Person.Person;
 import Business.Role.Role;
+import Business.Role.RuralOrganizationAdmin;
+import Business.Role.UrbanOrganizationAdmin;
 import Business.SmartGrid;
 import Business.UserAccount.UserAccount;
 import java.awt.CardLayout;
@@ -49,13 +53,18 @@ public class ManageUserAccountJPanel extends javax.swing.JPanel {
         }
 
         for (Enterprise.EnterpriseType type : Enterprise.EnterpriseType.values()) {
-            enterpriseTypeJComboBox.addItem(type);
+            if (type.equals(EnterpriseType.Community)) {
+                enterpriseTypeJComboBox.addItem(type);
+            }
         }
         for (Network network : sg.getNetworkList()) {
             for (Enterprise enterprise : network.getEnterpriseDirectory().getEnterpriseList()) {
-                enterpriseJComboBox.addItem(enterprise);
-            }
 
+                if (enterprise instanceof CommunityEnterprise) {
+                    enterpriseJComboBox.addItem(enterprise);
+
+                }
+            }
         }
     }
 
@@ -78,8 +87,9 @@ public class ManageUserAccountJPanel extends javax.swing.JPanel {
     private void populateRoleComboBox(Organization organization) {
         roleJComboBox.removeAllItems();
         for (Role role : organization.getSupportedRole()) {
-//            if ((role instanceof RuralOrganizationAdmin) || (role instanceof UrbanOrganizationAdmin))
-            roleJComboBox.addItem(role);
+            if ((role instanceof RuralOrganizationAdmin) || (role instanceof UrbanOrganizationAdmin)) {
+                roleJComboBox.addItem(role);
+            }
         }
     }
 

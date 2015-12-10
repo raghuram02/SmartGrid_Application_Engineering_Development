@@ -33,19 +33,30 @@ public class ViewCustomerDetailsJPanel extends javax.swing.JPanel {
     /**
      * Creates new form ViewCustomerDetailsJPanel
      */
-    public ViewCustomerDetailsJPanel(JPanel userProcessContainer,Person p, UserAccount account, Organization organization, Enterprise enterprise) {
+    public ViewCustomerDetailsJPanel(JPanel userProcessContainer, Person p, UserAccount account, Organization organization, Enterprise enterprise) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.account = account;
         this.enterprise = enterprise;
         this.organization = organization;
-        this.p=p;
+        this.p = p;
         txtIName.setText(p.getIndustryName());
         txtEName.setText(p.getName());
         txtCity.setText(p.getCity());
         txtEmail.setText(p.getEmailID());
         txtTin.setText(String.valueOf(p.getTIN()));
         txtPhone.setText(String.valueOf(p.getPhoneNumber()));
+        labelPhoto.setIcon(new javax.swing.JLabel() {
+            public javax.swing.Icon getIcon() {
+                try {
+                    return new javax.swing.ImageIcon(
+                            new java.net.URL(p.getUrl())
+                    );
+                } catch (java.net.MalformedURLException e) {
+                }
+                return null;
+            }
+        }.getIcon());
 
     }
 
@@ -61,6 +72,7 @@ public class ViewCustomerDetailsJPanel extends javax.swing.JPanel {
         jLabel2 = new javax.swing.JLabel();
         btnUpdateStore = new javax.swing.JButton();
         btnSave = new javax.swing.JButton();
+        btnBack = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
@@ -69,11 +81,11 @@ public class ViewCustomerDetailsJPanel extends javax.swing.JPanel {
         txtTin = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         txtPhone = new javax.swing.JTextField();
-        btnBack = new javax.swing.JButton();
         jLabel11 = new javax.swing.JLabel();
         txtEmail = new javax.swing.JTextField();
         jLabel12 = new javax.swing.JLabel();
         txtCity = new javax.swing.JTextField();
+        labelPhoto = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 153));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -81,7 +93,7 @@ public class ViewCustomerDetailsJPanel extends javax.swing.JPanel {
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel2.setText("VIEW CUSTOMER DETAILS");
         jLabel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 10, -1, 30));
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 10, -1, 30));
 
         btnUpdateStore.setFont(new java.awt.Font("Lucida Calligraphy", 0, 14)); // NOI18N
         btnUpdateStore.setText("Update Details");
@@ -91,7 +103,7 @@ public class ViewCustomerDetailsJPanel extends javax.swing.JPanel {
                 btnUpdateStoreActionPerformed(evt);
             }
         });
-        add(btnUpdateStore, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 340, 140, 30));
+        add(btnUpdateStore, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 410, 140, 30));
 
         btnSave.setFont(new java.awt.Font("Lucida Calligraphy", 0, 14)); // NOI18N
         btnSave.setText("Save");
@@ -102,39 +114,7 @@ public class ViewCustomerDetailsJPanel extends javax.swing.JPanel {
                 btnSaveActionPerformed(evt);
             }
         });
-        add(btnSave, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 340, 70, 30));
-
-        jLabel4.setFont(new java.awt.Font("Lucida Calligraphy", 0, 14)); // NOI18N
-        jLabel4.setText("Industry");
-        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 90, -1, 20));
-
-        jLabel5.setFont(new java.awt.Font("Lucida Calligraphy", 0, 14)); // NOI18N
-        jLabel5.setText("Staff Name");
-        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 130, -1, 20));
-
-        jLabel6.setFont(new java.awt.Font("Lucida Calligraphy", 0, 14)); // NOI18N
-        jLabel6.setText("TIN");
-        add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 170, -1, 20));
-
-        txtIName.setFont(new java.awt.Font("Lucida Calligraphy", 0, 14)); // NOI18N
-        txtIName.setEnabled(false);
-        add(txtIName, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 90, 160, -1));
-
-        txtEName.setFont(new java.awt.Font("Lucida Calligraphy", 0, 14)); // NOI18N
-        txtEName.setEnabled(false);
-        add(txtEName, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 130, 160, -1));
-
-        txtTin.setFont(new java.awt.Font("Lucida Calligraphy", 0, 14)); // NOI18N
-        txtTin.setEnabled(false);
-        add(txtTin, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 170, 160, -1));
-
-        jLabel7.setFont(new java.awt.Font("Lucida Calligraphy", 0, 14)); // NOI18N
-        jLabel7.setText("Phone Number");
-        add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 210, -1, 20));
-
-        txtPhone.setFont(new java.awt.Font("Lucida Calligraphy", 0, 14)); // NOI18N
-        txtPhone.setEnabled(false);
-        add(txtPhone, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 210, 160, -1));
+        add(btnSave, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 410, 70, 30));
 
         btnBack.setFont(new java.awt.Font("Lucida Calligraphy", 0, 14)); // NOI18N
         btnBack.setText("<< Back");
@@ -144,23 +124,56 @@ public class ViewCustomerDetailsJPanel extends javax.swing.JPanel {
                 btnBackActionPerformed(evt);
             }
         });
-        add(btnBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 430, 90, 30));
+        add(btnBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 460, 90, 30));
+
+        jLabel4.setFont(new java.awt.Font("Lucida Calligraphy", 0, 14)); // NOI18N
+        jLabel4.setText("Industry");
+        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 260, -1, 20));
+
+        jLabel5.setFont(new java.awt.Font("Lucida Calligraphy", 0, 14)); // NOI18N
+        jLabel5.setText("Staff Name");
+        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 260, -1, 20));
+
+        jLabel6.setFont(new java.awt.Font("Lucida Calligraphy", 0, 14)); // NOI18N
+        jLabel6.setText("TIN");
+        add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 300, -1, 20));
+
+        txtIName.setFont(new java.awt.Font("Lucida Calligraphy", 0, 14)); // NOI18N
+        txtIName.setEnabled(false);
+        add(txtIName, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 260, 160, -1));
+
+        txtEName.setFont(new java.awt.Font("Lucida Calligraphy", 0, 14)); // NOI18N
+        txtEName.setEnabled(false);
+        add(txtEName, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 260, 160, -1));
+
+        txtTin.setFont(new java.awt.Font("Lucida Calligraphy", 0, 14)); // NOI18N
+        txtTin.setEnabled(false);
+        add(txtTin, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 300, 160, -1));
+
+        jLabel7.setFont(new java.awt.Font("Lucida Calligraphy", 0, 14)); // NOI18N
+        jLabel7.setText("Phone Number");
+        add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 300, -1, 20));
+
+        txtPhone.setFont(new java.awt.Font("Lucida Calligraphy", 0, 14)); // NOI18N
+        txtPhone.setEnabled(false);
+        add(txtPhone, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 300, 160, -1));
 
         jLabel11.setFont(new java.awt.Font("Lucida Calligraphy", 0, 14)); // NOI18N
         jLabel11.setText("Email ID");
-        add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 250, -1, 20));
+        add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 340, -1, 20));
 
         txtEmail.setFont(new java.awt.Font("Lucida Calligraphy", 0, 14)); // NOI18N
         txtEmail.setEnabled(false);
-        add(txtEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 250, 160, -1));
+        add(txtEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 340, 160, -1));
 
         jLabel12.setFont(new java.awt.Font("Lucida Calligraphy", 0, 14)); // NOI18N
         jLabel12.setText("City");
-        add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 290, -1, 20));
+        add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 340, -1, 20));
 
         txtCity.setFont(new java.awt.Font("Lucida Calligraphy", 0, 14)); // NOI18N
         txtCity.setEnabled(false);
-        add(txtCity, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 290, 160, -1));
+        add(txtCity, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 340, 160, -1));
+        add(labelPhoto, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 80, 160, 160));
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnUpdateStoreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateStoreActionPerformed
@@ -196,27 +209,27 @@ public class ViewCustomerDetailsJPanel extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, "Enter a valid Phone Number");
             return;
         }
-        
-            p.setIndustryName(txtIName.getText());
-            p.setName(txtEName.getText());
-            p.setCity(txtCity.getText());
-            p.setTIN(Integer.parseInt(txtTin.getText()));
-            p.setEmailID(txtEmail.getText());
-            p.setPhoneNumber(Integer.parseInt(txtPhone.getText()));
 
-            JOptionPane.showMessageDialog(null, "Customer Details saved successfully",
-                    "Information", JOptionPane.INFORMATION_MESSAGE);
-        
-            txtIName.setEditable(false);
-            txtEName.setEditable(false);
-            txtTin.setEditable(false);
-            txtCity.setEditable(false);
-            txtPhone.setEditable(false);
-            txtEmail.setEditable(false);
-            btnSave.setEnabled(false);
-            btnUpdateStore.setEnabled(true);
+        p.setIndustryName(txtIName.getText());
+        p.setName(txtEName.getText());
+        p.setCity(txtCity.getText());
+        p.setTIN(Integer.parseInt(txtTin.getText()));
+        p.setEmailID(txtEmail.getText());
+        p.setPhoneNumber(Integer.parseInt(txtPhone.getText()));
 
-        
+        JOptionPane.showMessageDialog(null, "Customer Details saved successfully",
+                "Information", JOptionPane.INFORMATION_MESSAGE);
+
+        txtIName.setEditable(false);
+        txtEName.setEditable(false);
+        txtTin.setEditable(false);
+        txtCity.setEditable(false);
+        txtPhone.setEditable(false);
+        txtEmail.setEditable(false);
+        btnSave.setEnabled(false);
+        btnUpdateStore.setEnabled(true);
+
+
     }//GEN-LAST:event_btnSaveActionPerformed
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
@@ -247,6 +260,7 @@ public class ViewCustomerDetailsJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel labelPhoto;
     private javax.swing.JTextField txtCity;
     private javax.swing.JTextField txtEName;
     private javax.swing.JTextField txtEmail;

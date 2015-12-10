@@ -5,13 +5,13 @@
  */
 package UserInterface.CommunityUrbanHouseholdWorkArea;
 
-import UserInterface.IndustryEmployeeWorkArea.*;
 import Business.Enterprise.Enterprise;
 import Business.Organization.IndustryOrganization;
 import Business.Organization.Organization;
+import Business.Organization.UrbanOrganization;
 import Business.Person.Person;
-import Business.Role.IndustryOrganizationAdmin;
 import Business.Role.Role;
+import Business.Role.UrbanOrganizationAdmin;
 import Business.UserAccount.UserAccount;
 import Business.WorkQueue.UpdateAppliancesWorkRequest;
 import Business.WorkQueue.WorkRequest;
@@ -51,7 +51,7 @@ public class RequestAppliancesUpdationJPanel extends javax.swing.JPanel {
         organizationJComboBox.removeAllItems();
 
         for (Organization organization : enterprise.getOrganizationDirectory().getOrganizationList()) {
-            if (organization instanceof IndustryOrganization) {
+            if (organization instanceof UrbanOrganization) {
                 organizationJComboBox.addItem(organization);
             }
         }
@@ -62,7 +62,7 @@ public class RequestAppliancesUpdationJPanel extends javax.swing.JPanel {
 
         for (UserAccount userAccount : organization.getUserAccountDirectory().getUserAccountList()) {
             for (Role role : organization.getSupportedRole()) {
-                if (role instanceof IndustryOrganizationAdmin) {
+                if (role instanceof UrbanOrganizationAdmin) {
                     employeeJComboBox.addItem(userAccount);
                 }
             }
@@ -254,7 +254,7 @@ public class RequestAppliancesUpdationJPanel extends javax.swing.JPanel {
 
         Organization org = null;
         for (Organization organization : enterprise.getOrganizationDirectory().getOrganizationList()) {
-            if (organization instanceof IndustryOrganization) {
+            if (organization instanceof UrbanOrganization) {
                 org = organization;
                 break;
             }

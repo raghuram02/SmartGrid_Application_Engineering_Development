@@ -5,7 +5,13 @@
  */
 package UserInterface.GovernmentOwnedMaintenanceEmployeeWorkAreaJPanel;
 
+import Business.Appliances.Appliance;
+import Business.Organization.Organization;
+import Business.Person.Person;
+import Business.Sensors.Sensor;
+import Business.UserAccount.UserAccount;
 import java.awt.CardLayout;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 /**
@@ -13,13 +19,20 @@ import javax.swing.JPanel;
  * @author Raghuram
  */
 public class SensorInputJPanel extends javax.swing.JPanel {
-private JPanel userProcessContainer;
+
+    private JPanel userProcessContainer;
+    private UserAccount account;
+    private Appliance appliance;
+    private Organization organization;
+
     /**
      * Creates new form PayEBillJPanel
      */
-    public SensorInputJPanel(JPanel userProcessContainer) {
+    public SensorInputJPanel(JPanel userProcessContainer, UserAccount account, Organization organization) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
+        this.account = account;
+        this.organization = organization;
     }
 
     /**
@@ -38,6 +51,8 @@ private JPanel userProcessContainer;
         submitJButton = new javax.swing.JButton();
         mediumSlider = new javax.swing.JSlider();
         backJButton3 = new javax.swing.JButton();
+        hourSpinner1 = new javax.swing.JSpinner();
+        hourSpinner = new javax.swing.JSpinner();
 
         setBackground(new java.awt.Color(255, 255, 153));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -45,7 +60,7 @@ private JPanel userProcessContainer;
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel2.setText("SENSOR INPUT");
         jLabel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 10, -1, -1));
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 10, -1, -1));
 
         jLabel3.setFont(new java.awt.Font("Lucida Calligraphy", 0, 14)); // NOI18N
         jLabel3.setText("Light Duty Appliances");
@@ -74,7 +89,7 @@ private JPanel userProcessContainer;
                 submitJButtonActionPerformed(evt);
             }
         });
-        add(submitJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 330, 90, 30));
+        add(submitJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 320, 90, 30));
 
         mediumSlider.setBackground(new java.awt.Color(255, 204, 102));
         mediumSlider.setFont(new java.awt.Font("Lucida Calligraphy", 0, 14)); // NOI18N
@@ -95,15 +110,40 @@ private JPanel userProcessContainer;
                 backJButton3ActionPerformed(evt);
             }
         });
-        add(backJButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 330, 80, 30));
+        add(backJButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 420, 80, 30));
+        add(hourSpinner1, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 230, 60, 50));
+        add(hourSpinner, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 150, 60, 50));
     }// </editor-fold>//GEN-END:initComponents
 
     private void submitJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitJButtonActionPerformed
-int lda = lightSlider.getValue();
-int mda = mediumSlider.getValue();
+        int lowDuty = lightSlider.getValue();
+        int mediumDuty = mediumSlider.getValue();
+        int hours = (Integer) hourSpinner.getValue();
+        int hours1 = (Integer) hourSpinner1.getValue();
 
+        for (Person p : organization.getPersonDirectory().getPersonList()) {
+            if (p.getName().equals(account.getPerson().getName())) {
+                for (Appliance a : p.getAppliancesDirectory().getApplianceList()) {
+                    if (a.getApplianceName().equals(Appliance.ApplianceType.LightDutyAppliance.getValue())) {
+                        Sensor s = organization.getSensorDirectory().createSensor("Low duty sensor");
+                        s.setAppliance(a);
+                        s.setValue(lowDuty);
+                        s.setPerson(p);
+                        s.setHours(hours);
+                    }
+                    if (a.getApplianceName().equals(Appliance.ApplianceType.MediumDutyAppliance.getValue())) {
+                        Sensor s = organization.getSensorDirectory().createSensor("Medium duty sensor");
+                        s.setAppliance(a);
+                        s.setValue(mediumDuty);
+                        s.setPerson(p);
+                        s.setHours(hours1);
+                    }
 
-        
+                }
+            }
+        }
+        JOptionPane.showMessageDialog(null, "Sensor created successfully!!!", "Information", JOptionPane.INFORMATION_MESSAGE);
+
     }//GEN-LAST:event_submitJButtonActionPerformed
 
     private void backJButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backJButton3ActionPerformed
@@ -115,6 +155,8 @@ int mda = mediumSlider.getValue();
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton backJButton3;
+    private javax.swing.JSpinner hourSpinner;
+    private javax.swing.JSpinner hourSpinner1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

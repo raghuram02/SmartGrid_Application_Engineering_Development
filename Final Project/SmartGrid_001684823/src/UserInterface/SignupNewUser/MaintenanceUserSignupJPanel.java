@@ -376,6 +376,7 @@ public class MaintenanceUserSignupJPanel extends javax.swing.JPanel {
         p.setCity(city);
         p.setPhoneNumber(phoneNumber);
         p.setTIN(TIN);
+        p.setUrl(txtAttach.getText());
         p.setPassword(password);
         p.setUserName(userName);
         for (Organization.Type type : Organization.Type.values()) {
@@ -391,13 +392,24 @@ public class MaintenanceUserSignupJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_txtAttachActionPerformed
 
     private void btnAttachActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAttachActionPerformed
-        JFileChooser jfc = new JFileChooser();
-        jfc.showOpenDialog(null);
-        File file = jfc.getSelectedFile();
-        String filename = file.getPath();
-        txtAttach.setText(filename);
-        ImageIcon icon = new ImageIcon(filename);
-        labelPhoto.setIcon(icon);
+//        JFileChooser jfc = new JFileChooser();
+//        jfc.showOpenDialog(null);
+//        File file = jfc.getSelectedFile();
+//        String filename = file.getPath();
+//        txtAttach.setText(filename);
+//        ImageIcon icon = new ImageIcon(filename);
+//        labelPhoto.setIcon(icon);
+        labelPhoto.setIcon(new javax.swing.JLabel() {
+            public javax.swing.Icon getIcon() {
+                try {
+                    return new javax.swing.ImageIcon(
+                            new java.net.URL(txtAttach.getText())
+                    );
+                } catch (java.net.MalformedURLException e) {
+                }
+                return null;
+            }
+        }.getIcon());
 
         // TODO add your handling code here:
     }//GEN-LAST:event_btnAttachActionPerformed

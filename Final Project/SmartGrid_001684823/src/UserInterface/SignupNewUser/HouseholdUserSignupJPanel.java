@@ -19,6 +19,7 @@ import Business.Role.UrbanHouseHoldRole;
 import Business.SmartGrid;
 import Business.UserAccount.UserAccount;
 import java.awt.CardLayout;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 /**
@@ -371,34 +372,65 @@ public class HouseholdUserSignupJPanel extends javax.swing.JPanel {
                 }
             }
         }
-        System.out.println("organization+++++++++++++++++" + organization);
-        String name = txtEName.getText();
-        String address = txtAddress.getText();
-        Person p = organization.getPersonDirectory().createPerson(name);
-        String emailID = txtEmailID.getText();
-        String city = txtCity.getText();
-        int phoneNumber = (Integer.parseInt(txtPhoneNumber.getText()));
-        int SSN = (Integer.parseInt(txtSSN.getText()));
-        String password = passwordJTextField.getText();
-        String userName = txtuserName.getText();
-        p.setName(name);
-        p.setAddress(address);
-        p.setEmailID(emailID);
-        p.setCity(city);
-        p.setUrl(txtAttach.getText());
-        p.setPhoneNumber(phoneNumber);
-        p.setSSN(SSN);
-        p.setPassword(password);
-        p.setUserName(userName);
-        if (role instanceof RuralHouseHoldRole) {
-            UserAccount account = organization.getUserAccountDirectory().createUserAccount(userName, password, p, new RuralHouseHoldRole());
-            System.out.println("role insid ruralsignup" + account.getRole());
-        } else if (role instanceof UrbanHouseHoldRole) {
-            UserAccount account = organization.getUserAccountDirectory().createUserAccount(userName, password, p, new UrbanHouseHoldRole());
-            System.out.println("role insid urban signup " + account.getRole());
+        if (txtAddress.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Enter a valid Address");
+            return;
+        } else if (txtEName.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Enter a valid  Name");
+            return;
         }
+        if (txtEmailID.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Enter a valid Email ID");
+            return;
+        } else if (txtCity.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Enter a valid city");
+            return;
+        }
+        if (passwordJTextField.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Enter the password");
+            return;
+        } else if (txtuserName.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Enter a valid UserName");
+            return;
+        } else if (!txtPhoneNumber.getText().matches("\\d+")) {
+            JOptionPane.showMessageDialog(null, "Enter a valid Phone Number");
+            return;
+        } else if (!txtSSN.getText().matches("\\d+")) {
+            JOptionPane.showMessageDialog(null, "Enter a valid SSN");
+            return;
+        }
+        try {
+            String name = txtEName.getText();
+            String address = txtAddress.getText();
+            Person p = organization.getPersonDirectory().createPerson(name);
+            String emailID = txtEmailID.getText();
+            String city = txtCity.getText();
+            int phoneNumber = (Integer.parseInt(txtPhoneNumber.getText()));
+            int SSN = (Integer.parseInt(txtSSN.getText()));
+            String password = passwordJTextField.getText();
+            String userName = txtuserName.getText();
+            p.setName(name);
+            p.setAddress(address);
+            p.setEmailID(emailID);
+            p.setCity(city);
+            p.setUrl(txtAttach.getText());
+            p.setPhoneNumber(phoneNumber);
+            p.setSSN(SSN);
+            p.setPassword(password);
+            p.setUserName(userName);
+            JOptionPane.showMessageDialog(null, "Profile created successfully!!!", "Information", JOptionPane.INFORMATION_MESSAGE);
+            if (role instanceof RuralHouseHoldRole) {
+                UserAccount account = organization.getUserAccountDirectory().createUserAccount(userName, password, p, new RuralHouseHoldRole());
+                System.out.println("role insid ruralsignup" + account.getRole());
+            } else if (role instanceof UrbanHouseHoldRole) {
+                UserAccount account = organization.getUserAccountDirectory().createUserAccount(userName, password, p, new UrbanHouseHoldRole());
+                System.out.println("role insid urban signup " + account.getRole());
+            }
 
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Please enter the details!!!", "Information", JOptionPane.INFORMATION_MESSAGE);
 
+        }
     }//GEN-LAST:event_btnCreateActionPerformed
 
     private void txtAttachActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtAttachActionPerformed

@@ -47,7 +47,6 @@ public class RuralAdminWorkAreaJPanel extends javax.swing.JPanel {
         jLabel2 = new javax.swing.JLabel();
         btnAccess = new javax.swing.JButton();
         serveConsumer = new javax.swing.JButton();
-        payEBill = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 153));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -65,7 +64,7 @@ public class RuralAdminWorkAreaJPanel extends javax.swing.JPanel {
                 btnAccessActionPerformed(evt);
             }
         });
-        add(btnAccess, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 180, 240, -1));
+        add(btnAccess, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 180, 240, 40));
 
         serveConsumer.setFont(new java.awt.Font("Lucida Calligraphy", 0, 14)); // NOI18N
         serveConsumer.setText("Serve Consumers");
@@ -75,17 +74,7 @@ public class RuralAdminWorkAreaJPanel extends javax.swing.JPanel {
                 serveConsumerActionPerformed(evt);
             }
         });
-        add(serveConsumer, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 230, 240, -1));
-
-        payEBill.setFont(new java.awt.Font("Lucida Calligraphy", 0, 14)); // NOI18N
-        payEBill.setText("Pay Electricity Bill");
-        payEBill.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        payEBill.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                payEBillActionPerformed(evt);
-            }
-        });
-        add(payEBill, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 280, 240, -1));
+        add(serveConsumer, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 260, 240, 40));
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAccessActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAccessActionPerformed
@@ -106,20 +95,10 @@ public class RuralAdminWorkAreaJPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_serveConsumerActionPerformed
 
-    private void payEBillActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_payEBillActionPerformed
-        //        PayEBillJPanel payEBillJPanel = new PayEBillJPanel(userProcessContainer, enterprise);
-        //        userProcessContainer.add("PayEBillJPanel", payEBillJPanel);
-        //
-        //        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-        //        layout.next(userProcessContainer);
-        // TODO add your handling code here:
-    }//GEN-LAST:event_payEBillActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAccess;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JButton payEBill;
     private javax.swing.JButton serveConsumer;
     // End of variables declaration//GEN-END:variables
 }

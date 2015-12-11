@@ -94,6 +94,7 @@ public class ProcessWorkRequestJPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void submitJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitJButtonActionPerformed
+
         if (resultJTextField.getText().isEmpty()) {
             JOptionPane.showMessageDialog(null, "Enter the Result");
             return;

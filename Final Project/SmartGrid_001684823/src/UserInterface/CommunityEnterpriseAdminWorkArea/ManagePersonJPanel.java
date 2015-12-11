@@ -10,6 +10,7 @@ import Business.Organization.Organization;
 import Business.Organization.OrganizationDirectory;
 import Business.Person.Person;
 import java.awt.CardLayout;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 
@@ -191,6 +192,11 @@ public class ManagePersonJPanel extends javax.swing.JPanel {
         
         Organization organization = (Organization) organizationEmpJComboBox.getSelectedItem();
         String name = nameJTextField.getText();
+        if (nameJTextField.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Enter a valid Name");
+            return;
+
+        }
         
         organization.getPersonDirectory().createPerson(name);
         populateTable(organization);

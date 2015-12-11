@@ -16,6 +16,7 @@ import Business.Role.UrbanOrganizationAdmin;
 import Business.SmartGrid;
 import Business.UserAccount.UserAccount;
 import java.awt.CardLayout;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 
@@ -291,6 +292,14 @@ public class ManageUserAccountJPanel extends javax.swing.JPanel {
     private void createUserJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createUserJButtonActionPerformed
         String userName = nameJTextField.getText();
         String password = passwordJTextField.getText();
+        if (nameJTextField.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Enter a valid Username");
+            return;
+        } else if (passwordJTextField.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Enter a valid password");
+            return;
+
+        }
         Organization organization = (Organization) organizationJComboBox.getSelectedItem();
         Person person = (Person) employeeJComboBox.getSelectedItem();
         Role role = (Role) roleJComboBox.getSelectedItem();

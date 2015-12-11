@@ -6,7 +6,6 @@
 package UserInterface.SignupNewUser;
 
 import Business.Enterprise.Enterprise;
-import Business.Enterprise.GovernmentOwnedEnterprise;
 import Business.Enterprise.IndustryEnterprise;
 import Business.Network.Network;
 import Business.Organization.IndustryOrganization;
@@ -17,9 +16,7 @@ import Business.Role.IndustryEmployeeRole;
 import Business.Role.Role;
 import Business.SmartGrid;
 import java.awt.CardLayout;
-import java.io.File;
-import javax.swing.ImageIcon;
-import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 /**
@@ -361,31 +358,65 @@ public class IndustryUserSignupJPanel extends javax.swing.JPanel {
                 }
             }
         }
-        String industryName = txtIName.getText();
-        String name = txtEName.getText();
-        Person p = organization.getPersonDirectory().createPerson(name);
-        String emailID = txtEmailID.getText();
-        String city = txtCity.getText();
-        int phoneNumber = (Integer.parseInt(txtPhoneNumber.getText()));
-        int TIN = (Integer.parseInt(txtTIN.getText()));
-        String password = passwordJTextField.getText();
-        String userName = txtuserName.getText();
-        p.setName(name);
-        p.setIndustryName(industryName);
-        p.setEmailID(emailID);
-        p.setCity(city);
-        p.setPhoneNumber(phoneNumber);
-        p.setTIN(TIN);
-        p.setPassword(password);
-        p.setUrl(txtAttach.getText());
-        p.setUserName(userName);
-        for (Organization.Type type : Organization.Type.values()) {
+
+        if (txtIName.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Enter a valid Industry name");
+            return;
+        } else if (txtEName.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Enter a valid Employee Name");
+            return;
+        }
+        if (txtEmailID.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Enter a valid Email ID");
+            return;
+        } else if (txtCity.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Enter a valid city");
+            return;
+        }
+        if (passwordJTextField.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Enter the password");
+            return;
+        } else if (txtuserName.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Enter a valid UserName");
+            return;
+        } else if (!txtPhoneNumber.getText().matches("\\d+")) {
+            JOptionPane.showMessageDialog(null, "Enter a valid Phone Number");
+            return;
+        } else if (!txtTIN.getText().matches("\\d+")) {
+            JOptionPane.showMessageDialog(null, "Enter a valid TIN");
+            return;
+        }
+        try {
+            String industryName = txtIName.getText();
+            String name = txtEName.getText();
+            Person p = organization.getPersonDirectory().createPerson(name);
+            String emailID = txtEmailID.getText();
+            String city = txtCity.getText();
+            int phoneNumber = (Integer.parseInt(txtPhoneNumber.getText()));
+            int TIN = (Integer.parseInt(txtTIN.getText()));
+            String password = passwordJTextField.getText();
+            String userName = txtuserName.getText();
+            p.setName(name);
+            p.setIndustryName(industryName);
+            p.setEmailID(emailID);
+            p.setCity(city);
+            p.setPhoneNumber(phoneNumber);
+            p.setTIN(TIN);
+            p.setPassword(password);
+            p.setUrl(txtAttach.getText());
+            p.setUserName(userName);
+            JOptionPane.showMessageDialog(null, "Profile created successfully!!!", "Information", JOptionPane.INFORMATION_MESSAGE);
+            for (Organization.Type type : Organization.Type.values()) {
             if (type.getValue().equals(Organization.Type.Industry.getValue())) {
                 organization.getUserAccountDirectory().createUserAccount(userName, password, p, new IndustryEmployeeRole());
             }
         }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Please enter the details!!!", "Information", JOptionPane.INFORMATION_MESSAGE);
+        }
+
         
-        System.out.println("URL"+p.getUrl() + labelPhoto.getText());
+
 
     }//GEN-LAST:event_btnCreateActionPerformed
 

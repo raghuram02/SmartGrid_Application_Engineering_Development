@@ -4,13 +4,13 @@
  */
 package UserInterface.IndustryEnterpriseAdminWorkArea;
 
-
 import UserInterface.GovernmentOwnedEnterpriseAdminWorkArea.*;
 import Business.Enterprise.Enterprise;
 import Business.Organization.Organization;
 import Business.Organization.OrganizationDirectory;
 import Business.Person.Person;
 import java.awt.CardLayout;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 
@@ -19,7 +19,7 @@ import javax.swing.table.DefaultTableModel;
  * @author raunak
  */
 public class ManagePersonJPanel extends javax.swing.JPanel {
-    
+
     private OrganizationDirectory organizationDir;
     private JPanel userProcessContainer;
     Enterprise enterprise;
@@ -31,23 +31,23 @@ public class ManagePersonJPanel extends javax.swing.JPanel {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.organizationDir = organizationDir;
-        
+
         populateOrganizationComboBox();
         populateOrganizationEmpComboBox();
 //        populateCityComboBox();
     }
-    
+
     public void populateOrganizationComboBox() {
         organizationJComboBox.removeAllItems();
-        
+
         for (Organization organization : organizationDir.getOrganizationList()) {
             organizationJComboBox.addItem(organization);
         }
     }
-    
+
     public void populateOrganizationEmpComboBox() {
         organizationEmpJComboBox.removeAllItems();
-        
+
         for (Organization organization : organizationDir.getOrganizationList()) {
             organizationEmpJComboBox.addItem(organization);
         }
@@ -62,9 +62,9 @@ public class ManagePersonJPanel extends javax.swing.JPanel {
 
     private void populateTable(Organization organization) {
         DefaultTableModel model = (DefaultTableModel) organizationJTable.getModel();
-        
+
         model.setRowCount(0);
-        
+
         for (Person person : organization.getPersonDirectory().getPersonList()) {
             Object[] row = new Object[2];
             row[0] = person.getId();
@@ -189,17 +189,22 @@ public class ManagePersonJPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void addJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addJButtonActionPerformed
-        
+
         Organization organization = (Organization) organizationEmpJComboBox.getSelectedItem();
         String name = nameJTextField.getText();
-        
+        if (nameJTextField.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Enter a valid Name");
+            return;
+
+        }
+
         organization.getPersonDirectory().createPerson(name);
         populateTable(organization);
-        
+
     }//GEN-LAST:event_addJButtonActionPerformed
 
     private void backJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backJButtonActionPerformed
-        
+
         userProcessContainer.remove(this);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.previous(userProcessContainer);

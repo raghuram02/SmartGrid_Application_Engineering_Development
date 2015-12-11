@@ -7,9 +7,7 @@ package UserInterface.SignupNewUser;
 
 import Business.Enterprise.Enterprise;
 import Business.Enterprise.GovernmentOwnedEnterprise;
-import Business.Enterprise.IndustryEnterprise;
 import Business.Network.Network;
-import Business.Organization.IndustryOrganization;
 import Business.Organization.Organization;
 import Business.Organization.PublicOrganization;
 import Business.Person.Person;
@@ -19,9 +17,7 @@ import Business.Role.MaintenanceEmployeeRole;
 import Business.Role.Role;
 import Business.SmartGrid;
 import java.awt.CardLayout;
-import java.io.File;
-import javax.swing.ImageIcon;
-import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 /**
@@ -183,7 +179,7 @@ public class MaintenanceUserSignupJPanel extends javax.swing.JPanel {
         add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 440, -1, 30));
 
         jLabel9.setFont(new java.awt.Font("Lucida Calligraphy", 0, 14)); // NOI18N
-        jLabel9.setText("Industry");
+        jLabel9.setText("Type");
         add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 290, -1, 30));
 
         jLabel10.setFont(new java.awt.Font("Lucida Calligraphy", 0, 14)); // NOI18N
@@ -361,28 +357,60 @@ public class MaintenanceUserSignupJPanel extends javax.swing.JPanel {
                 }
             }
         }
-        String industryName = txtIName.getText();
-        String name = txtEName.getText();
-        Person p = organization.getPersonDirectory().createPerson(name);
-        String emailID = txtEmailID.getText();
-        String city = txtCity.getText();
-        int phoneNumber = (Integer.parseInt(txtPhoneNumber.getText()));
-        int TIN = (Integer.parseInt(txtTIN.getText()));
-        String password = passwordJTextField.getText();
-        String userName = txtuserName.getText();
-        p.setName(name);
-        p.setIndustryName(industryName);
-        p.setEmailID(emailID);
-        p.setCity(city);
-        p.setPhoneNumber(phoneNumber);
-        p.setTIN(TIN);
-        p.setUrl(txtAttach.getText());
-        p.setPassword(password);
-        p.setUserName(userName);
-        for (Organization.Type type : Organization.Type.values()) {
-            if (type.getValue().equals(Organization.Type.Public.getValue())) {
-                organization.getUserAccountDirectory().createUserAccount(userName, password, p, new MaintenanceEmployeeRole());
+        if (txtIName.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Enter a valid Industry name");
+            return;
+        } else if (txtEName.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Enter a valid Employee Name");
+            return;
+        }
+        if (txtEmailID.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Enter a valid Email ID");
+            return;
+        } else if (txtCity.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Enter a valid city");
+            return;
+        }
+        if (passwordJTextField.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Enter the password");
+            return;
+        } else if (txtuserName.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Enter a valid UserName");
+            return;
+        } else if (!txtPhoneNumber.getText().matches("\\d+")) {
+            JOptionPane.showMessageDialog(null, "Enter a valid Phone Number");
+            return;
+        } else if (!txtTIN.getText().matches("\\d+")) {
+            JOptionPane.showMessageDialog(null, "Enter a valid TIN");
+            return;
+        }
+        try {
+            String industryName = txtIName.getText();
+            String name = txtEName.getText();
+            Person p = organization.getPersonDirectory().createPerson(name);
+            String emailID = txtEmailID.getText();
+            String city = txtCity.getText();
+            int phoneNumber = (Integer.parseInt(txtPhoneNumber.getText()));
+            int TIN = (Integer.parseInt(txtTIN.getText()));
+            String password = passwordJTextField.getText();
+            String userName = txtuserName.getText();
+            p.setName(name);
+            p.setIndustryName(industryName);
+            p.setEmailID(emailID);
+            p.setCity(city);
+            p.setPhoneNumber(phoneNumber);
+            p.setTIN(TIN);
+            p.setPassword(password);
+            p.setUrl(txtAttach.getText());
+            p.setUserName(userName);
+            JOptionPane.showMessageDialog(null, "Profile created successfully!!!", "Information", JOptionPane.INFORMATION_MESSAGE);
+            for (Organization.Type type : Organization.Type.values()) {
+                if (type.getValue().equals(Organization.Type.Public.getValue())) {
+                    organization.getUserAccountDirectory().createUserAccount(userName, password, p, new MaintenanceEmployeeRole());
+                }
             }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Please enter the details!!!", "Information", JOptionPane.INFORMATION_MESSAGE);
         }
 
     }//GEN-LAST:event_btnCreateActionPerformed

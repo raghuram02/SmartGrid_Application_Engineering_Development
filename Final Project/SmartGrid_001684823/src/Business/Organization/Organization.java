@@ -102,8 +102,8 @@ public abstract class Organization {
         this.workQueue = workQueue;
     }
 
-//    @Override
-//    public String toString() {
-//        return name;
-//    }
+    @Override
+    public String toString() {
+        return name;
+    }
 }

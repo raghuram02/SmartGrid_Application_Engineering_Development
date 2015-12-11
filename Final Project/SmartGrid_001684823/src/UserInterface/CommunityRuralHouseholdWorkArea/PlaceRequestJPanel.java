@@ -164,6 +164,7 @@ public class PlaceRequestJPanel extends javax.swing.JPanel {
     private void requestTestJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_requestTestJButtonActionPerformed
         UserAccount UA = (UserAccount) employeeJComboBox.getSelectedItem();
         String message = messageJTextField.getText();
+        
         if (messageJTextField.getText().isEmpty()) {
             JOptionPane.showMessageDialog(null, "Enter a valid Message");
             return;

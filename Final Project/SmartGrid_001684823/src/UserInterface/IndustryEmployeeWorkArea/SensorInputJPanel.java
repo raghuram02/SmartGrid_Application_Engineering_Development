@@ -144,11 +144,20 @@ public class SensorInputJPanel extends javax.swing.JPanel {
         int hours = (Integer) hourSpinner.getValue();
         int hours1 = (Integer) hourSpinner1.getValue();
         int hours2 = (Integer) hourSpinner2.getValue();
-        
+        if (hours <= 0) {
+            JOptionPane.showMessageDialog(this, "Enter a valid input", "Warning", JOptionPane.WARNING_MESSAGE);
+            return;
+        } else if (hours1 <= 0) {
+            JOptionPane.showMessageDialog(this, "Enter a valid input", "Warning", JOptionPane.WARNING_MESSAGE);
+            return;
+        } else if (hours2 <= 0) {
+            JOptionPane.showMessageDialog(this, "Enter a valid input", "Warning", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
 
         for (Person p : organization.getPersonDirectory().getPersonList()) {
             if (p.getName().equals(account.getPerson().getName())) {
-                   for (Appliance a : p.getAppliancesDirectory().getApplianceList()) {
+                for (Appliance a : p.getAppliancesDirectory().getApplianceList()) {
                     System.out.print("inside app" + ApplianceType.LightDutyAppliance.getValue());
                     if (a.getApplianceName().equals(ApplianceType.LightDutyAppliance.getValue())) {
 //                        System.out.print("inside apptype" + ApplianceType.LightDutyAppliance.getValue());

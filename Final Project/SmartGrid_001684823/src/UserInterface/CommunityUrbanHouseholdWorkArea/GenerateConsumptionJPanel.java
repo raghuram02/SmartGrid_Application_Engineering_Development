@@ -156,6 +156,7 @@ public class GenerateConsumptionJPanel extends javax.swing.JPanel {
 
         tAmount.setFont(new java.awt.Font("Lucida Calligraphy", 0, 14)); // NOI18N
         tAmount.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        tAmount.setEnabled(false);
         add(tAmount, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 370, 140, 30));
     }// </editor-fold>//GEN-END:initComponents
 
